@@ -32,7 +32,7 @@ namespace WindowsFormsApplication1
             form2.Show();
 
         }
-        public static void getVeriler(int guvenli_alan, int hiz, int yon, Point merkez)
+        public static void setVeriler(int guvenli_alan, int hiz, int yon, Point merkez)
         {
             gemiler.Add(new Gemi(guvenli_alan*katSayi, hiz, yon, merkez));
           //  Console.WriteLine(a+";"+ b+";"+ c+"---"+merkez.X+";"+merkez.Y+"");

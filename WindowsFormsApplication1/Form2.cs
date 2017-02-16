@@ -30,7 +30,7 @@ namespace WindowsFormsApplication1
             guvenli_alan = Convert.ToInt32(textBox1.Text);
             hiz = Convert.ToInt32(textBox2.Text);
             yon = Convert.ToInt32(textBox3.Text);
-            Form1.getVeriler(guvenli_alan, hiz, yon,merkez);
+            Form1.setVeriler(guvenli_alan, hiz, yon,merkez);
             this.Close();
         }
 
