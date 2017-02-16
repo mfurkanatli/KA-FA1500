@@ -11,10 +11,12 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
+        Graphics cizim;
         
         public Form1()
         {
             InitializeComponent();
+            cizim = CreateGraphics();
         }
         static public void yaz()
         {
@@ -27,7 +29,11 @@ namespace WindowsFormsApplication1
         {
 
             Point merkez = new Point(Control.MousePosition.X - this.Location.X, Control.MousePosition.Y - this.Location.Y);
-      //      Console.WriteLine((Control.MousePosition.X - this.Location.X) + ";" + (Control.MousePosition.Y - this.Location.Y )+ "");
+            //      Console.WriteLine((Control.MousePosition.X - this.Location.X) + ";" + (Control.MousePosition.Y - this.Location.Y )+ "");
+            Pen pen = new Pen(Color.Black,3);
+
+            cizim.DrawLine(pen,merkez.X,merkez.Y-30,merkez.X+10,merkez.Y-10);
+            cizim.DrawLine(pen, merkez.X+10, merkez.Y - 30, merkez.X , merkez.Y - 10);
             Form2 form2 = new Form2(merkez);
             form2.Show();
 
@@ -58,7 +64,7 @@ namespace WindowsFormsApplication1
             while (timer.Interval < timeOut && !carpistiMi())
             {
                 Console.WriteLine(timer.Interval + "");
-                karsiGemi.merkez.X += Convert.ToInt32(karsiGemi.hiz 
+                /*karsiGemi.merkez.X += Convert.ToInt32(karsiGemi.hiz 
                     * Math.Cos((karsiGemi.yon + 90) * Math.PI / 180));
                 karsiGemi.merkez.Y += Convert.ToInt32(karsiGemi.hiz 
                     * -Math.Sin((karsiGemi.yon + 90) * Math.PI / 180));
@@ -66,13 +72,25 @@ namespace WindowsFormsApplication1
                 bizimGemi.merkez.X += Convert.ToInt32(bizimGemi.hiz 
                     * Math.Cos((bizimGemi.yon + 90) * Math.PI / 180));
                 bizimGemi.merkez.Y += Convert.ToInt32(bizimGemi.hiz 
-                    * -Math.Sin((bizimGemi.yon + 90) * Math.PI / 180));
+                    * -Math.Sin((bizimGemi.yon + 90) * Math.PI / 180));*/
+
+                karsiGemi = gemiHareketEttir(karsiGemi);
+                bizimGemi = gemiHareketEttir(bizimGemi);
 
                 gemiCiz(bizimGemi);
                 gemiCiz(karsiGemi);
             }
 
             timer.Stop();
+        }
+
+        public Gemi gemiHareketEttir(Gemi gemi)
+        {
+            gemi.merkez.X += Convert.ToInt32(gemi.hiz
+                   * Math.Cos((gemi.yon + 90) * Math.PI / 180));
+            gemi.merkez.Y += Convert.ToInt32(gemi.hiz
+                * -Math.Sin((gemi.yon + 90) * Math.PI / 180));
+            return gemi;
         }
 
         private bool carpistiMi()

@@ -36,8 +36,7 @@ namespace WindowsFormsApplication1
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            
-                
+                            
         }
     }
 }

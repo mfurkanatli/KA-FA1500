@@ -5,7 +5,7 @@ using System.Text;
 using System.Drawing;
 namespace WindowsFormsApplication1
 {
-    class Gemi
+   public class Gemi
     {
       public  int guvenli_alan;
       public int hiz;
