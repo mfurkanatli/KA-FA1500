@@ -16,6 +16,7 @@ namespace WindowsFormsApplication1
         Gemi bizimGemi;
         Graphics g;
         bool veriOnayla = false;
+        
         public Form1()
         {
             InitializeComponent();
@@ -51,30 +52,38 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            veriOnayla = true;
-
-            bizimGemi = gemiler.ElementAt(0);
-            karsiGemi = gemiler.ElementAt(1);
-            /*tcpaHesapla(karsiGemi);
-            dcpaHesapla(karsiGemi);*/
-
-
-            for (int i = 0; i < gemiler.Count; i++)
+            if(gemiler.Count>1)
             {
-                gemiCiz(gemiler.ElementAt(i));
-                if (i > 0)//tcp,dcp Hesaplancak
-                {
-                    gemiler.ElementAt(i).tcpa = Gemi.tcpaHesapla(gemiler.ElementAt(0),gemiler.ElementAt(i));
-                    gemiler.ElementAt(i).dcpa = Gemi.dcpaHesapla(gemiler.ElementAt(0),gemiler.ElementAt(i));
-                }
-            }
 
-            durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1));
+                veriOnayla = true;
+
+                bizimGemi = gemiler.ElementAt(0);
+                karsiGemi = gemiler.ElementAt(1);
+                /*tcpaHesapla(karsiGemi);
+                dcpaHesapla(karsiGemi);*/
+
+
+                for (int i = 0; i < gemiler.Count; i++)
+                {
+                    gemiCiz(gemiler.ElementAt(i));
+                    if (i > 0)//tcp,dcp Hesaplancak
+                    {
+                        gemiler.ElementAt(i).tcpa = Gemi.tcpaHesapla(gemiler.ElementAt(0), gemiler.ElementAt(i));
+                        gemiler.ElementAt(i).dcpa = Gemi.dcpaHesapla(gemiler.ElementAt(0), gemiler.ElementAt(i));
+                    }
+                }
+
+                durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1));
+            }
+            else
+            {
+                MessageBox.Show("Yeterli Sayida Gemi Girmediniz");
+            }
 
            /* gemiKonumlandir(bizimGemi);
             gemiKonumlandir(karsiGemi);*/           

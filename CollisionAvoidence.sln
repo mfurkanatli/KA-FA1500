@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollisionAvoidence", "WindowsFormsApplication1\CollisionAvoidence.csproj", "{CC57D6EE-0E74-410B-BB9C-DA277CAB706E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GA-odev-bolum2", "..\Genetics-binary-\GA-odev-bolum2\GA-odev-bolum2.csproj", "{F99C1050-7648-4F7C-B46C-1630C463E54D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CC57D6EE-0E74-410B-BB9C-DA277CAB706E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC57D6EE-0E74-410B-BB9C-DA277CAB706E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC57D6EE-0E74-410B-BB9C-DA277CAB706E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F99C1050-7648-4F7C-B46C-1630C463E54D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F99C1050-7648-4F7C-B46C-1630C463E54D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F99C1050-7648-4F7C-B46C-1630C463E54D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F99C1050-7648-4F7C-B46C-1630C463E54D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

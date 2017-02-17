@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+
 namespace WindowsFormsApplication1
 {
    public class Gemi
     {
+       
       public  int guvenli_alan;
       public int hiz;
       public int yon;
