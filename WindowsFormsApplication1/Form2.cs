@@ -12,31 +12,38 @@ namespace WindowsFormsApplication1
     public partial class Form2 : Form
     {
         
-        Point merkez;
         public Form2()
         {
             InitializeComponent();
         }
-        public Form2(Point merkez)
-        {
-            InitializeComponent();
-            this.merkez = merkez;
-        }
+
+       
         private void button1_Click(object sender, EventArgs e)
         {
             int guvenli_alan;
             int hiz;
             int yon;
+            Point p = new Point();
+           
             guvenli_alan = Convert.ToInt32(textBox1.Text);
             hiz = Convert.ToInt32(textBox2.Text);
             yon = Convert.ToInt32(textBox3.Text);
-            Form1.setVeriler(guvenli_alan, hiz, yon,merkez);
+            p.X = Convert.ToInt32(textBox4.Text);
+            p.Y = Convert.ToInt32(textBox5.Text);
+           
+            Form1.setVeriler(guvenli_alan, hiz, yon,p);
+            
             this.Close();
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
                             
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

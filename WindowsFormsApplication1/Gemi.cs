@@ -10,14 +10,14 @@ namespace WindowsFormsApplication1
       public  int guvenli_alan;
       public int hiz;
       public int yon;
+      public double tcpa, dcpa;
       public Point merkez;
         public Gemi(int guvenli_alan, int hiz, int yon, Point merkez)
         {
             this.guvenli_alan = guvenli_alan;
             this.hiz = hiz;
             this.yon = yon;
-            this.merkez = merkez;
-           
+            this.merkez = merkez;           
         }
 
         public int getGuvenli_alan()
@@ -52,6 +52,16 @@ namespace WindowsFormsApplication1
 
         }
         
+        public static double tcpaHesapla(Gemi g1,Gemi g2)
+        {
+            double sonuc = 0;           
 
+            return sonuc;
+        }
+        public static double dcpaHesapla(Gemi g1,Gemi g2)//her gemide tcpa ,dcpa hesabı olması gerekir.Ancak bu hesapların her gemi icin ayrı ayrı olusturulmasına gerek olmadığı icin static tanimladik
+        {
+            double sonuc = 0;
+            return sonuc;
+        }
     }
 }
