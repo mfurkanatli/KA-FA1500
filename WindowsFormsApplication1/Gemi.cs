@@ -11,14 +11,14 @@ namespace WindowsFormsApplication1
        
       public  int guvenli_alan;
       public int hiz;
-      public int yon;
+      public int rota;
       public double tcpa, dcpa;
       public Point merkez;
-        public Gemi(int guvenli_alan, int hiz, int yon, Point merkez)
+        public Gemi(int guvenli_alan, int hiz, int rota, Point merkez)
         {
             this.guvenli_alan = guvenli_alan;
             this.hiz = hiz;
-            this.yon = yon;
+            this.rota = -rota;
             this.merkez = merkez;           
         }
 
@@ -40,16 +40,16 @@ namespace WindowsFormsApplication1
             this.hiz = hiz;
         }
 
-        public int getYon()
+        public int getrota()
         {
-            return this.yon;
+            return this.rota;
         }
-        public void setYon(int yon)
+        public void setrota(int rota)
         {
-            this.yon = yon;
+            this.rota = rota;
         }
 
-        public void gemiIlerle(int yon, int hiz)
+        public void gemiIlerle(int rota, int hiz)
         {
 
         }

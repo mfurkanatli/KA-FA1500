@@ -31,9 +31,13 @@ namespace WindowsFormsApplication1
         static int katSayi = 10;
         static List<Gemi> gemiler = new List<Gemi>();
 
+
+        //Double click yerine manuel koordinat girilecek
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
 
+            
+            /*
             Point merkez = new Point(Control.MousePosition.X - this.Location.X, Control.MousePosition.Y - this.Location.Y);
             //      Console.WriteLine((Control.MousePosition.X - this.Location.X) + ";" + (Control.MousePosition.Y - this.Location.Y )+ "");
             Pen pen = new Pen(Color.Black, 3);
@@ -41,12 +45,12 @@ namespace WindowsFormsApplication1
             cizim.DrawLine(pen, merkez.X, merkez.Y - 30, merkez.X + 10, merkez.Y - 10);
             cizim.DrawLine(pen, merkez.X + 10, merkez.Y - 30, merkez.X, merkez.Y - 10);
             Form2 form2 = new Form2();
-            form2.Show();
+            form2.Show();*/
 
         }
-        public static void setVeriler(int guvenli_alan, int hiz, int yon, Point merkez)
+        public static void setVeriler(int guvenli_alan, int hiz, int rota, Point merkez)
         {
-            gemiler.Add(new Gemi(guvenli_alan * katSayi, hiz, yon, merkez));
+            gemiler.Add(new Gemi(guvenli_alan * katSayi, hiz, rota, merkez));
         }
       
 
@@ -107,7 +111,7 @@ namespace WindowsFormsApplication1
         public String durumKontrolu(Gemi _bizimGemi, Gemi _karsiGemi)
         {
             String s = "";
-            double rota = _karsiGemi.yon - _bizimGemi.yon;
+            double rota = _karsiGemi.rota - _bizimGemi.rota;
             if ((rota >= 355 && rota <= 360) || (rota >= 0 && rota < 5))
             {
                 s = "Head-on";
@@ -129,9 +133,9 @@ namespace WindowsFormsApplication1
         public Gemi gemiHareketEttir(Gemi gemi)
         {
             gemi.merkez.X += Convert.ToInt32(gemi.hiz
-                   * Math.Cos((gemi.yon + 90) * Math.PI / 180));
+                   * Math.Cos((gemi.rota + 90) * Math.PI / 180));
             gemi.merkez.Y += Convert.ToInt32(gemi.hiz
-                * -Math.Sin((gemi.yon + 90) * Math.PI / 180));
+                * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
             return gemi;
         }
 
@@ -155,9 +159,9 @@ namespace WindowsFormsApplication1
                 
 
             int r = 500;
-            int x = gemi.merkez.X + Convert.ToInt32(r * Math.Cos((gemi.yon + 90) * Math.PI / 180));
-            int y = gemi.merkez.Y + Convert.ToInt32(r * -Math.Sin((gemi.yon + 90) * Math.PI / 180));
-            Console.WriteLine(Math.Sin(gemi.yon * Math.PI / 180) + "");
+            int x = gemi.merkez.X + Convert.ToInt32(r * Math.Cos((gemi.rota + 90) * Math.PI / 180));
+            int y = gemi.merkez.Y + Convert.ToInt32(r * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
+            Console.WriteLine(Math.Sin(gemi.rota * Math.PI / 180) + "");
             Point hedef = new Point(x, y);
 
             Pen cevre = new Pen(Color.Red, 1);
