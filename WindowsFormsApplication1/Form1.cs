@@ -78,6 +78,7 @@ namespace WindowsFormsApplication1
                     if (i > 0)//tcp,dcp Hesaplancak
                     {
                         gemiler.ElementAt(i).tcpa = Gemi.tcpaHesapla(gemiler.ElementAt(0), gemiler.ElementAt(i));
+                        MessageBox.Show(gemiler.ElementAt(i).tcpa +"");
                         gemiler.ElementAt(i).dcpa = Gemi.dcpaHesapla(gemiler.ElementAt(0), gemiler.ElementAt(i));
                     }
                 }
@@ -193,6 +194,7 @@ namespace WindowsFormsApplication1
 
         private void button3_Click(object sender, EventArgs e)
         {
+
             if (veriOnayla)
             {
                 timer1.Interval = 100;

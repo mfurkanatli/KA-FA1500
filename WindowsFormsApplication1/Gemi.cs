@@ -53,11 +53,15 @@ namespace WindowsFormsApplication1
         {
 
         }
-        
+        public static Point cpaHesapla(Gemi g1, Gemi g2)
+        {
+            Point sonuc = new Point(0,0);
+            return sonuc;
+        }
         public static double tcpaHesapla(Gemi g1,Gemi g2)
         {
-            double sonuc = 0;           
-
+            double sonuc = 0;
+            sonuc = Math.Sqrt(Math.Pow((g1.merkez.X - g2.merkez.X), 2) + Math.Pow((g1.merkez.Y - g2.merkez.Y), 2));
             return sonuc;
         }
         public static double dcpaHesapla(Gemi g1,Gemi g2)//her gemide tcpa ,dcpa hesabı olması gerekir.Ancak bu hesapların her gemi icin ayrı ayrı olusturulmasına gerek olmadığı icin static tanimladik
