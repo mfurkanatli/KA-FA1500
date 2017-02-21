@@ -9,26 +9,26 @@ namespace WindowsFormsApplication1
    public class Gemi
     {
        
-      public  int guvenli_alan;
+      public  int emniyet_alani;
       public int hiz;
       public int rota;
       public double tcpa, dcpa;
       public Point merkez;
-        public Gemi(int guvenli_alan, int hiz, int rota, Point merkez)
+        public Gemi(int emniyet_alani, int hiz, int rota, Point merkez)
         {
-            this.guvenli_alan = guvenli_alan;
+            this.emniyet_alani = emniyet_alani;
             this.hiz = hiz;
             this.rota = -rota;
             this.merkez = merkez;           
         }
 
-        public int getGuvenli_alan()
+        public int getemniyet_alani()
         {
-            return this.guvenli_alan;
+            return this.emniyet_alani;
         }
-        public void setGuvenli_alan(int guvenli_alan)
+        public void setemniyet_alani(int emniyet_alani)
         {
-            this.guvenli_alan = guvenli_alan;
+            this.emniyet_alani = emniyet_alani;
         }
 
         public int getHiz()

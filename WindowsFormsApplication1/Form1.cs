@@ -48,9 +48,9 @@ namespace WindowsFormsApplication1
             form2.Show();*/
 
         }
-        public static void setVeriler(int guvenli_alan, int hiz, int rota, Point merkez)
+        public static void setVeriler(int emniyet_alani, int hiz, int rota, Point merkez)
         {
-            gemiler.Add(new Gemi(guvenli_alan * katSayi, hiz, rota, merkez));
+            gemiler.Add(new Gemi(emniyet_alani * katSayi, hiz, rota, merkez));
         }
       
 
@@ -78,7 +78,7 @@ namespace WindowsFormsApplication1
                     if (i > 0)//tcp,dcp Hesaplancak
                     {
                         gemiler.ElementAt(i).tcpa = Gemi.tcpaHesapla(gemiler.ElementAt(0), gemiler.ElementAt(i));
-                        MessageBox.Show(gemiler.ElementAt(i).tcpa +"");
+                       // MessageBox.Show(gemiler.ElementAt(i).tcpa +"");
                         gemiler.ElementAt(i).dcpa = Gemi.dcpaHesapla(gemiler.ElementAt(0), gemiler.ElementAt(i));
                     }
                 }
@@ -144,7 +144,7 @@ namespace WindowsFormsApplication1
         {
            
             if (Math.Pow((_karsiGemi.merkez.X - _bizimGemi.merkez.X), 2) +
-                Math.Pow((_karsiGemi.merkez.Y - _bizimGemi.merkez.Y), 2) <= Math.Pow(_bizimGemi.guvenli_alan, 2))
+                Math.Pow((_karsiGemi.merkez.Y - _bizimGemi.merkez.Y), 2) <= Math.Pow(_bizimGemi.emniyet_alani, 2))
             {
                 MessageBox.Show("Çarpıştı");
                 return true;
@@ -176,8 +176,8 @@ namespace WindowsFormsApplication1
             rotaHedef.X = hedef.X + cizimKonumu.X;
             rotaHedef.Y = hedef.Y + cizimKonumu.Y;
 
-            g.DrawEllipse(cevre,cizimKonumu.X+gemi.merkez.X - gemi.guvenli_alan / 2,
-                cizimKonumu.Y+gemi.merkez.Y - gemi.guvenli_alan / 2, gemi.guvenli_alan, gemi.guvenli_alan);
+            g.DrawEllipse(cevre,cizimKonumu.X+gemi.merkez.X - gemi.emniyet_alani / 2,
+                cizimKonumu.Y+gemi.merkez.Y - gemi.emniyet_alani / 2, gemi.emniyet_alani, gemi.emniyet_alani);
             g.DrawLine(yol, rotaKonum, rotaHedef);
 
         }
@@ -192,8 +192,71 @@ namespace WindowsFormsApplication1
             gemiCiz(karsiGemi);
         }
 
+
+        //Çatışma riski kontrolü
+        private Cpa SimuleEt(Gemi gemi1, Gemi gemi2)
+        {
+
+            //CPA noktaları
+            Point cpaOld = new Point();
+            Point cpaNew = new Point();
+
+            //DCPA
+            double dcpaOld = Int16.MaxValue;
+            double dcpaNew = Int16.MaxValue-1; //While şartına girmesi için dcpaOld'dan küçük
+
+            Point gemi1Merkez, gemi2Merkez;
+
+            //Merkezler değişeceği için yedeklendi
+            gemi1Merkez = gemi1.merkez;
+            gemi2Merkez = gemi2.merkez;
+
+            while (dcpaNew < dcpaOld)
+            {
+                dcpaOld = dcpaNew;
+                cpaOld = cpaNew;
+
+                gemi1.merkez.X += Convert.ToInt32(gemi1.hiz
+                   * Math.Cos((gemi1.rota + 90) * Math.PI / 180));
+                gemi1.merkez.Y += Convert.ToInt32(gemi1.hiz
+                    * -Math.Sin((gemi1.rota + 90) * Math.PI / 180));
+
+                gemi2.merkez.X += Convert.ToInt32(gemi2.hiz
+                   * Math.Cos((gemi2.rota + 90) * Math.PI / 180));
+                gemi2.merkez.Y += Convert.ToInt32(gemi2.hiz
+                    * -Math.Sin((gemi2.rota + 90) * Math.PI / 180));
+                
+                dcpaNew = Math.Sqrt(Math.Pow((gemi1.merkez.X - gemi2.merkez.X), 2) + Math.Pow((gemi1.merkez.Y - gemi2.merkez.Y), 2));
+                cpaNew = gemi1.merkez;
+            }
+            gemi1.merkez = gemi1Merkez;
+            gemi2.merkez = gemi2Merkez;
+
+            Cpa cpa = new Cpa();
+            cpa.cpa = cpaOld;
+            cpa.dcpa = dcpaOld;
+
+            return cpa;
+        }
+
+        private bool catismaRiskiVarMi(Cpa cpa, Gemi gemi)
+        {
+            bool catismaRiski = false;
+
+            if (cpa.dcpa < gemi.emniyet_alani )
+                catismaRiski = true;
+
+            return catismaRiski;
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
+            Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
+
+            if(catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
+            {
+                MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
+            }
 
             if (veriOnayla)
             {
