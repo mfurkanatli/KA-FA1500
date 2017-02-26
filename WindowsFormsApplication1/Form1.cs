@@ -193,12 +193,19 @@ namespace WindowsFormsApplication1
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            karsiGemi = gemiHareketEttir(karsiGemi);
-            bizimGemi = gemiHareketEttir(bizimGemi);
+            if(gemiler.Count>1)
+            {
+                karsiGemi = gemiler.ElementAt(1);
+                bizimGemi = gemiler.ElementAt(0);
+                karsiGemi = gemiHareketEttir(karsiGemi);
+                bizimGemi = gemiHareketEttir(bizimGemi);
 
-            g.Clear(this.BackColor);
-            gemiCiz(bizimGemi);
-            gemiCiz(karsiGemi);
+                g.Clear(this.BackColor);
+                gemiCiz(bizimGemi);
+                gemiCiz(karsiGemi);
+            }
+            
+            
         }
 
 
@@ -268,8 +275,7 @@ namespace WindowsFormsApplication1
                 {
                     MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
                 }
-            }
-          
+            }          
 
             if (veriOnayla)
             {
