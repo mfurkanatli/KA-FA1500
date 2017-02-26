@@ -65,7 +65,6 @@ namespace WindowsFormsApplication1
                 {
                     if (j > 0)
                     {
-
                         ebeveynler.ElementAt(i).binaryCode[j] = rand.Next(0, 2).ToString();
                         ebeveynler.ElementAt(i).t1[j] = rand.Next(0, 2).ToString();
                         ebeveynler.ElementAt(i).t2[j] = rand.Next(0, 2).ToString();
@@ -74,7 +73,6 @@ namespace WindowsFormsApplication1
                     }
                     else
                     {
-
                         ebeveynler.ElementAt(i).binaryCode[j] = rand.Next(0, 1).ToString();
                         ebeveynler.ElementAt(i).t1[j] = rand.Next(0, 1).ToString();
                         ebeveynler.ElementAt(i).t2[j] = rand.Next(0, 1).ToString();

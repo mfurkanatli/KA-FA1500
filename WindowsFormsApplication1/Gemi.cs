@@ -9,17 +9,19 @@ namespace WindowsFormsApplication1
    public class Gemi
     {
        
-      public  int emniyet_alani;
-      public int hiz;
-      public int rota;
-      public double tcpa, dcpa;
-      public Point merkez;
+        public  int emniyet_alani;
+        public int hiz;
+        public int rota;
+        public double tcpa, dcpa;
+        public Point merkez;
+       
+
         public Gemi(int emniyet_alani, int hiz, int rota, Point merkez)
         {
             this.emniyet_alani = emniyet_alani;
             this.hiz = hiz;
             this.rota = -rota;
-            this.merkez = merkez;           
+            this.merkez = merkez;            
         }
 
         public int getemniyet_alani()

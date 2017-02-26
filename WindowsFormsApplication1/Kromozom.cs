@@ -18,7 +18,6 @@ namespace WindowsFormsApplication1
         public string[] co2 = new string[6];
         double t1_deger, t2_deger, co1_deger, co2_deger;
 
-
         static Random rnd = new Random();
 
         public void fitnessHesapla()

@@ -15,6 +15,8 @@ namespace WindowsFormsApplication1
         Gemi karsiGemi;
         Gemi bizimGemi;
         Graphics g;
+        static int katSayi = 10;
+        public static List<Gemi> gemiler = new List<Gemi>();
         bool veriOnayla = false;
         
         public Form1()
@@ -28,10 +30,7 @@ namespace WindowsFormsApplication1
         {
 
         }
-        static int katSayi = 10;
-        static List<Gemi> gemiler = new List<Gemi>();
-
-
+       
         //Double click yerine manuel koordinat girilecek
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
@@ -50,7 +49,7 @@ namespace WindowsFormsApplication1
         }
         public static void setVeriler(int emniyet_alani, int hiz, int rota, Point merkez)
         {
-            gemiler.Add(new Gemi(emniyet_alani * katSayi, hiz, rota, merkez));
+            gemiler.Add(new Gemi(emniyet_alani * katSayi, hiz, rota, merkez));          
         }
       
 
@@ -70,7 +69,6 @@ namespace WindowsFormsApplication1
                 karsiGemi = gemiler.ElementAt(1);
                 /*tcpaHesapla(karsiGemi);
                 dcpaHesapla(karsiGemi);*/
-
 
                 for (int i = 0; i < gemiler.Count; i++)
                 {
@@ -93,8 +91,7 @@ namespace WindowsFormsApplication1
            /* gemiKonumlandir(bizimGemi);
             gemiKonumlandir(karsiGemi);*/           
         }
-
-    
+           
         
         public void gemiKonumlandir(Gemi _gemi)
         {
@@ -156,8 +153,7 @@ namespace WindowsFormsApplication1
         private void gemiCiz(Gemi gemi)
         {
             cizimKonumu.X = this.Width / 2;
-            cizimKonumu.Y = this.Height / 2;
-                
+            cizimKonumu.Y = this.Height / 2;                
 
             int r = 500;
             int x = gemi.merkez.X + Convert.ToInt32(r * Math.Cos((gemi.rota + 90) * Math.PI / 180));
@@ -165,9 +161,22 @@ namespace WindowsFormsApplication1
             Console.WriteLine(Math.Sin(gemi.rota * Math.PI / 180) + "");
             Point hedef = new Point(x, y);
 
-            Pen cevre = new Pen(Color.Red, 1);
+            /*Pen cevre = new Pen(Color.Red, 1);
             Pen yol = new Pen(Color.Blue, 1);
+            */
 
+            Pen cevre;
+            Pen yol;
+            if (gemiler.IndexOf(gemi) == 0)
+            {
+                cevre = new Pen(Color.Green);
+                yol = new Pen(Color.Black);
+            }
+            else
+            {
+                cevre = new Pen(Color.Red);
+                yol = new Pen(Color.Blue);
+            }
             Point rotaKonum = new Point();
             rotaKonum.X = gemi.merkez.X + cizimKonumu.X;
             rotaKonum.Y = gemi.merkez.Y + cizimKonumu.Y;
@@ -251,12 +260,16 @@ namespace WindowsFormsApplication1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
-
-            if(catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
+            if (veriOnayla)
             {
-                MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
+                Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
+
+                if (catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
+                {
+                    MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
+                }
             }
+          
 
             if (veriOnayla)
             {
@@ -281,9 +294,42 @@ namespace WindowsFormsApplication1
         private void button2_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
-            form2.Show();
-         
+            form2.Text = "Gemi "+gemiler.Count();
+            form2.Show();         
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (gemiler.Count > 0)
+            {
+                Form3 form3 = new Form3();
+                form3.Show();
+            }
+            else
+            {
+                MessageBox.Show("Yeterli Sayida Gemi Yok.\nGemi Giriniz.");
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (!button3.Text.Equals("Durdur"))
+            {
+
+                DialogResult result = MessageBox.Show("Temizlemek Istediginizden Emin Misiniz ??", "Onaylama", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
+                {
+                    gemiler.Clear();
+                    veriOnayla = false;
+                    Form1.ActiveForm.BackColor = SystemColors.ControlLight;//Sadece Control a boyadıgımız zaman degisik yapmıyordu.Bizde once farklı bir renge boyadık sonrasında default renk olan control rengine boyadık.
+                    Form1.ActiveForm.BackColor = SystemColors.Control;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bu Islem Icin Program Durdurulmali");
+            }
+
+        }
     }
 }
