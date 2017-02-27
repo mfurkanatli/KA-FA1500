@@ -83,7 +83,7 @@ namespace WindowsFormsApplication1
                     }
                 }
 
-                durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1));
+                
             }
             else
             {
@@ -112,7 +112,12 @@ namespace WindowsFormsApplication1
         public String durumKontrolu(Gemi _bizimGemi, Gemi _karsiGemi)
         {
             String s = "";
-            double rota = _karsiGemi.rota - _bizimGemi.rota;
+            double rota;
+            if (-karsiGemi.rota > 180)
+                rota = -karsiGemi.rota - 180 + bizimGemi.rota;
+            else
+                rota = -karsiGemi.rota + 180 + bizimGemi.rota;
+
             if ((rota >= 355 && rota <= 360) || (rota >= 0 && rota < 5))
             {
                 s = "Head-on";
@@ -256,6 +261,7 @@ namespace WindowsFormsApplication1
             if(catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
             {
                 MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
+                MessageBox.Show(durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");
             }
 
             if (veriOnayla)
