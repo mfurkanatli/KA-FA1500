@@ -30,7 +30,7 @@ namespace WindowsFormsApplication1
         {
 
         }
-       
+
         //Double click yerine manuel koordinat girilecek
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
@@ -49,7 +49,7 @@ namespace WindowsFormsApplication1
         }
         public static void setVeriler(int emniyet_alani, int hiz, int rota, Point merkez)
         {
-            gemiler.Add(new Gemi(emniyet_alani * katSayi, hiz, rota, merkez));          
+            gemiler.Add(new Gemi(emniyet_alani * katSayi, hiz, rota, merkez));
         }
       
 
@@ -81,7 +81,7 @@ namespace WindowsFormsApplication1
                     }
                 }
 
-                durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1));
+                
             }
             else
             {
@@ -91,8 +91,8 @@ namespace WindowsFormsApplication1
            /* gemiKonumlandir(bizimGemi);
             gemiKonumlandir(karsiGemi);*/           
         }
-           
-        
+
+    
         public void gemiKonumlandir(Gemi _gemi)
         {
 
@@ -109,7 +109,12 @@ namespace WindowsFormsApplication1
         public String durumKontrolu(Gemi _bizimGemi, Gemi _karsiGemi)
         {
             String s = "";
-            double rota = _karsiGemi.rota - _bizimGemi.rota;
+            double rota;
+            if (-karsiGemi.rota > 180)
+                rota = -karsiGemi.rota - 180 + bizimGemi.rota;
+            else
+                rota = -karsiGemi.rota + 180 + bizimGemi.rota;
+
             if ((rota >= 355 && rota <= 360) || (rota >= 0 && rota < 5))
             {
                 s = "Head-on";
@@ -153,8 +158,8 @@ namespace WindowsFormsApplication1
         private void gemiCiz(Gemi gemi)
         {
             cizimKonumu.X = this.Width / 2;
-            cizimKonumu.Y = this.Height / 2;                
-
+            cizimKonumu.Y = this.Height / 2;
+                
             int r = 500;
             int x = gemi.merkez.X + Convert.ToInt32(r * Math.Cos((gemi.rota + 90) * Math.PI / 180));
             int y = gemi.merkez.Y + Convert.ToInt32(r * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
@@ -197,15 +202,15 @@ namespace WindowsFormsApplication1
             {
                 karsiGemi = gemiler.ElementAt(1);
                 bizimGemi = gemiler.ElementAt(0);
-                karsiGemi = gemiHareketEttir(karsiGemi);
-                bizimGemi = gemiHareketEttir(bizimGemi);
+            karsiGemi = gemiHareketEttir(karsiGemi);
+            bizimGemi = gemiHareketEttir(bizimGemi);
 
-                g.Clear(this.BackColor);
-                gemiCiz(bizimGemi);
-                gemiCiz(karsiGemi);
-            }
-            
-            
+            g.Clear(this.BackColor);
+            gemiCiz(bizimGemi);
+            gemiCiz(karsiGemi);
+        }
+
+
         }
 
 
@@ -269,12 +274,13 @@ namespace WindowsFormsApplication1
         {
             if (veriOnayla)
             {
-                Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
+            Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
 
                 if (catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
-                {
-                    MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
-                }
+            {
+                MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
+                MessageBox.Show(durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");
+            }
             }          
 
             if (veriOnayla)
@@ -301,7 +307,7 @@ namespace WindowsFormsApplication1
         {
             Form2 form2 = new Form2();
             form2.Text = "Gemi "+gemiler.Count();
-            form2.Show();         
+            form2.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -321,7 +327,7 @@ namespace WindowsFormsApplication1
         {
             if (!button3.Text.Equals("Durdur"))
             {
-
+         
                 DialogResult result = MessageBox.Show("Temizlemek Istediginizden Emin Misiniz ??", "Onaylama", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
                 {
@@ -334,8 +340,8 @@ namespace WindowsFormsApplication1
             else
             {
                 MessageBox.Show("Bu Islem Icin Program Durdurulmali");
-            }
-
         }
+
     }
+}
 }
