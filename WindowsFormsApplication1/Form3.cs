@@ -44,11 +44,14 @@ namespace WindowsFormsApplication1
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = listBox1.SelectedIndex;
-            textBox1.Text = Form1.gemiler.ElementAt(index).emniyet_alani+"";
-            textBox2.Text = Form1.gemiler.ElementAt(index).hiz+"";
-            textBox3.Text = Form1.gemiler.ElementAt(index).rota+"";
-            textBox4.Text = Form1.gemiler.ElementAt(index).merkez.X+"";
-            textBox5.Text = Form1.gemiler.ElementAt(index).merkez.Y+"";
+            if (index >= 0 && Form1.gemiler.Count < index)
+            {
+                textBox1.Text = Form1.gemiler.ElementAt(index).emniyet_alani + "";
+                textBox2.Text = Form1.gemiler.ElementAt(index).hiz + "";
+                textBox3.Text = Form1.gemiler.ElementAt(index).rota + "";
+                textBox4.Text = Form1.gemiler.ElementAt(index).merkez.X + "";
+                textBox5.Text = Form1.gemiler.ElementAt(index).merkez.Y + "";
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

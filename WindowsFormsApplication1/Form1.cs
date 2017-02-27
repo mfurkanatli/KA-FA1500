@@ -208,11 +208,20 @@ namespace WindowsFormsApplication1
             g.Clear(this.BackColor);
             gemiCiz(bizimGemi);
             gemiCiz(karsiGemi);
-        }
+            //    ikiGemiCizgi();
+            }
 
 
         }
 
+        void ikiGemiCizgi()
+        {
+            cizimKonumu.X = this.Width / 2;
+            cizimKonumu.Y = this.Height / 2;
+
+            g.DrawLine(new Pen(Color.Purple,2), gemiler.ElementAt(0).merkez.X + cizimKonumu.X, gemiler.ElementAt(0).merkez.Y + cizimKonumu.Y
+                , gemiler.ElementAt(1).merkez.X + cizimKonumu.X, gemiler.ElementAt(1).merkez.Y + cizimKonumu.Y);
+        }
 
         //Çatışma riski kontrolü
         private Cpa SimuleEt(Gemi gemi1, Gemi gemi2)
@@ -264,7 +273,7 @@ namespace WindowsFormsApplication1
         {
             bool catismaRiski = false;
 
-            if (cpa.dcpa < gemi.emniyet_alani )
+            if (cpa.dcpa < gemi.emniyet_alani / 2 )
                 catismaRiski = true;
 
             return catismaRiski;
