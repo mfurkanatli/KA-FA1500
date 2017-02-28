@@ -3,25 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
-
+using System.Windows.Forms;
 namespace WindowsFormsApplication1
 {
    public class Gemi
-    {
-       
+    {       
         public  int emniyet_alani;
         public int hiz;
         public int rota;
         public double tcpa, dcpa;
         public Point merkez;
-       
+        public Point cizimPoint;
+        public PictureBox pb;
+        Form1 f1;
 
-        public Gemi(int emniyet_alani, int hiz, int rota, Point merkez)
+        public Gemi(int emniyet_alani, int hiz, int rota, Point merkez,Form1 _f1)
         {
+            f1 = _f1;
             this.emniyet_alani = emniyet_alani;
             this.hiz = hiz;
             this.rota = -rota;
-            this.merkez = merkez;            
+            this.merkez = merkez;
+            pb = new PictureBox();
+            pb.Size = new Size(30, 30);
+            pb.ImageLocation = "gemi.png";
+            pb.SizeMode= PictureBoxSizeMode.StretchImage;
+            pictureBoxHareketettiir();      
+            pb.Show();            
+            f1.Controls.Add(pb);
+        }
+
+        public void pictureBoxHareketettiir()
+        {
+            pb.Left = merkez.X + f1.Width / 2-pb.Width/2;
+            pb.Top = merkez.Y + f1.Height / 2-pb.Height/2;
+        }
+
+        private Bitmap RotateImageByAngle(Image oldBitmap, float angle)
+        {
+            var newBitmap = new Bitmap(oldBitmap.Width, oldBitmap.Height);
+            newBitmap.SetResolution(oldBitmap.HorizontalResolution, oldBitmap.VerticalResolution);
+            var graphics = Graphics.FromImage(newBitmap);
+            graphics.TranslateTransform((float)oldBitmap.Width / 2, (float)oldBitmap.Height / 2);
+            graphics.RotateTransform(angle);
+            graphics.TranslateTransform(-(float)oldBitmap.Width / 2, -(float)oldBitmap.Height / 2);
+            graphics.DrawImage(oldBitmap, new Point(0, 0));
+            return newBitmap;
         }
 
         public int getemniyet_alani()

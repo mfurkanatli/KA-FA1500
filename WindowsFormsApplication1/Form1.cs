@@ -15,7 +15,7 @@ namespace WindowsFormsApplication1
         Gemi karsiGemi;
         Gemi bizimGemi;
         Graphics g;
-        static int katSayi = 10;
+        public static int katSayi = 10;
         public static List<Gemi> gemiler = new List<Gemi>();
         bool veriOnayla = false;
         
@@ -47,15 +47,29 @@ namespace WindowsFormsApplication1
             form2.Show();*/
 
         }
+        
         public static void setVeriler(int emniyet_alani, int hiz, int rota, Point merkez)
         {
-            gemiler.Add(new Gemi(emniyet_alani * katSayi, hiz, rota, merkez));
+            gemiler.Add(new Gemi(emniyet_alani * katSayi, hiz, rota, merkez,xx));
         }
       
 
         private void Form1_Load(object sender, EventArgs e)
         {
+           /* PictureBox pb = new PictureBox();
             
+            pb.Width = 50;
+            pb.Height = 50;
+            
+            //pb.Image = Image.FromFile("gemi.png");
+            pb.BackgroundImageLayout = ImageLayout.Stretch;
+            pb.ImageLocation = "gemi.png";
+
+            pb.Left = this.Width / 2;
+            pb.Top =   this.Height / 2;
+            //pb.Show();
+            this.Controls.Add(pb);*/
+            //
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -67,8 +81,6 @@ namespace WindowsFormsApplication1
 
                 bizimGemi = gemiler.ElementAt(0);
                 karsiGemi = gemiler.ElementAt(1);
-                /*tcpaHesapla(karsiGemi);
-                dcpaHesapla(karsiGemi);*/
 
                 for (int i = 0; i < gemiler.Count; i++)
                 {
@@ -79,17 +91,13 @@ namespace WindowsFormsApplication1
                        // MessageBox.Show(gemiler.ElementAt(i).tcpa +"");
                         gemiler.ElementAt(i).dcpa = Gemi.dcpaHesapla(gemiler.ElementAt(0), gemiler.ElementAt(i));
                     }
-                }
-
-                
+                }                
             }
             else
             {
                 MessageBox.Show("Yeterli Sayida Gemi Girmediniz");
             }
-
-           /* gemiKonumlandir(bizimGemi);
-            gemiKonumlandir(karsiGemi);*/           
+            
         }
 
     
@@ -133,13 +141,13 @@ namespace WindowsFormsApplication1
             }
             return s;
         }
-        public Gemi gemiHareketEttir(Gemi gemi)
+        public void gemiHareketEttir(Gemi gemi)
         {
             gemi.merkez.X += Convert.ToInt32(gemi.hiz
                    * Math.Cos((gemi.rota + 90) * Math.PI / 180));
             gemi.merkez.Y += Convert.ToInt32(gemi.hiz
                 * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
-            return gemi;
+           // return gemi;
         }
 
         private bool carpistiMi(Gemi _bizimGemi, Gemi _karsiGemi)
@@ -165,22 +173,18 @@ namespace WindowsFormsApplication1
             int y = gemi.merkez.Y + Convert.ToInt32(r * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
             Console.WriteLine(Math.Sin(gemi.rota * Math.PI / 180) + "");
             Point hedef = new Point(x, y);
-
-            /*Pen cevre = new Pen(Color.Red, 1);
-            Pen yol = new Pen(Color.Blue, 1);
-            */
-
+           
             Pen cevre;
             Pen yol;
             if (gemiler.IndexOf(gemi) == 0)
             {
-                cevre = new Pen(Color.Green);
-                yol = new Pen(Color.Black);
+                cevre = new Pen(Color.Red);
+                yol = new Pen(Color.Blue);
             }
             else
             {
-                cevre = new Pen(Color.Red);
-                yol = new Pen(Color.Blue);
+               cevre = new Pen(Color.Thistle);
+                yol = new Pen(Color.Black);
             }
             Point rotaKonum = new Point();
             rotaKonum.X = gemi.merkez.X + cizimKonumu.X;
@@ -189,29 +193,36 @@ namespace WindowsFormsApplication1
             Point rotaHedef=new Point();
             rotaHedef.X = hedef.X + cizimKonumu.X;
             rotaHedef.Y = hedef.Y + cizimKonumu.Y;
-
-            g.DrawEllipse(cevre,cizimKonumu.X+gemi.merkez.X - gemi.emniyet_alani / 2,
-                cizimKonumu.Y+gemi.merkez.Y - gemi.emniyet_alani / 2, gemi.emniyet_alani, gemi.emniyet_alani);
+            if (gemiler.IndexOf(gemi)==0)
+            {
+                g.DrawEllipse(cevre, cizimKonumu.X + gemi.merkez.X - gemi.emniyet_alani / 2,
+                    cizimKonumu.Y + gemi.merkez.Y - gemi.emniyet_alani / 2, gemi.emniyet_alani, gemi.emniyet_alani);
+            }
             g.DrawLine(yol, rotaKonum, rotaHedef);
 
+        }
+        public void Yenile()
+        {                       
+            g.Clear(SystemColors.Control);
+            for (int i = 0; i < gemiler.Count; i++)
+            {
+                gemiCiz(gemiler.ElementAt(i));
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             if(gemiler.Count>1)
             {
-                karsiGemi = gemiler.ElementAt(1);
-                bizimGemi = gemiler.ElementAt(0);
-            karsiGemi = gemiHareketEttir(karsiGemi);
-            bizimGemi = gemiHareketEttir(bizimGemi);
-
-            g.Clear(this.BackColor);
-            gemiCiz(bizimGemi);
-            gemiCiz(karsiGemi);
-            //    ikiGemiCizgi();
-            }
-
-
+                
+                g.Clear(this.BackColor);
+                for (int i = 0; i < gemiler.Count; i++)
+                {
+                    gemiHareketEttir(gemiler.ElementAt(i));
+                    gemiler.ElementAt(i).pictureBoxHareketettiir();
+                    gemiCiz(gemiler.ElementAt(i));
+                }                
+            }            
         }
 
         void ikiGemiCizgi()
@@ -311,19 +322,21 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Oncelikle Verileri Onaylayin");
             }
         }
-
+        static Form1 xx;
         private void button2_Click(object sender, EventArgs e)
         {
+            xx = this;
             Form2 form2 = new Form2();
             form2.Text = "Gemi "+gemiler.Count();
             form2.Show();
         }
-
+        
+        
         private void button5_Click(object sender, EventArgs e)
         {
             if (gemiler.Count > 0)
-            {
-                Form3 form3 = new Form3();
+            {                
+                Form3 form3 = new Form3(this);
                 form3.Show();
             }
             else
@@ -342,8 +355,11 @@ namespace WindowsFormsApplication1
                 {
                     gemiler.Clear();
                     veriOnayla = false;
-                    Form1.ActiveForm.BackColor = SystemColors.ControlLight;//Sadece Control a boyadıgımız zaman degisik yapmıyordu.Bizde once farklı bir renge boyadık sonrasında default renk olan control rengine boyadık.
-                    Form1.ActiveForm.BackColor = SystemColors.Control;
+                    //Form1.ActiveForm.BackColor = SystemColors.ControlLight;//Sadece Control a boyadıgımız zaman degisik yapmıyordu.Bizde once farklı bir renge boyadık sonrasında default renk olan control rengine boyadık.
+                    //Form1.ActiveForm.BackColor = SystemColors.Control;
+                    this.BackColor = SystemColors.ControlDark;
+                    this.BackColor = SystemColors.Control;
+                   // Yenile();
                 }
             }
             else

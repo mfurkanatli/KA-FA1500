@@ -20,7 +20,7 @@ namespace WindowsFormsApplication1
        
         private void button1_Click(object sender, EventArgs e)
         {
-            int guvenli_alan;
+            int guvenli_alan=0;
             int hiz;
             int yon;
             Point p = new Point();
@@ -29,8 +29,7 @@ namespace WindowsFormsApplication1
             hiz = Convert.ToInt32(textBox2.Text);
             yon = Convert.ToInt32(textBox3.Text);
             p.X = Convert.ToInt32(textBox4.Text);
-            p.Y = Convert.ToInt32(textBox5.Text);
-           
+            p.Y = Convert.ToInt32(textBox5.Text);           
             Form1.setVeriler(guvenli_alan, hiz, yon,p);
             
             this.Close();
@@ -38,10 +37,18 @@ namespace WindowsFormsApplication1
 
         private void Form2_Load(object sender, EventArgs e)
         {
-                            
+            if (Form1.gemiler.Count > 0)
+            {
+                textBox1.ReadOnly = true;
+            }                 
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
