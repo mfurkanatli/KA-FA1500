@@ -294,16 +294,7 @@ namespace WindowsFormsApplication1
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
-            if (veriOnayla && !button3.Text.Equals("Durdur"))
-            {
-                Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
-                if (catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
-                {
-                    MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
-                    MessageBox.Show(durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");
-                }
-            }          
+        {               
 
             if (veriOnayla)
             {
@@ -317,6 +308,16 @@ namespace WindowsFormsApplication1
                 else
                 {
                     button3.Text = "Devam";
+                }
+
+                if(!button3.Text.Equals("Devam"))
+                {
+                    Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
+                    if (catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
+                    {
+                        MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
+                        MessageBox.Show(durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");
+                    }
                 }
                 for (int i = 0; i < gemiler.Count; i++)
                 {
