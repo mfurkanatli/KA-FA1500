@@ -27,11 +27,18 @@ namespace WindowsFormsApplication1
         public void degerHesapla()
         {
             deger = 0;
-            deger -= Convert.ToInt32(binaryCode[0]) * Convert.ToInt32(Math.Pow(2, 7));
+            deger -= Convert.ToInt32(binaryCode[0]) * Convert.ToInt32(Math.Pow(2, 7));//2 'ye tümleyende 128 den çıkartmak için
             for (int i = 1; i < binaryCode.Length; i++)
             {
                 deger += Convert.ToInt32(binaryCode[i]) * Convert.ToInt32(Math.Pow(2, 7 - i));
             }
+        }
+        public void inputDegerHesapla()
+        {
+            t1_deger = degerHesapla2(t1);
+            co1_deger = degerHesapla2(co1);
+            t2_deger = degerHesapla2(t2);
+            co2_deger = degerHesapla2(co2);
         }
         public int degerHesapla2(string[] ss)
         {
@@ -81,7 +88,7 @@ namespace WindowsFormsApplication1
 
             return s;
         }
-        static public string[] inputAtamaYap(string[] bin, string[] bin2, int breakPoint)
+        static public string[] inputAtamaYap(string[] bin, string[] bin2, int breakPoint)//crossover
         {
             breakPoint = rastgeleIndisSec(0, bin.Count(), 0.3);
             string[] binary = new string[bin.Count()];

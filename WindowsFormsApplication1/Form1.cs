@@ -51,6 +51,10 @@ namespace WindowsFormsApplication1
         public static void setVeriler(int emniyet_alani, int hiz, int rota, Point merkez)
         {
             gemiler.Add(new Gemi(emniyet_alani * katSayi, hiz, rota, merkez,xx));
+            if (gemiler.Count>1)
+            {
+                gemiler.ElementAt(gemiler.Count - 1).pb.ImageLocation ="gemi3.png";
+            }
         }
       
 
@@ -213,8 +217,7 @@ namespace WindowsFormsApplication1
         private void timer1_Tick(object sender, EventArgs e)
         {
             if(gemiler.Count>1)
-            {
-                
+            {                
                 g.Clear(this.BackColor);
                 for (int i = 0; i < gemiler.Count; i++)
                 {
@@ -292,15 +295,14 @@ namespace WindowsFormsApplication1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (veriOnayla)
+            if (veriOnayla && !button3.Text.Equals("Durdur"))
             {
-            Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
-
+                Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
                 if (catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
-            {
-                MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
-                MessageBox.Show(durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");
-            }
+                {
+                    MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
+                    MessageBox.Show(durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");
+                }
             }          
 
             if (veriOnayla)
@@ -309,9 +311,13 @@ namespace WindowsFormsApplication1
                 timer1.Enabled = !timer1.Enabled;
 
                 if (timer1.Enabled == true)
+                {
                     button3.Text = "Durdur";
+                }
                 else
+                {
                     button3.Text = "Devam";
+                }
                 for (int i = 0; i < gemiler.Count; i++)
                 {
                     gemiCiz(gemiler.ElementAt(i));
@@ -353,6 +359,10 @@ namespace WindowsFormsApplication1
                 DialogResult result = MessageBox.Show("Temizlemek Istediginizden Emin Misiniz ??", "Onaylama", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
                 {
+
+                    for (int i = 0; i < gemiler.Count; i++)
+                        gemiler.ElementAt(i).pb.Dispose();
+
                     gemiler.Clear();
                     veriOnayla = false;
                     //Form1.ActiveForm.BackColor = SystemColors.ControlLight;//Sadece Control a boyadıgımız zaman degisik yapmıyordu.Bizde once farklı bir renge boyadık sonrasında default renk olan control rengine boyadık.

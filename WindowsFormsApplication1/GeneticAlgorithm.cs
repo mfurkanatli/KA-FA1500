@@ -118,6 +118,7 @@ namespace WindowsFormsApplication1
             for (int i = 0; i < populasyonSayisi; i++)
             {
                 gelen.ElementAt(i).degerHesapla();
+                gelen.ElementAt(i).inputDegerHesapla();//sonradan eklendi
             }
         }
         int fitnessMinBul(List<Kromozom> gelen)

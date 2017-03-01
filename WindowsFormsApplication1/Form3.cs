@@ -63,7 +63,7 @@ namespace WindowsFormsApplication1
             int index = listBox1.SelectedIndex;
             if (index >= 0 && Form1.gemiler.Count() > index)
             {
-                textBox1.Text = Form1.gemiler.ElementAt(index).emniyet_alani + "";
+                textBox1.Text = Form1.gemiler.ElementAt(index).emniyet_alani/Form1.katSayi + "";
                 textBox2.Text = Form1.gemiler.ElementAt(index).hiz + "";
                 textBox3.Text = Math.Abs(Form1.gemiler.ElementAt(index).rota) + "";
                 textBox4.Text = Form1.gemiler.ElementAt(index).merkez.X + "";
