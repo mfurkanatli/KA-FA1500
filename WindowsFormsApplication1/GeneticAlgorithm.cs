@@ -10,7 +10,6 @@ namespace WindowsFormsApplication1
 {
     public class GeneticAlgorithm
     {
-
         List<Kromozom> ebeveynler = new List<Kromozom>();
         List<Kromozom> cocuklar = new List<Kromozom>();
         List<Kromozom> eslesmeHavuzu = new List<Kromozom>();
@@ -50,7 +49,6 @@ namespace WindowsFormsApplication1
                     stopWatch.Reset();
                     iterasyon[k] = it;
                     k++;
-
                 }
                 ortalamaHesapla();
             }
@@ -102,7 +100,6 @@ namespace WindowsFormsApplication1
                 //richTextBox1.Text += "\n";
                 Console.Write("\n");
             }
-
         }
 
         void inputYazdir(int i, string[] gelen)

@@ -16,10 +16,16 @@ namespace WindowsFormsApplication1
         public string[] co1 = new string[6];
         public string[] t2 = new string[6];
         public string[] co2 = new string[6];
+        public double co3, t3;
         double t1_deger, t2_deger, co1_deger, co2_deger;
 
         static Random rnd = new Random();
 
+        public void outputHesapla()
+        {
+            co3 =180-(co1_deger+180-co2_deger);
+            t3 =t2_deger*Math.Sin(co1_deger)/Math.Sin(co3);
+        }
         public void fitnessHesapla()
         {
             fitness = deger * deger + 22 * deger;
@@ -39,6 +45,8 @@ namespace WindowsFormsApplication1
             co1_deger = degerHesapla2(co1);
             t2_deger = degerHesapla2(t2);
             co2_deger = degerHesapla2(co2);
+
+            outputHesapla();
         }
         public int degerHesapla2(string[] ss)
         {
@@ -52,7 +60,6 @@ namespace WindowsFormsApplication1
         static public Kromozom onePointCrossover(Kromozom partner1, Kromozom partner2, int breakPoint)
         {
             Kromozom cocuk = new Kromozom();
-
             cocuk.co1 = inputAtamaYap(partner1.co1, partner2.co1, breakPoint);
             cocuk.co2 = inputAtamaYap(partner1.co2, partner2.co2, breakPoint);
             cocuk.t1 = inputAtamaYap(partner1.t1, partner2.t1, breakPoint);
