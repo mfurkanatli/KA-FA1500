@@ -331,9 +331,13 @@ namespace WindowsFormsApplication1
         {
             GeneticAlgorithm ga = new GeneticAlgorithm();
             ga.SetForm(xx);
-            rota = ga.SahteGenetik();
+            ga.kromozonYarat();
+            for(int i=0;i< 10;i++)
+            {
+                ga.hesapla();
+                rota = ga.SahteGenetik(ga.optimumKromozon);
+            }
         }
-
         private void button3_Click(object sender, EventArgs e)
         {               
 
@@ -346,6 +350,9 @@ namespace WindowsFormsApplication1
                     MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
                     MessageBox.Show(durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");
                     GenetikHesapla();
+                    /*
+                    timer1 = new Timer();
+                    timer1.Tick += new EventHandler(timer1_Tick);*/
                 }
 
                 timer1.Interval = 100;
@@ -424,10 +431,5 @@ namespace WindowsFormsApplication1
             }
 
       }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

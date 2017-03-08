@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1
 {
-    class Kromozom
+    public class Kromozom
     {
         public int deger;
         public int fitness;

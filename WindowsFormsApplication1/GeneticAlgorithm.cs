@@ -13,7 +13,9 @@ namespace WindowsFormsApplication1
         List<Kromozom> ebeveynler = new List<Kromozom>();
         List<Kromozom> cocuklar = new List<Kromozom>();
         List<Kromozom> eslesmeHavuzu = new List<Kromozom>();
-        static int populasyonSayisi = 100;
+        Rota optimumRota = new Rota();
+        public Kromozom optimumKromozon = new Kromozom();
+        static int populasyonSayisi = 10;
         int bitSayisi = 8;
         int optimumSonuc = -11;
         double crossOverRate = 0.6;
@@ -98,18 +100,18 @@ namespace WindowsFormsApplication1
             return true;
         }
 
-        public Rota SahteGenetik()
+        public Rota SahteGenetik(Kromozom min)
         {
             Rota rota = new Rota();
-            kromozonYarat();
-            Kromozom kro=minimumBul(ebeveynler);
-            rota.co[0] = kro.co1_deger;
-            rota.co[1] = -kro.co2_deger;
-            rota.co[2] = kro.co3;
+            //kromozonYarat();
+            //Kromozom kro=minimumBul(ebeveynler);
+            rota.co[0] = min.co1_deger;
+            rota.co[1] = -min.co2_deger;
+            rota.co[2] = min.co3;
 
-            rota.t[0] = kro.t1_deger;
-            rota.t[1] = kro.t2_deger;
-            rota.t[2] = kro.t3;
+            rota.t[0] = min.t1_deger;
+            rota.t[1] = min.t2_deger;
+            rota.t[2] = min.t3;
 
             Console.WriteLine("ROTAMIZ");
 
@@ -121,7 +123,7 @@ namespace WindowsFormsApplication1
             return rota;
         }
 
-        void kromozonYarat()
+        public void kromozonYarat()
         {
             //for (int i = 0; i < populasyonSayisi; i++)
             int i=0;
@@ -153,10 +155,12 @@ namespace WindowsFormsApplication1
                     ebeveynler.RemoveAt(i);
                 }
             }
+
+            optimumKromozon.fitness = 3000;
         }
 
         void yazdir()
-        {/*
+        {
             for (int i = 0; i < populasyonSayisi; i++)
             {
                 //richTextBox1.Text += "////";
@@ -173,16 +177,16 @@ namespace WindowsFormsApplication1
                 inputYazdir(i, ebeveynler.ElementAt(i).t2);
                 //richTextBox1.Text += "\n";
                 Console.Write("\n");
-            }*/
+            }
         }
 
         void inputYazdir(int i, string[] gelen)
-        {/*
+        {
             for (int j = 0; j < gelen.Count(); j++)
             {
                 Console.Write(gelen[j] + " ");
             }
-            Console.Write(" ; " + ebeveynler.ElementAt(i).degerHesapla2(gelen) + " ; " + ebeveynler.ElementAt(i).fitness + "\n");*/
+            Console.Write(" ; " + ebeveynler.ElementAt(i).degerHesapla2(gelen) + " ; " + ebeveynler.ElementAt(i).fitness + "\n");
         }
         void degerleriHesapla(List<Kromozom> gelen)
         {
@@ -256,6 +260,30 @@ namespace WindowsFormsApplication1
             }
 
         }
+
+        void ElitistReplacement()
+        {
+            List<Kromozom> li = new List<Kromozom>();
+            for(int i=0;i<populasyonSayisi;i++)
+            {
+                if(!li.Contains(cocuklar.ElementAt(i))  && BireyUygunMu(cocuklar.ElementAt(i)))
+                {
+                    li.Add(cocuklar.ElementAt(i));
+                }
+            }
+            int hedef = populasyonSayisi - li.Count;
+            for (int i = 0; i <hedef; i++)
+            {
+                
+                li.Add(minimumBul(ebeveynler));
+                ebeveynler.Remove(li.Last());
+                
+            }
+            
+            generationReplacement(li);
+
+        }
+
         int rastgeleIndisSec(int baslangic)
         {
             double rastgele;
@@ -310,7 +338,7 @@ namespace WindowsFormsApplication1
         {
             Kromozom min = new Kromozom();
             min.fitness = int.MaxValue;
-            for (int i = 0; i < populasyonSayisi; i++)
+            for (int i = 0; i < gelen.Count; i++)
             {
                 if (gelen.ElementAt(i).fitness <= min.fitness)
                 {
@@ -320,27 +348,36 @@ namespace WindowsFormsApplication1
             return min;
         }
 
-        void generationReplacement()
+        void generationReplacement(List<Kromozom> yeniNesil)
         {
             ebeveynler.Clear();
             for (int i = 0; i < populasyonSayisi; i++)
             {
-                ebeveynler.Add(cocuklar.ElementAt(i));
+                ebeveynler.Add(yeniNesil.ElementAt(i));
             }
+            yeniNesil.Clear();
             cocuklar.Clear();
         }
+        Kromozom GlobalOptimumFitness(Kromozom min,List<Kromozom> list)
+        {
+            Kromozom k = minimumBul(list);
+            if (min.fitness > k.fitness)
+                return k;
+            return min;
 
-        void hesapla()
+        }
+        public void hesapla()
         {
             //calismaSuresi++;
             degerleriHesapla(ebeveynler);
             fitnessHesapla(ebeveynler);
+            optimumKromozon = GlobalOptimumFitness(optimumKromozon, ebeveynler);
             ruletCarki();
             eslesmeHavuzuBelirle();
             crossOver();
             mutasyonIslemi();
+            ElitistReplacement();
             yazdir();
-            generationReplacement();
         }
 
         void sifirla()
