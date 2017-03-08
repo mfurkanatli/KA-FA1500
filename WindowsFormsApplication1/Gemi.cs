@@ -25,9 +25,10 @@ namespace WindowsFormsApplication1
             this.rota = -rota;
             this.merkez = merkez;
             pb = new PictureBox();
-            pb.Size = new Size(30, 30);
+            pb.Size = new Size(15, 15);
             pb.ImageLocation = "gemi.png";
             pb.SizeMode= PictureBoxSizeMode.StretchImage;
+            pb.SendToBack();
             pictureBoxHareketettiir();      
             pb.Show();            
             f1.Controls.Add(pb);

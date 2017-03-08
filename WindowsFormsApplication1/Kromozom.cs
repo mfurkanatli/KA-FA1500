@@ -17,18 +17,25 @@ namespace WindowsFormsApplication1
         public string[] t2 = new string[6];
         public string[] co2 = new string[6];
         public double co3, t3;
-        double t1_deger, t2_deger, co1_deger, co2_deger;
+        public double t1_deger, t2_deger, co1_deger, co2_deger;
 
         static Random rnd = new Random();
 
-        public void outputHesapla()
+        private void outputHesapla()
         {
+            if (co1_deger == co2_deger)
+                co2_deger++;
+
             co3 =180-(co1_deger+180-co2_deger);
-            t3 =t2_deger*Math.Sin(co1_deger)/Math.Sin(co3);
+            t3 =t2_deger*Math.Sin(RadyanDereceCevir(co1_deger)) /Math.Sin(RadyanDereceCevir(co3));
         }
         public void fitnessHesapla()
         {
-            fitness = deger * deger + 22 * deger;
+            fitness = (int) (t2_deger + t3);
+        }
+        private double RadyanDereceCevir(double aci)
+        {
+            return Math.PI * aci / 180.0;
         }
         public void degerHesapla()
         {
@@ -39,12 +46,14 @@ namespace WindowsFormsApplication1
                 deger += Convert.ToInt32(binaryCode[i]) * Convert.ToInt32(Math.Pow(2, 7 - i));
             }
         }
-        public void inputDegerHesapla()
+        public void outputDegerHesapla()
         {
             t1_deger = degerHesapla2(t1);
             co1_deger = degerHesapla2(co1);
             t2_deger = degerHesapla2(t2);
             co2_deger = degerHesapla2(co2);
+
+            co2_deger += co1_deger;
 
             outputHesapla();
         }
@@ -77,7 +86,7 @@ namespace WindowsFormsApplication1
             return partner;
         }
 
-        private static string[] mut(string[] s, double mutationRate)
+        public static string[] mut(string[] s, double mutationRate)
         {
             double rastgele;
 

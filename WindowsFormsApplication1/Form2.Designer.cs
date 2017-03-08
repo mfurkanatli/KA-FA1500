@@ -98,7 +98,7 @@
             this.button1.Location = new System.Drawing.Point(65, 159);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(77, 35);
-            this.button1.TabIndex = 6;
+            this.button1.TabIndex = 5;
             this.button1.Text = "Oluştur";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -126,7 +126,7 @@
             this.textBox4.Location = new System.Drawing.Point(94, 93);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 8;
+            this.textBox4.TabIndex = 3;
             this.textBox4.Text = "50";
             // 
             // textBox5
@@ -134,7 +134,7 @@
             this.textBox5.Location = new System.Drawing.Point(94, 122);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 7;
+            this.textBox5.TabIndex = 4;
             this.textBox5.Text = "50";
             // 
             // Form2

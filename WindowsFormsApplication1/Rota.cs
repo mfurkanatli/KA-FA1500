@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1
 {
-    public class Cpa
+    public class Rota
     {
-        public Point cpa;
-        public double dcpa;
+        public double[] t = new double[3];
+        public double[] co = new double[3];
 
     }
 }

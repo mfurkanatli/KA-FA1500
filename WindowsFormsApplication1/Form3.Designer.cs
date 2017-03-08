@@ -49,7 +49,7 @@
             this.button1.Location = new System.Drawing.Point(333, 30);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 36);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 5;
             this.button1.Text = "Degisimi Onayla";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -95,14 +95,14 @@
             this.textBox4.Location = new System.Drawing.Point(253, 111);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(59, 20);
-            this.textBox4.TabIndex = 18;
+            this.textBox4.TabIndex = 3;
             // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(253, 140);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(59, 20);
-            this.textBox5.TabIndex = 17;
+            this.textBox5.TabIndex = 4;
             this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // label3
@@ -137,28 +137,28 @@
             this.textBox3.Location = new System.Drawing.Point(253, 81);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(59, 20);
-            this.textBox3.TabIndex = 13;
+            this.textBox3.TabIndex = 2;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(253, 56);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(59, 20);
-            this.textBox2.TabIndex = 12;
+            this.textBox2.TabIndex = 1;
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(253, 30);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(59, 20);
-            this.textBox1.TabIndex = 11;
+            this.textBox1.TabIndex = 0;
             // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(12, 139);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 36);
-            this.button2.TabIndex = 21;
+            this.button2.TabIndex = 6;
             this.button2.Text = "Gemiyi Sil";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);

@@ -22,6 +22,7 @@ namespace WindowsFormsApplication1
         public Form1()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
             g = this.CreateGraphics();
             cizim = CreateGraphics();
 
@@ -60,6 +61,7 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
            /* PictureBox pb = new PictureBox();
             
             pb.Width = 50;
@@ -141,12 +143,15 @@ namespace WindowsFormsApplication1
             }
             else if (rota >= 5 && rota < 112.5)
             {
-                s = "Crossing Gige-way";
+                s = "Crossing Give-way";
             }
             return s;
         }
+
+        Rota rota = new Rota();
         public void gemiHareketEttir(Gemi gemi)
         {
+            
             gemi.merkez.X += Convert.ToInt32(gemi.hiz
                    * Math.Cos((gemi.rota + 90) * Math.PI / 180));
             gemi.merkez.Y += Convert.ToInt32(gemi.hiz
@@ -175,7 +180,7 @@ namespace WindowsFormsApplication1
             int r = 500;
             int x = gemi.merkez.X + Convert.ToInt32(r * Math.Cos((gemi.rota + 90) * Math.PI / 180));
             int y = gemi.merkez.Y + Convert.ToInt32(r * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
-            Console.WriteLine(Math.Sin(gemi.rota * Math.PI / 180) + "");
+           // Console.WriteLine(Math.Sin(gemi.rota * Math.PI / 180) + "");
             Point hedef = new Point(x, y);
            
             Pen cevre;
@@ -214,17 +219,41 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public void gemiHareketHesapla(int _i)
+        {
+            gemiHareketEttir(gemiler.ElementAt(_i));
+            gemiler.ElementAt(_i).pictureBoxHareketettiir();
+            gemiCiz(gemiler.ElementAt(_i));
+        }
+
+        int index = 0;
         private void timer1_Tick(object sender, EventArgs e)
         {
             if(gemiler.Count>1)
             {                
                 g.Clear(this.BackColor);
-                for (int i = 0; i < gemiler.Count; i++)
+                
+                if(index < 3 && rota.t[index]>0)
                 {
-                    gemiHareketEttir(gemiler.ElementAt(i));
-                    gemiler.ElementAt(i).pictureBoxHareketettiir();
-                    gemiCiz(gemiler.ElementAt(i));
-                }                
+                    gemiHareketHesapla(0);
+                    rota.t[index]--;
+                    if (rota.t[index] <= 0)
+                        gemiler.ElementAt(0).rota -= (int) (rota.co[index]);
+                }
+                else
+                {
+                    index++;
+                }
+                if(index > 2)
+                {
+                    gemiHareketHesapla(0);
+                }
+                for (int i = 1; i < gemiler.Count; i++)
+                {
+                    gemiHareketHesapla(i);
+                }
+                
+                                
             }            
         }
 
@@ -237,8 +266,23 @@ namespace WindowsFormsApplication1
                 , gemiler.ElementAt(1).merkez.X + cizimKonumu.X, gemiler.ElementAt(1).merkez.Y + cizimKonumu.Y);
         }
 
+        public double DcpaHesapla(Gemi gemi1,Gemi gemi2)
+        {
+            gemi1.merkez.X += Convert.ToInt32(gemi1.hiz
+                   * Math.Cos((gemi1.rota + 90) * Math.PI / 180));
+            gemi1.merkez.Y += Convert.ToInt32(gemi1.hiz
+                * -Math.Sin((gemi1.rota + 90) * Math.PI / 180));
+
+            gemi2.merkez.X += Convert.ToInt32(gemi2.hiz
+               * Math.Cos((gemi2.rota + 90) * Math.PI / 180));
+            gemi2.merkez.Y += Convert.ToInt32(gemi2.hiz
+                * -Math.Sin((gemi2.rota + 90) * Math.PI / 180));
+
+            return  Math.Sqrt(Math.Pow((gemi1.merkez.X - gemi2.merkez.X), 2) + Math.Pow((gemi1.merkez.Y - gemi2.merkez.Y), 2));
+        }
+
         //Çatışma riski kontrolü
-        private Cpa SimuleEt(Gemi gemi1, Gemi gemi2)
+        public Cpa SimuleEt(Gemi gemi1, Gemi gemi2)
         {
 
             //CPA noktaları
@@ -260,17 +304,7 @@ namespace WindowsFormsApplication1
                 dcpaOld = dcpaNew;
                 cpaOld = cpaNew;
 
-                gemi1.merkez.X += Convert.ToInt32(gemi1.hiz
-                   * Math.Cos((gemi1.rota + 90) * Math.PI / 180));
-                gemi1.merkez.Y += Convert.ToInt32(gemi1.hiz
-                    * -Math.Sin((gemi1.rota + 90) * Math.PI / 180));
-
-                gemi2.merkez.X += Convert.ToInt32(gemi2.hiz
-                   * Math.Cos((gemi2.rota + 90) * Math.PI / 180));
-                gemi2.merkez.Y += Convert.ToInt32(gemi2.hiz
-                    * -Math.Sin((gemi2.rota + 90) * Math.PI / 180));
-                
-                dcpaNew = Math.Sqrt(Math.Pow((gemi1.merkez.X - gemi2.merkez.X), 2) + Math.Pow((gemi1.merkez.Y - gemi2.merkez.Y), 2));
+                dcpaNew = DcpaHesapla(gemi1,gemi2);
                 cpaNew = gemi1.merkez;
             }
             gemi1.merkez = gemi1Merkez;
@@ -293,11 +327,27 @@ namespace WindowsFormsApplication1
             return catismaRiski;
         }
 
+        private void GenetikHesapla()
+        {
+            GeneticAlgorithm ga = new GeneticAlgorithm();
+            ga.SetForm(xx);
+            rota = ga.SahteGenetik();
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {               
 
             if (veriOnayla)
             {
+
+                Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
+                if (catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
+                {
+                    MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
+                    MessageBox.Show(durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");
+                    GenetikHesapla();
+                }
+
                 timer1.Interval = 100;
                 timer1.Enabled = !timer1.Enabled;
 
@@ -309,15 +359,9 @@ namespace WindowsFormsApplication1
                 {
                     button3.Text = "Devam";
                 }
-
-                if(!button3.Text.Equals("Devam"))
+                if (!button3.Text.Equals("Devam"))
                 {
-                    Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
-                    if (catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
-                    {
-                        MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
-                        MessageBox.Show(durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");
-                    }
+
                 }
                 for (int i = 0; i < gemiler.Count; i++)
                 {
@@ -366,6 +410,7 @@ namespace WindowsFormsApplication1
 
                     gemiler.Clear();
                     veriOnayla = false;
+                    index = 0;
                     //Form1.ActiveForm.BackColor = SystemColors.ControlLight;//Sadece Control a boyadıgımız zaman degisik yapmıyordu.Bizde once farklı bir renge boyadık sonrasında default renk olan control rengine boyadık.
                     //Form1.ActiveForm.BackColor = SystemColors.Control;
                     this.BackColor = SystemColors.ControlDark;
@@ -376,8 +421,13 @@ namespace WindowsFormsApplication1
             else
             {
                 MessageBox.Show("Bu Islem Icin Program Durdurulmali");
-        }
+            }
 
+      }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
-}
 }
