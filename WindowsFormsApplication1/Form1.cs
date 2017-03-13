@@ -431,5 +431,41 @@ namespace WindowsFormsApplication1
             }
 
       }
+        public void SaveFunc()
+        {
+            SaveFileDialog sv = new SaveFileDialog();
+            sv.ShowDialog();
+
+            String s = sv.FileName;
+
+            if (!s.Equals(""))
+            {
+                SaveLoad saveLoad = new SaveLoad();
+                saveLoad.Save(s, gemiler);
+            }
+        }
+
+
+        public void LoadFunc()
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.ShowDialog();
+            String secilenDizin = op.FileName.ToString();
+
+            if (!secilenDizin.Equals(""))
+            {
+              //  temizle();
+                SaveLoad saveLoad = new SaveLoad();
+                int[,] veriler = saveLoad.Load(secilenDizin);
+                for (int i = 0; i < veriler.GetLength(0); i++)
+                {
+                    Point p = new Point();
+                    p.X = veriler[i, veriler.GetLength(1) - 2];
+                    p.Y = veriler[i, veriler.GetLength(1) - 1];
+
+                    setVeriler(veriler[i, 0] / 10, veriler[i, 1], -veriler[i, 2], p);
+                }
+            }
+        }
     }
 }
