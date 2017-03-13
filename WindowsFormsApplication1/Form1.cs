@@ -63,19 +63,25 @@ namespace WindowsFormsApplication1
         {
 
             xx = this;
-           /* PictureBox pb = new PictureBox();
+            List<Gemi> lst = new List<Gemi>();
+            Point pp = new Point();
+            pp.X = 1;
+            pp.Y = 2;
+           
             
-            pb.Width = 50;
-            pb.Height = 50;
-            
-            //pb.Image = Image.FromFile("gemi.png");
-            pb.BackgroundImageLayout = ImageLayout.Stretch;
-            pb.ImageLocation = "gemi.png";
+            /* PictureBox pb = new PictureBox();
 
-            pb.Left = this.Width / 2;
-            pb.Top =   this.Height / 2;
-            //pb.Show();
-            this.Controls.Add(pb);*/
+             pb.Width = 50;
+             pb.Height = 50;
+
+             //pb.Image = Image.FromFile("gemi.png");
+             pb.BackgroundImageLayout = ImageLayout.Stretch;
+             pb.ImageLocation = "gemi.png";
+
+             pb.Left = this.Width / 2;
+             pb.Top =   this.Height / 2;
+             //pb.Show();
+             this.Controls.Add(pb);*/
             //
         }
 
@@ -334,7 +340,7 @@ namespace WindowsFormsApplication1
             GeneticAlgorithm ga = new GeneticAlgorithm();
             ga.SetForm(xx);
             ga.kromozonYarat();
-            for(int i=0;i< 10;i++)
+            for(int i=0;i< 100;i++)
             {
                 ga.hesapla();
                 rota = ga.SahteGenetik(ga.optimumKromozon);

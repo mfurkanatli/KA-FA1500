@@ -60,9 +60,9 @@ namespace WindowsFormsApplication1
         public int degerHesapla2(string[] ss)
         {
             deger = 0;
-            for (int i = 1; i < ss.Length; i++)
+            for (int i = 1; i <= ss.Length; i++)
             {
-                deger += Convert.ToInt32(ss[i]) * Convert.ToInt32(Math.Pow(2, ss.Length - i));
+                deger += Convert.ToInt32(ss[i-1]) * Convert.ToInt32(Math.Pow(2, ss.Length - i));
             }
             return deger;
         }
