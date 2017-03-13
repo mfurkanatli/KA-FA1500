@@ -62,6 +62,7 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            xx = this;
            /* PictureBox pb = new PictureBox();
             
             pb.Width = 50;
@@ -381,7 +382,7 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Oncelikle Verileri Onaylayin");
             }
         }
-        static Form1 xx;
+        public static Form1 xx;
         private void button2_Click(object sender, EventArgs e)
         {
             xx = this;

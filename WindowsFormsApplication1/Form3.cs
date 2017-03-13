@@ -31,7 +31,8 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int index = listBox1.SelectedIndex;
+            //int index = listBox1.SelectedIndex;
+            int index = comboBox1.SelectedIndex;
             Form1.gemiler.ElementAt(index).emniyet_alani = (Form1.katSayi * Convert.ToInt32(textBox1.Text));
             Form1.gemiler.ElementAt(index).hiz = Convert.ToInt32(textBox2.Text);
             if (Convert.ToInt32(textBox3.Text) > 0)
@@ -51,16 +52,18 @@ namespace WindowsFormsApplication1
 
         private void gemileriGetir()
         {
-            listBox1.Items.Clear();
+           // listBox1.Items.Clear();
+            comboBox1.Items.Clear();
             for (int i = 0; i < Form1.gemiler.Count; i++)
             {
-                listBox1.Items.Add("Gemi "+Form1.gemiler.IndexOf(Form1.gemiler.ElementAt(i)));
+               // listBox1.Items.Add("Gemi "+Form1.gemiler.IndexOf(Form1.gemiler.ElementAt(i)));
+                comboBox1.Items.Add("Gemi " + Form1.gemiler.IndexOf(Form1.gemiler.ElementAt(i)));
             }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = listBox1.SelectedIndex;
+           /* int index = listBox1.SelectedIndex;
             if (index >= 0 && Form1.gemiler.Count() > index)
             {
                 textBox1.Text = Form1.gemiler.ElementAt(index).emniyet_alani/Form1.katSayi + "";
@@ -68,18 +71,20 @@ namespace WindowsFormsApplication1
                 textBox3.Text = Math.Abs(Form1.gemiler.ElementAt(index).rota) + "";
                 textBox4.Text = Form1.gemiler.ElementAt(index).merkez.X + "";
                 textBox5.Text = Form1.gemiler.ElementAt(index).merkez.Y + "";
-            }
+            }*/
         }
 
       
         private void button2_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex!=0)
+            //if (listBox1.SelectedIndex!=0)
+            if (comboBox1.SelectedIndex != 0)
             {
                 DialogResult result = MessageBox.Show("Gemiyi Silmek Istediginizden Emin Misiniz ??", "Onaylama", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
                 {
-                    Form1.gemiler.RemoveAt(listBox1.SelectedIndex);
+                    //Form1.gemiler.RemoveAt(listBox1.SelectedIndex);
+                    Form1.gemiler.RemoveAt(comboBox1.SelectedIndex);
                     gemileriGetir();
                     f1.Yenile();
                 }
@@ -87,6 +92,19 @@ namespace WindowsFormsApplication1
             else
             {
                 MessageBox.Show("Kendi Gemimiz Silinemez");
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = comboBox1.SelectedIndex;
+            if (index >= 0 && Form1.gemiler.Count() > index)
+            {
+                textBox1.Text = Form1.gemiler.ElementAt(index).emniyet_alani / Form1.katSayi + "";
+                textBox2.Text = Form1.gemiler.ElementAt(index).hiz + "";
+                textBox3.Text = Math.Abs(Form1.gemiler.ElementAt(index).rota) + "";
+                textBox4.Text = Form1.gemiler.ElementAt(index).merkez.X + "";
+                textBox5.Text = Form1.gemiler.ElementAt(index).merkez.Y + "";
             }
         }
     }

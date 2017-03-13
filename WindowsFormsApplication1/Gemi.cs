@@ -36,8 +36,8 @@ namespace WindowsFormsApplication1
 
         public void pictureBoxHareketettiir()
         {
-            pb.Left = merkez.X + f1.Width / 2-pb.Width/2;
-            pb.Top = merkez.Y + f1.Height / 2-pb.Height/2;
+            pb.Left = merkez.X + Form1.xx.Width / 2-pb.Width/2;
+            pb.Top = merkez.Y + Form1.xx.Height / 2-pb.Height/2;
         }
 
         private Bitmap RotateImageByAngle(Image oldBitmap, float angle)
