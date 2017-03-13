@@ -216,6 +216,7 @@ namespace WindowsFormsApplication1
             for (int i = 0; i < gemiler.Count; i++)
             {
                 gemiCiz(gemiler.ElementAt(i));
+                gemiler.ElementAt(i).pictureBoxHareketettiir();
             }
         }
 
@@ -412,16 +413,7 @@ namespace WindowsFormsApplication1
                 if (result == DialogResult.Yes)
                 {
 
-                    for (int i = 0; i < gemiler.Count; i++)
-                        gemiler.ElementAt(i).pb.Dispose();
-
-                    gemiler.Clear();
-                    veriOnayla = false;
-                    index = 0;
-                    //Form1.ActiveForm.BackColor = SystemColors.ControlLight;//Sadece Control a boyadıgımız zaman degisik yapmıyordu.Bizde once farklı bir renge boyadık sonrasında default renk olan control rengine boyadık.
-                    //Form1.ActiveForm.BackColor = SystemColors.Control;
-                    this.BackColor = SystemColors.ControlDark;
-                    this.BackColor = SystemColors.Control;
+                    temizle();
                    // Yenile();
                 }
             }
@@ -431,6 +423,20 @@ namespace WindowsFormsApplication1
             }
 
       }
+
+        public void temizle()
+        {
+            for (int i = 0; i < gemiler.Count; i++)
+                gemiler.ElementAt(i).pb.Dispose();
+
+            gemiler.Clear();
+            veriOnayla = false;
+            index = 0;
+            //Form1.ActiveForm.BackColor = SystemColors.ControlLight;//Sadece Control a boyadıgımız zaman degisik yapmıyordu.Bizde once farklı bir renge boyadık sonrasında default renk olan control rengine boyadık.
+            //Form1.ActiveForm.BackColor = SystemColors.Control;
+            this.BackColor = SystemColors.ControlDark;
+            this.BackColor = SystemColors.Control;
+        }
         public void SaveFunc()
         {
             SaveFileDialog sv = new SaveFileDialog();
@@ -454,7 +460,7 @@ namespace WindowsFormsApplication1
 
             if (!secilenDizin.Equals(""))
             {
-              //  temizle();
+                temizle();
                 SaveLoad saveLoad = new SaveLoad();
                 int[,] veriler = saveLoad.Load(secilenDizin);
                 for (int i = 0; i < veriler.GetLength(0); i++)
@@ -466,6 +472,16 @@ namespace WindowsFormsApplication1
                     setVeriler(veriler[i, 0] / 10, veriler[i, 1], -veriler[i, 2], p);
                 }
             }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SaveFunc();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            LoadFunc();
         }
     }
 }
