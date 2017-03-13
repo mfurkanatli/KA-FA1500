@@ -348,8 +348,8 @@ namespace WindowsFormsApplication1
                 Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
                 if (catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
                 {
-                    MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
-                    MessageBox.Show(durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");
+                    MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!\n"+durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)));
+                    
                     GenetikHesapla();
                     /*
                     timer1 = new Timer();
