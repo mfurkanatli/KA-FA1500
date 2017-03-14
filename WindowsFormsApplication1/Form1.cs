@@ -18,7 +18,12 @@ namespace WindowsFormsApplication1
         public static int katSayi = 10;
         public static List<Gemi> gemiler = new List<Gemi>();
         bool veriOnayla = false;
-        
+        int jenarasyon = 50;
+        bool catismaVar = false;
+
+
+        List<Point> points = new List<Point>(); //altarnatif yol noktaları
+        List<List<Point>> alternatifYollar = new List<List<Point>>();
         public Form1()
         {
             InitializeComponent();
@@ -238,11 +243,14 @@ namespace WindowsFormsApplication1
                     gemiHareketHesapla(0);
                     rota.t[index]--;
                     if (rota.t[index] <= 0)
-                        gemiler.ElementAt(0).rota -= (int) (rota.co[index]);
+                    {
+                        gemiler.ElementAt(0).rota -= (int)(rota.co[index]);
+                        index++;
+                    }
                 }
                 else
                 {
-                    index++;
+                  //  index++;
                 }
                 if(index > 2)
                 {
@@ -252,9 +260,56 @@ namespace WindowsFormsApplication1
                 {
                     gemiHareketHesapla(i);
                 }
-                
-                                
+
+                alternatifYollariCiz();            
             }            
+        }
+        void alternatifYollariBelirle()
+        {
+            int x, y;
+            int x_yedek=0, y_yedek=0;
+            double rota;
+            for(int i=0;i<GeneticAlgorithm.rotalar.Count;i++)
+            {
+                points = new List<Point>();
+                points.Add(new Point(gemiler.ElementAt(0).merkez.X + this.Width/2, gemiler.ElementAt(0).merkez.Y + this.Height/2));
+                rota = gemiler.ElementAt(0).rota;
+                for (int j = 0; j < 3; j++)
+                {
+                    if (j == 0)
+                    {
+                        x = gemiler.ElementAt(0).merkez.X + Convert.ToInt32(GeneticAlgorithm.rotalar.ElementAt(i).t[j] * gemiler.ElementAt(0).hiz
+                            * Math.Cos((rota + 90) * Math.PI / 180));
+                        y = gemiler.ElementAt(0).merkez.Y + Convert.ToInt32(GeneticAlgorithm.rotalar.ElementAt(i).t[j] * gemiler.ElementAt(0).hiz
+                            * -Math.Sin((rota + 90) * Math.PI / 180));
+                    }
+                    else
+                    {
+                        x = x_yedek + Convert.ToInt32(GeneticAlgorithm.rotalar.ElementAt(i).t[j] * gemiler.ElementAt(0).hiz
+                            * Math.Cos((rota + 90) * Math.PI / 180));
+                        y = y_yedek + Convert.ToInt32(GeneticAlgorithm.rotalar.ElementAt(i).t[j] * gemiler.ElementAt(0).hiz
+                            * -Math.Sin((rota + 90) * Math.PI / 180));
+                    }
+                    x_yedek = x;
+                    y_yedek = y;
+                    rota -= GeneticAlgorithm.rotalar.ElementAt(i).co[j];
+                    points.Add(new Point(x + this.Width / 2, y + this.Height / 2));
+                }
+
+                alternatifYollar.Add(points);
+                //points.Clear();
+            }
+        }
+
+        void alternatifYollariCiz()
+        {
+            Pen pen = new Pen(Color.Green, 1);
+            Point[] points;
+            for (int i = 0; i < 10; i++)
+            {
+                points = alternatifYollar.ElementAt(i).ToArray();
+                g.DrawLines(pen, points);
+            }
         }
 
         void ikiGemiCizgi()
@@ -332,11 +387,13 @@ namespace WindowsFormsApplication1
             GeneticAlgorithm ga = new GeneticAlgorithm();
             ga.SetForm(xx);
             ga.kromozonYarat();
-            for(int i=0;i< 10;i++)
+            for(int i=0;i < jenarasyon; i++)
             {
                 ga.hesapla();
                 rota = ga.SahteGenetik(ga.optimumKromozon);
             }
+            if(catismaVar)
+                alternatifYollariBelirle();
         }
         private void button3_Click(object sender, EventArgs e)
         {               
@@ -349,6 +406,7 @@ namespace WindowsFormsApplication1
                 {
                     MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
                     MessageBox.Show(durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");
+                    catismaVar = true;
                     GenetikHesapla();
                     /*
                     timer1 = new Timer();

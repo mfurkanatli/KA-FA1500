@@ -15,45 +15,20 @@ namespace WindowsFormsApplication1
         List<Kromozom> eslesmeHavuzu = new List<Kromozom>();
         Rota optimumRota = new Rota();
         public Kromozom optimumKromozon = new Kromozom();
-        static int populasyonSayisi = 10;
+        static int populasyonSayisi = 20;
         int bitSayisi = 8;
-        int optimumSonuc = -11;
         double crossOverRate = 0.6;
         double mutationRate = 0.3;
         double iterasyonSayisi = 100;
         double[] ruletOlasilik = new double[populasyonSayisi+1];
-        int calismaSuresi = 0;
         int[] iterasyon = new int[100];
         long[] sure = new long[100];
         Random rand = new Random();
         Form1 f1;
-        public void start()
-        {            
-            /*
-                Stopwatch stopWatch = new Stopwatch();
-                int k = 0;
-                int it;
-                for (int i = 0; i < iterasyonSayisi; i++)
-                {
-                    sifirla();
-                    kromozonYarat();
-                    stopWatch.Start();
-                    it = 0;
-                    do
-                    {
-                        hesapla();
-                        it++;
-                        //Console.WriteLine(minimumBul(ebeveynler).ToString());
-                    } while (minimumBul(ebeveynler) != optimumSonuc && it < 10);
-                    stopWatch.Stop();
-                    sure[k] = stopWatch.ElapsedMilliseconds;
-                    stopWatch.Reset();
-                    iterasyon[k] = it;
-                    k++;
-                }
-                ortalamaHesapla();
-            */
-        }
+        static public List<Rota> rotalar = new List<Rota>();
+
+
+   
         public void SetForm(Form1 _f1)
         {
             f1 = _f1;
@@ -113,16 +88,21 @@ namespace WindowsFormsApplication1
             rota.t[1] = min.t2_deger;
             rota.t[2] = min.t3;
 
-            Console.WriteLine("ROTAMIZ");
+        /*    Console.WriteLine("ROTAMIZ");
 
             for (int index = 0; index < 3; index++)
             {
                 Console.Write(rota.t[index] + " : " + rota.co[index] + " / ");
-            }
+            }*/
 
             return rota;
         }
-
+        void alternatifRotalariTut(List<Kromozom> gelen)
+        {
+            for (int i = 0; i < gelen.Count; i++)
+                if (!rotalar.Contains(SahteGenetik(gelen.ElementAt(i))))
+                    rotalar.Add(SahteGenetik(gelen.ElementAt(i)));
+        }
         public void kromozonYarat()
         {
             //for (int i = 0; i < populasyonSayisi; i++)
@@ -161,6 +141,7 @@ namespace WindowsFormsApplication1
 
         void yazdir()
         {
+            /*
             for (int i = 0; i < populasyonSayisi; i++)
             {
                 //richTextBox1.Text += "////";
@@ -177,7 +158,7 @@ namespace WindowsFormsApplication1
                 inputYazdir(i, ebeveynler.ElementAt(i).t2);
                 //richTextBox1.Text += "\n";
                 Console.Write("\n");
-            }
+            }*/
         }
 
         void inputYazdir(int i, string[] gelen)
@@ -371,6 +352,7 @@ namespace WindowsFormsApplication1
             //calismaSuresi++;
             degerleriHesapla(ebeveynler);
             fitnessHesapla(ebeveynler);
+            alternatifRotalariTut(ebeveynler);
             optimumKromozon = GlobalOptimumFitness(optimumKromozon, ebeveynler);
             ruletCarki();
             eslesmeHavuzuBelirle();
