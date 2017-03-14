@@ -9,7 +9,7 @@ namespace WindowsFormsApplication1
 {
     public class Cpa
     {
-        public Point cpa;
+        public PointF cpa;
         public double dcpa;
 
     }

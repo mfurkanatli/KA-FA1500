@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
             string fullPath = Path.GetFullPath(path);
             MessageBox.Show("Çıktı text dosyası " + fullPath + " konumuna kaydedilmiştir.");
         }
-        public int[,] Load(string filename)
+        public float[,] Load(string filename)
         {
             string whole_file = System.IO.File.ReadAllText(filename);
             whole_file = whole_file.Replace('\n', '\r');
@@ -47,7 +47,7 @@ namespace WindowsFormsApplication1
                 }
             }
             datasetGoster(values);
-            return toInt(values, num_rows, num_cols);
+            return toFloat(values, num_rows, num_cols);
         }
 
         public void datasetGoster(string[,] _values)
@@ -61,17 +61,17 @@ namespace WindowsFormsApplication1
                 Console.WriteLine("");
             }
         }
-        private int[,] toInt(string[,] _dataset, int _num_rows, int _num_cols)
+        private float[,] toFloat(string[,] _dataset, int _num_rows, int _num_cols)
         {
-            int[,] intset = new int[_num_rows, _num_cols];
+            float[,] floatSet = new float[_num_rows, _num_cols];
             for (int i = 0; i < num_rows; i++)
             {
                 for (int j = 0; j < num_cols; j++)
                 {
-                    intset[i, j] = Convert.ToInt32(_dataset[i, j]);
+                    floatSet[i, j] = float.Parse(_dataset[i, j]);
                 }
             }
-            return intset;
+            return floatSet;
         }
     }
 }

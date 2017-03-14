@@ -23,13 +23,13 @@ namespace WindowsFormsApplication1
             int guvenli_alan=0;
             int hiz;
             int yon;
-            Point p = new Point();
+            PointF p = new PointF();
            
             guvenli_alan = Convert.ToInt32(textBox1.Text);
             hiz = Convert.ToInt32(textBox2.Text);
             yon = Convert.ToInt32(textBox3.Text);
-            p.X = Convert.ToInt32(textBox4.Text);
-            p.Y = Convert.ToInt32(textBox5.Text);           
+            p.X = float.Parse(textBox4.Text);
+            p.Y = float.Parse(textBox5.Text);           
             Form1.setVeriler(guvenli_alan, hiz, yon,p);
             
             this.Close();

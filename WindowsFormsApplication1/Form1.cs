@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+
+
 namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
@@ -20,10 +22,10 @@ namespace WindowsFormsApplication1
         bool veriOnayla = false;
         int jenarasyon = 50;
         bool catismaVar = false;
+        
 
-
-        List<Point> points = new List<Point>(); //altarnatif yol noktaları
-        List<List<Point>> alternatifYollar = new List<List<Point>>();
+        List<PointF> points = new List<PointF>(); //altarnatif yol noktaları
+        List<List<PointF>> alternatifYollar = new List<List<PointF>>();
         public Form1()
         {
             InitializeComponent();
@@ -54,19 +56,21 @@ namespace WindowsFormsApplication1
 
         }
         
-        public static void setVeriler(int emniyet_alani, int hiz, int rota, Point merkez)
+        public static void setVeriler(int emniyet_alani, int hiz, int rota, PointF merkez)
         {
             gemiler.Add(new Gemi(emniyet_alani * katSayi, hiz, rota, merkez,xx));
             if (gemiler.Count>1)
             {
                 gemiler.ElementAt(gemiler.Count - 1).pb.ImageLocation ="gemi3.png";
             }
+            
         }
       
 
         private void Form1_Load(object sender, EventArgs e)
         {
             xx = this;
+            xx.DoubleBuffered = true;
            /* PictureBox pb = new PictureBox();
             
             pb.Width = 50;
@@ -157,11 +161,12 @@ namespace WindowsFormsApplication1
         public void gemiHareketEttir(Gemi gemi)
         {
             
-            gemi.merkez.X += Convert.ToInt32(gemi.hiz
-                   * Math.Cos((gemi.rota + 90) * Math.PI / 180));
-            gemi.merkez.Y += Convert.ToInt32(gemi.hiz
-                * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
-           // return gemi;
+            gemi.merkez.X += float.Parse((gemi.hiz
+                   * Math.Cos((gemi.rota + 90) * Math.PI / 180)).ToString());
+
+            gemi.merkez.Y += float.Parse((gemi.hiz
+                   * -Math.Sin((gemi.rota + 90) * Math.PI / 180)).ToString());
+            // return gemi;
         }
 
         private bool carpistiMi(Gemi _bizimGemi, Gemi _karsiGemi)
@@ -183,10 +188,10 @@ namespace WindowsFormsApplication1
             cizimKonumu.Y = this.Height / 2;
                 
             int r = 500;
-            int x = gemi.merkez.X + Convert.ToInt32(r * Math.Cos((gemi.rota + 90) * Math.PI / 180));
-            int y = gemi.merkez.Y + Convert.ToInt32(r * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
+            float x = gemi.merkez.X + Convert.ToInt32(r * Math.Cos((gemi.rota + 90) * Math.PI / 180));
+            float y = gemi.merkez.Y + Convert.ToInt32(r * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
            // Console.WriteLine(Math.Sin(gemi.rota * Math.PI / 180) + "");
-            Point hedef = new Point(x, y);
+            PointF hedef = new PointF(x, y);
            
             Pen cevre;
             Pen yol;
@@ -200,11 +205,11 @@ namespace WindowsFormsApplication1
                cevre = new Pen(Color.Thistle);
                 yol = new Pen(Color.Black);
             }
-            Point rotaKonum = new Point();
+            PointF rotaKonum = new PointF();
             rotaKonum.X = gemi.merkez.X + cizimKonumu.X;
             rotaKonum.Y = gemi.merkez.Y + cizimKonumu.Y;
 
-            Point rotaHedef=new Point();
+            PointF rotaHedef=new PointF();
             rotaHedef.X = hedef.X + cizimKonumu.X;
             rotaHedef.Y = hedef.Y + cizimKonumu.Y;
             if (gemiler.IndexOf(gemi)==0)
@@ -231,9 +236,24 @@ namespace WindowsFormsApplication1
             gemiCiz(gemiler.ElementAt(_i));
         }
 
+        public void forIleCizim()
+        {
+            rota.co[2] = Math.Ceiling(rota.co[2]);
+            for(int i=0;i<3;i++)
+            {
+                for(int j=0;j<rota.t[i];j++)
+                {
+                    gemiHareketHesapla(0);
+                }
+                gemiler.ElementAt(0).rota -= (int)(rota.co[i]);
+            }
+            timer1.Enabled = false;
+        }
+
         int index = 0;
         private void timer1_Tick(object sender, EventArgs e)
         {
+            
             if(gemiler.Count>1)
             {                
                 g.Clear(this.BackColor);
@@ -248,10 +268,7 @@ namespace WindowsFormsApplication1
                         index++;
                     }
                 }
-                else
-                {
-                  //  index++;
-                }
+
                 if(index > 2)
                 {
                     gemiHareketHesapla(0);
@@ -260,19 +277,20 @@ namespace WindowsFormsApplication1
                 {
                     gemiHareketHesapla(i);
                 }
+                
+            alternatifYollariCiz();
 
-                alternatifYollariCiz();            
             }            
         }
         void alternatifYollariBelirle()
         {
-            int x, y;
-            int x_yedek=0, y_yedek=0;
+            float x, y;
+            float x_yedek =0, y_yedek=0;
             double rota;
             for(int i=0;i<GeneticAlgorithm.rotalar.Count;i++)
             {
-                points = new List<Point>();
-                points.Add(new Point(gemiler.ElementAt(0).merkez.X + this.Width/2, gemiler.ElementAt(0).merkez.Y + this.Height/2));
+                points = new List<PointF>();
+                points.Add(new PointF(gemiler.ElementAt(0).merkez.X + this.Width/2, gemiler.ElementAt(0).merkez.Y + this.Height/2));
                 rota = gemiler.ElementAt(0).rota;
                 for (int j = 0; j < 3; j++)
                 {
@@ -293,7 +311,7 @@ namespace WindowsFormsApplication1
                     x_yedek = x;
                     y_yedek = y;
                     rota -= GeneticAlgorithm.rotalar.ElementAt(i).co[j];
-                    points.Add(new Point(x + this.Width / 2, y + this.Height / 2));
+                    points.Add(new PointF(x + this.Width / 2, y + this.Height / 2));
                 }
 
                 alternatifYollar.Add(points);
@@ -304,7 +322,7 @@ namespace WindowsFormsApplication1
         void alternatifYollariCiz()
         {
             Pen pen = new Pen(Color.Green, 1);
-            Point[] points;
+            PointF[] points;
             for (int i = 0; i < 10; i++)
             {
                 points = alternatifYollar.ElementAt(i).ToArray();
@@ -341,14 +359,14 @@ namespace WindowsFormsApplication1
         {
 
             //CPA noktaları
-            Point cpaOld = new Point();
-            Point cpaNew = new Point();
+            PointF cpaOld = new PointF();
+            PointF cpaNew = new PointF();
 
             //DCPA
             double dcpaOld = Int16.MaxValue;
             double dcpaNew = Int16.MaxValue-1; //While şartına girmesi için dcpaOld'dan küçük
 
-            Point gemi1Merkez, gemi2Merkez;
+            PointF gemi1Merkez, gemi2Merkez;
 
             //Merkezler değişeceği için yedeklendi
             gemi1Merkez = gemi1.merkez;
@@ -482,7 +500,10 @@ namespace WindowsFormsApplication1
                 gemiler.ElementAt(i).pb.Dispose();
 
             gemiler.Clear();
+            catismaVar = false;
             veriOnayla = false;
+            GeneticAlgorithm.rotalar.Clear();
+            button3.Text = "Başlat";
             index = 0;
             //Form1.ActiveForm.BackColor = SystemColors.ControlLight;//Sadece Control a boyadıgımız zaman degisik yapmıyordu.Bizde once farklı bir renge boyadık sonrasında default renk olan control rengine boyadık.
             //Form1.ActiveForm.BackColor = SystemColors.Control;
@@ -514,14 +535,14 @@ namespace WindowsFormsApplication1
             {
                 temizle();
                 SaveLoad saveLoad = new SaveLoad();
-                int[,] veriler = saveLoad.Load(secilenDizin);
+                float[,] veriler = saveLoad.Load(secilenDizin);
                 for (int i = 0; i < veriler.GetLength(0); i++)
                 {
-                    Point p = new Point();
+                    PointF p = new PointF();
                     p.X = veriler[i, veriler.GetLength(1) - 2];
                     p.Y = veriler[i, veriler.GetLength(1) - 1];
 
-                    setVeriler(veriler[i, 0] / 10, veriler[i, 1], -veriler[i, 2], p);
+                    setVeriler((int) veriler[i, 0] / katSayi, (int) veriler[i, 1], (int) -veriler[i, 2], p);
                 }
             }
         }
