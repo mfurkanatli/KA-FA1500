@@ -66,7 +66,7 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            xx = this;
            /* PictureBox pb = new PictureBox();
             
             pb.Width = 50;
@@ -404,13 +404,9 @@ namespace WindowsFormsApplication1
                 Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
                 if (catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
                 {
-                    MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!");
-                    MessageBox.Show(durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");
+                    MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!\n"+ durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");                    
                     catismaVar = true;
                     GenetikHesapla();
-                    /*
-                    timer1 = new Timer();
-                    timer1.Tick += new EventHandler(timer1_Tick);*/
                 }
 
                 timer1.Interval = 100;
@@ -438,7 +434,7 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Oncelikle Verileri Onaylayin");
             }
         }
-        static Form1 xx;
+      public  static Form1 xx;
         private void button2_Click(object sender, EventArgs e)
         {
             xx = this;
@@ -469,17 +465,7 @@ namespace WindowsFormsApplication1
                 DialogResult result = MessageBox.Show("Temizlemek Istediginizden Emin Misiniz ??", "Onaylama", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
                 {
-
-                    for (int i = 0; i < gemiler.Count; i++)
-                        gemiler.ElementAt(i).pb.Dispose();
-
-                    gemiler.Clear();
-                    veriOnayla = false;
-                    index = 0;
-                    //Form1.ActiveForm.BackColor = SystemColors.ControlLight;//Sadece Control a boyadıgımız zaman degisik yapmıyordu.Bizde once farklı bir renge boyadık sonrasında default renk olan control rengine boyadık.
-                    //Form1.ActiveForm.BackColor = SystemColors.Control;
-                    this.BackColor = SystemColors.ControlDark;
-                    this.BackColor = SystemColors.Control;
+                    temizle();
                    // Yenile();
                 }
             }
@@ -489,6 +475,20 @@ namespace WindowsFormsApplication1
             }
 
       }
+        public void temizle()
+        {
+
+            for (int i = 0; i < gemiler.Count; i++)
+                gemiler.ElementAt(i).pb.Dispose();
+
+            gemiler.Clear();
+            veriOnayla = false;
+            index = 0;
+            //Form1.ActiveForm.BackColor = SystemColors.ControlLight;//Sadece Control a boyadıgımız zaman degisik yapmıyordu.Bizde once farklı bir renge boyadık sonrasında default renk olan control rengine boyadık.
+            //Form1.ActiveForm.BackColor = SystemColors.Control;
+            this.BackColor = SystemColors.ControlDark;
+            this.BackColor = SystemColors.Control;
+        }
         public void SaveFunc()
         {
             SaveFileDialog sv = new SaveFileDialog();
@@ -512,7 +512,7 @@ namespace WindowsFormsApplication1
 
             if (!secilenDizin.Equals(""))
             {
-              //  temizle();
+                temizle();
                 SaveLoad saveLoad = new SaveLoad();
                 int[,] veriler = saveLoad.Load(secilenDizin);
                 for (int i = 0; i < veriler.GetLength(0); i++)
@@ -524,6 +524,16 @@ namespace WindowsFormsApplication1
                     setVeriler(veriler[i, 0] / 10, veriler[i, 1], -veriler[i, 2], p);
                 }
             }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            LoadFunc();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SaveFunc();
         }
     }
 }
