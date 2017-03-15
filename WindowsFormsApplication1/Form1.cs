@@ -11,6 +11,7 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
+        
         Graphics cizim;
         Gemi karsiGemi;
         Gemi bizimGemi;
@@ -453,6 +454,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
+                
                 MessageBox.Show("Yeterli Sayida Gemi Yok.\nGemi Giriniz.");
             }
         }
