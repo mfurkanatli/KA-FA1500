@@ -10,6 +10,12 @@ namespace WindowsFormsApplication1
     {
         public double[] t = new double[3];
         public double[] co = new double[3];
+        public double fitness;
+
+        public void fitnessHesapla()
+        {
+            fitness = t[1] + t[2];
+        }
 
     }
 }

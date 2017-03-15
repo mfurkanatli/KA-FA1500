@@ -87,14 +87,15 @@ namespace WindowsFormsApplication1
             rota.t[0] = min.t1_deger;
             rota.t[1] = min.t2_deger;
             rota.t[2] = min.t3;
-
-        /*    Console.WriteLine("ROTAMIZ");
+            rota.fitnessHesapla();
+            /*
+            Console.WriteLine("ROTAMIZ");
 
             for (int index = 0; index < 3; index++)
             {
                 Console.Write(rota.t[index] + " : " + rota.co[index] + " / ");
-            }*/
-
+            }
+            */
             return rota;
         }
         void alternatifRotalariTut(List<Kromozom> gelen)

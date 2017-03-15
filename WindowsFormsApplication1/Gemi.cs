@@ -12,12 +12,12 @@ namespace WindowsFormsApplication1
         public int hiz;
         public int rota;
         public double tcpa, dcpa;
-        public Point merkez;
-        public Point cizimPoint;
+        public PointF merkez;
+        public PointF cizimPoint;
         public PictureBox pb;
         Form1 f1;
 
-        public Gemi(int emniyet_alani, int hiz, int rota, Point merkez,Form1 _f1)
+        public Gemi(int emniyet_alani, int hiz, int rota, PointF merkez,Form1 _f1)
         {
             f1 = _f1;
             this.emniyet_alani = emniyet_alani;
@@ -36,8 +36,8 @@ namespace WindowsFormsApplication1
 
         public void pictureBoxHareketettiir()
         {
-            pb.Left = merkez.X + Form1.xx.Width / 2-pb.Width/2;
-            pb.Top = merkez.Y + Form1.xx.Height / 2-pb.Height/2;
+            pb.Left = (int) merkez.X + Form1.xx.Width / 2-pb.Width/2;
+            pb.Top = (int ) merkez.Y + Form1.xx.Height / 2-pb.Height/2;
         }
 
         private Bitmap RotateImageByAngle(Image oldBitmap, float angle)
