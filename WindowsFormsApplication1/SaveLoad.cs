@@ -28,6 +28,32 @@ namespace WindowsFormsApplication1
             string fullPath = Path.GetFullPath(path);
             MessageBox.Show("Çıktı text dosyası " + fullPath + " konumuna kaydedilmiştir.");
         }
+
+        public void RaporSave(string filename, List<Rota> rotalar)
+        {
+            string path = @"" + filename;
+            string veriler = "";
+            StreamWriter sW = new StreamWriter(path);
+            veriler = "T1\tCo1\tT2\tCo2\tT3\tCo3\tFitness";
+            sW.WriteLine(veriler);
+            veriler = "";
+            for (int i = 0; i < rotalar.Count; i++)
+            {
+                //veriler += gemiler.ElementAt(i).emniyet_alani + ";" + gemiler.ElementAt(i).hiz + ";" + gemiler.ElementAt(i).rota + ";" + gemiler.ElementAt(i).merkez.X + ";" + gemiler.ElementAt(i).merkez.Y;
+                //sW.WriteLine(veriler);
+                for(int j = 0; j < 3; j++)
+                {
+                    veriler += rotalar.ElementAt(i).t[j].ToString("0.##") + "\t" + rotalar.ElementAt(i).co[j].ToString("0.##") + "\t";
+                }
+                veriler += rotalar.ElementAt(i).fitness.ToString("0.##");
+                sW.WriteLine(veriler);
+                veriler = "";
+            }
+
+            sW.Close();
+            string fullPath = Path.GetFullPath(path);
+            MessageBox.Show("Çıktı text dosyası " + fullPath + " konumuna kaydedilmiştir.");
+        }
         public float[,] Load(string filename)
         {
             string whole_file = System.IO.File.ReadAllText(filename);

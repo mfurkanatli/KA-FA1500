@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 
@@ -22,6 +23,7 @@ namespace WindowsFormsApplication1
         bool veriOnayla = false;
         int jenarasyon = 50;
         bool catismaVar = false;
+        bool catismadanKaciliyor = true;
         int gosterilecekAlternatifYolSayisi = 10;
         Random rnd = new Random();
         List<PointF> points = new List<PointF>(); //altarnatif yol noktaları
@@ -70,7 +72,10 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             xx = this;
-            xx.DoubleBuffered = true;
+            //xx.DoubleBuffered = true;
+            // label1.Text = "";
+            label1.Visible = false;
+            progressBar1.Visible = false;
            /* PictureBox pb = new PictureBox();
             
             pb.Width = 50;
@@ -110,7 +115,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                MessageBox.Show("Yeterli Sayida Gemi Girmediniz");
+                MessageBox.Show("Yeterli Sayıda Gemi Girmediniz");
             }
             
         }
@@ -419,33 +424,47 @@ namespace WindowsFormsApplication1
             return catismaRiski;
         }
 
+        private void renkDegisimi(object sender, EventArgs e)
+        {
+
+            label1.Text = "%" + progressBar1.Value ;
+        }
+
+
         private void GenetikHesapla()
         {
             GeneticAlgorithm ga = new GeneticAlgorithm();
             ga.SetForm(xx);
             ga.kromozonYarat();
-            for(int i=0;i < jenarasyon; i++)
+            progressBar1.Maximum = jenarasyon;
+            progressBar1.Value = 0;
+            
+            for (int i=0;i < jenarasyon; i++)
             {
+                progressBar1.Value++;
                 ga.hesapla();
                 rota = ga.SahteGenetik(ga.optimumKromozon);
             }
             GeneticAlgorithm.rotalar = GeneticAlgorithm.rotalar.OrderBy(q => q.fitness).ToList();
             if (catismaVar)
                 alternatifYollariBelirle();
-            
+            label1.Text = "Yüklendi!";
         }
         private void button3_Click(object sender, EventArgs e)
-        {               
-
+        {
+            
             if (veriOnayla)
             {
 
                 Cpa cpa = SimuleEt(gemiler.ElementAt(0), gemiler.ElementAt(1));
-                if (catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
+                if (catismadanKaciliyor && catismaRiskiVarMi(cpa, gemiler.ElementAt(0)))
                 {
+                    label1.Visible = true;
+                    progressBar1.Visible = true;
                     MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!\n"+ durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");                    
                     catismaVar = true;
                     GenetikHesapla();
+                    catismadanKaciliyor = false;
                 }
 
                 timer1.Interval = 100;
@@ -470,7 +489,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                MessageBox.Show("Oncelikle Verileri Onaylayin");
+                MessageBox.Show("Öncelikle Verileri Onaylayın");
             }
         }
       public  static Form1 xx;
@@ -492,7 +511,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                MessageBox.Show("Yeterli Sayida Gemi Yok.\nGemi Giriniz.");
+                MessageBox.Show("Yeterli Sayıda Gemi Yok.\nGemi Giriniz.");
             }
         }
 
@@ -501,7 +520,7 @@ namespace WindowsFormsApplication1
             if (!button3.Text.Equals("Durdur"))
             {
          
-                DialogResult result = MessageBox.Show("Temizlemek Istediginizden Emin Misiniz ??", "Onaylama", MessageBoxButtons.YesNoCancel);
+                DialogResult result = MessageBox.Show("Temizlemek İstediğinizden Emin Misiniz ??", "Onaylama", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
                 {
                     temizle();
@@ -510,13 +529,13 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                MessageBox.Show("Bu Islem Icin Program Durdurulmali");
+                MessageBox.Show("Bu İşlem İçin Program Durdurulmalı");
             }
 
       }
         public void temizle()
         {
-
+            
             for (int i = 0; i < gemiler.Count; i++)
                 gemiler.ElementAt(i).pb.Dispose();
 
@@ -528,10 +547,20 @@ namespace WindowsFormsApplication1
             alternatifYollar.Clear();
             points.Clear();
             index = 0;
+            label1.Text = "Yükleniyor...";
+            label1.Visible = false;
+            progressBar1.Value = 0;
+            progressBar1.Visible = false;
+            catismadanKaciliyor = true;
             //Form1.ActiveForm.BackColor = SystemColors.ControlLight;//Sadece Control a boyadıgımız zaman degisik yapmıyordu.Bizde once farklı bir renge boyadık sonrasında default renk olan control rengine boyadık.
             //Form1.ActiveForm.BackColor = SystemColors.Control;
             this.BackColor = SystemColors.ControlDark;
             this.BackColor = SystemColors.Control;
+            /*
+            xx.Controls.Clear();
+            Form1 ff1 = new Form1();
+            for (int i = 0; i < ff1.Controls.Count;)
+                xx.Controls.Add(ff1.Controls[i]);*/
         }
         public void SaveFunc()
         {
@@ -547,7 +576,19 @@ namespace WindowsFormsApplication1
             }
         }
 
+        public void RaporCikart()
+        {
+            SaveFileDialog sv = new SaveFileDialog();
+            sv.ShowDialog();
 
+            String s = sv.FileName;
+
+            if (!s.Equals(""))
+            {
+                SaveLoad saveLoad = new SaveLoad();
+                saveLoad.RaporSave(s,GeneticAlgorithm.rotalar );
+            }
+        }
         public void LoadFunc()
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -572,12 +613,25 @@ namespace WindowsFormsApplication1
 
         private void button8_Click(object sender, EventArgs e)
         {
-            LoadFunc();
+            if (button3.Text == "Durdur")
+            {
+                MessageBox.Show("Bu İşlem İçin Program Durdurulmalı");
+            }
+            else
+            {
+                LoadFunc();
+            }
+            
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             SaveFunc();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            RaporCikart();
         }
     }
 }

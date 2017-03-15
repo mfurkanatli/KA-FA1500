@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1
         public int fitness;
         public double olasilik = 0;
         public string[] binaryCode = new string[6];
-        public string[] t1 = new string[6];
+        public string[] t1 = new string[9];
         public string[] co1 = new string[6];
         public string[] t2 = new string[6];
         public string[] co2 = new string[6];
@@ -104,6 +104,9 @@ namespace WindowsFormsApplication1
 
             return s;
         }
+
+        
+
         static public string[] inputAtamaYap(string[] bin, string[] bin2, int breakPoint)//crossover
         {
             breakPoint = rastgeleIndisSec(0, bin.Count(), 0.3);

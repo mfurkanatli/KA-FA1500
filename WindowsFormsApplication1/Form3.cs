@@ -64,6 +64,10 @@ namespace WindowsFormsApplication1
             if (index >= 0 && Form1.gemiler.Count() > index)
             {
                 textBox1.Text = Form1.gemiler.ElementAt(index).emniyet_alani/Form1.katSayi + "";
+                if (index >= 1)
+                    textBox1.ReadOnly = true;
+                else
+                    textBox1.ReadOnly = false;
                 textBox2.Text = Form1.gemiler.ElementAt(index).hiz + "";
                 textBox3.Text = Math.Abs(Form1.gemiler.ElementAt(index).rota) + "";
                 textBox4.Text = Form1.gemiler.ElementAt(index).merkez.X + "";
