@@ -87,7 +87,7 @@ namespace WindowsFormsApplication1
             rota.t[0] = min.t1_deger;
             rota.t[1] = min.t2_deger;
             rota.t[2] = min.t3;
-
+            rota.fitnessHesapla();
             /*
             Console.WriteLine("ROTAMIZ");
 

@@ -22,8 +22,8 @@ namespace WindowsFormsApplication1
         bool veriOnayla = false;
         int jenarasyon = 50;
         bool catismaVar = false;
-        
-
+        int gosterilecekAlternatifYolSayisi = 10;
+        Random rnd = new Random();
         List<PointF> points = new List<PointF>(); //altarnatif yol noktaları
         List<List<PointF>> alternatifYollar = new List<List<PointF>>();
         public Form1()
@@ -226,6 +226,7 @@ namespace WindowsFormsApplication1
             for (int i = 0; i < gemiler.Count; i++)
             {
                 gemiCiz(gemiler.ElementAt(i));
+                gemiler.ElementAt(i).pictureBoxHareketettiir();
             }
         }
 
@@ -255,30 +256,40 @@ namespace WindowsFormsApplication1
         {
             
             if(gemiler.Count>1)
-            {                
+            {               
+                 
                 g.Clear(this.BackColor);
-                
-                if(index < 3 && rota.t[index]>0)
+                if (catismaVar)
                 {
-                    gemiHareketHesapla(0);
-                    rota.t[index]--;
-                    if (rota.t[index] <= 0)
+                    if (index < 3 && rota.t[index] > 0)
                     {
-                        gemiler.ElementAt(0).rota -= (int)(rota.co[index]);
-                        index++;
+                        gemiHareketHesapla(0);
+                        rota.t[index]--;
+                        if (rota.t[index] <= 0)
+                        {
+                            gemiler.ElementAt(0).rota -= (int)(rota.co[index]);
+                            index++;
+                        }
+                    }
+
+                    if (index > 2)
+                    {
+                        gemiHareketHesapla(0);
+                    }
+                    for (int i = 1; i < gemiler.Count; i++)
+                    {
+                        gemiHareketHesapla(i);
+                    }
+
+                    alternatifYollariCiz();
+                }
+                else
+                {
+                    for (int i = 0; i < gemiler.Count; i++)
+                    {
+                        gemiHareketHesapla(i);
                     }
                 }
-
-                if(index > 2)
-                {
-                    gemiHareketHesapla(0);
-                }
-                for (int i = 1; i < gemiler.Count; i++)
-                {
-                    gemiHareketHesapla(i);
-                }
-                
-            alternatifYollariCiz();
 
             }            
         }
@@ -287,8 +298,11 @@ namespace WindowsFormsApplication1
             float x, y;
             float x_yedek =0, y_yedek=0;
             double rota;
-            for(int i=0;i<GeneticAlgorithm.rotalar.Count;i++)
+            for(int k=0;k < gosterilecekAlternatifYolSayisi; k++)
             {
+                
+                int i = rnd.Next(0, GeneticAlgorithm.rotalar.Count);
+                if (k == 0) i = 0;
                 points = new List<PointF>();
                 points.Add(new PointF(gemiler.ElementAt(0).merkez.X + this.Width/2, gemiler.ElementAt(0).merkez.Y + this.Height/2));
                 rota = gemiler.ElementAt(0).rota;
@@ -317,17 +331,22 @@ namespace WindowsFormsApplication1
                 alternatifYollar.Add(points);
                 //points.Clear();
             }
+
         }
 
         void alternatifYollariCiz()
         {
             Pen pen = new Pen(Color.Green, 1);
             PointF[] points;
-            for (int i = 0; i < 10; i++)
+            for (int i = 1; i < alternatifYollar.Count; i++)
             {
                 points = alternatifYollar.ElementAt(i).ToArray();
                 g.DrawLines(pen, points);
             }
+            Pen opt = new Pen(Color.Purple,2);
+            points = alternatifYollar.ElementAt(0).ToArray();
+            g.DrawLines(opt, points);
+
         }
 
         void ikiGemiCizgi()
@@ -341,15 +360,15 @@ namespace WindowsFormsApplication1
 
         public double DcpaHesapla(Gemi gemi1,Gemi gemi2)
         {
-            gemi1.merkez.X += Convert.ToInt32(gemi1.hiz
-                   * Math.Cos((gemi1.rota + 90) * Math.PI / 180));
-            gemi1.merkez.Y += Convert.ToInt32(gemi1.hiz
-                * -Math.Sin((gemi1.rota + 90) * Math.PI / 180));
+            gemi1.merkez.X += float.Parse((gemi1.hiz
+                   * Math.Cos((gemi1.rota + 90) * Math.PI / 180)).ToString());
+            gemi1.merkez.Y += float.Parse((gemi1.hiz
+                   * -Math.Sin((gemi1.rota + 90) * Math.PI / 180)).ToString());
 
-            gemi2.merkez.X += Convert.ToInt32(gemi2.hiz
-               * Math.Cos((gemi2.rota + 90) * Math.PI / 180));
-            gemi2.merkez.Y += Convert.ToInt32(gemi2.hiz
-                * -Math.Sin((gemi2.rota + 90) * Math.PI / 180));
+            gemi2.merkez.X += float.Parse((gemi2.hiz
+                   * Math.Cos((gemi2.rota + 90) * Math.PI / 180)).ToString());
+            gemi2.merkez.Y += float.Parse((gemi2.hiz
+                   * -Math.Sin((gemi2.rota + 90) * Math.PI / 180)).ToString());
 
             return  Math.Sqrt(Math.Pow((gemi1.merkez.X - gemi2.merkez.X), 2) + Math.Pow((gemi1.merkez.Y - gemi2.merkez.Y), 2));
         }
@@ -410,8 +429,10 @@ namespace WindowsFormsApplication1
                 ga.hesapla();
                 rota = ga.SahteGenetik(ga.optimumKromozon);
             }
-            if(catismaVar)
+            GeneticAlgorithm.rotalar = GeneticAlgorithm.rotalar.OrderBy(q => q.fitness).ToList();
+            if (catismaVar)
                 alternatifYollariBelirle();
+            
         }
         private void button3_Click(object sender, EventArgs e)
         {               
@@ -504,6 +525,8 @@ namespace WindowsFormsApplication1
             veriOnayla = false;
             GeneticAlgorithm.rotalar.Clear();
             button3.Text = "Başlat";
+            alternatifYollar.Clear();
+            points.Clear();
             index = 0;
             //Form1.ActiveForm.BackColor = SystemColors.ControlLight;//Sadece Control a boyadıgımız zaman degisik yapmıyordu.Bizde once farklı bir renge boyadık sonrasında default renk olan control rengine boyadık.
             //Form1.ActiveForm.BackColor = SystemColors.Control;
