@@ -15,11 +15,11 @@ namespace WindowsFormsApplication1
         public PointF merkez;
         public PointF cizimPoint;
         public PictureBox pb;
-        Form1 f1;
+        
 
-        public Gemi(int emniyet_alani, int hiz, int rota, PointF merkez,Form1 _f1)
+        public Gemi(int emniyet_alani, int hiz, int rota, PointF merkez)
         {
-            f1 = _f1;
+            
             this.emniyet_alani = emniyet_alani;
             this.hiz = hiz;
             this.rota = -rota;
@@ -31,7 +31,8 @@ namespace WindowsFormsApplication1
             pb.SendToBack();
             pictureBoxHareketettiir();      
             pb.Show();            
-            f1.Controls.Add(pb);
+            
+            Form1.xx.Controls.Add(pb);
         }
 
         public void pictureBoxHareketettiir()

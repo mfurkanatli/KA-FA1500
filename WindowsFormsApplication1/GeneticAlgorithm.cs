@@ -98,11 +98,24 @@ namespace WindowsFormsApplication1
             */
             return rota;
         }
+
+        public bool rotaFarkliMi(Rota gelen)
+        {
+            for (int i = 0; i < rotalar.Count; i++) 
+            {
+                if (rotalar.ElementAt(i).fitness == gelen.fitness)
+                    return false;
+            }
+            return true;
+        }
+
         void alternatifRotalariTut(List<Kromozom> gelen)
         {
+            List<Rota> yedekRota = new List<Rota>();
             for (int i = 0; i < gelen.Count; i++)
-                if (!rotalar.Contains(SahteGenetik(gelen.ElementAt(i))))
+                if (rotaFarkliMi(SahteGenetik(gelen.ElementAt(i))))
                     rotalar.Add(SahteGenetik(gelen.ElementAt(i)));
+
         }
         public void kromozonYarat()
         {
@@ -112,26 +125,13 @@ namespace WindowsFormsApplication1
             {
                 ebeveynler.Add(new Kromozom());
                 i = ebeveynler.Count-1;
-                for (int j = 0; j < ebeveynler.ElementAt(i).binaryCode.Length; j++)
-                {
-                    if (j > 0)
-                    {
-                        ebeveynler.ElementAt(i).binaryCode[j] = rand.Next(0, 2).ToString();
-                        ebeveynler.ElementAt(i).t1[j] = rand.Next(0, 2).ToString();
-                        ebeveynler.ElementAt(i).t2[j] = rand.Next(0, 2).ToString();
-                        ebeveynler.ElementAt(i).co1[j] = rand.Next(0, 2).ToString();
-                        ebeveynler.ElementAt(i).co2[j] = rand.Next(0, 2).ToString();
-                    }
-                    else
-                    {
-                        ebeveynler.ElementAt(i).binaryCode[j] = rand.Next(0, 1).ToString();
-                        ebeveynler.ElementAt(i).t1[j] = rand.Next(0, 1).ToString();
-                        ebeveynler.ElementAt(i).t2[j] = rand.Next(0, 1).ToString();
-                        ebeveynler.ElementAt(i).co1[j] = rand.Next(0, 1).ToString();
-                        ebeveynler.ElementAt(i).co2[j] = rand.Next(0, 1).ToString();
-                    }
-                }
-                if(!BireyUygunMu(ebeveynler.ElementAt(i)))
+                
+                        ebeveynler.ElementAt(i).t1=bireyOlustur(ebeveynler.ElementAt(i).t1);
+                        ebeveynler.ElementAt(i).t2 = bireyOlustur(ebeveynler.ElementAt(i).t2);
+                        ebeveynler.ElementAt(i).co1 = bireyOlustur(ebeveynler.ElementAt(i).co1);
+                        ebeveynler.ElementAt(i).co2 = bireyOlustur(ebeveynler.ElementAt(i).co2);
+
+                if (!BireyUygunMu(ebeveynler.ElementAt(i)))
                 {
                     ebeveynler.RemoveAt(i);
                 }
@@ -139,7 +139,15 @@ namespace WindowsFormsApplication1
 
             optimumKromozon.fitness = 3000;
         }
-
+        public string[] bireyOlustur(string[] s)
+        {
+            string[] s1 = new string[s.Length];
+            for (int j = 0; j < s.Length; j++)
+            {
+                s1[j] = rand.Next(0, 2).ToString();
+            }
+            return s1;
+        }
         void yazdir()
         {
             /*

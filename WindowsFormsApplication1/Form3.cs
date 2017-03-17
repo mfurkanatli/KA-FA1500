@@ -12,11 +12,11 @@ namespace WindowsFormsApplication1
 {
     public partial class Form3 : Form
     {
-        Form1 f1;
-        public Form3(Form1 _f1)
+    
+        public Form3()
         {
             InitializeComponent();
-            f1 = _f1;
+           
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace WindowsFormsApplication1
             Form1.gemiler.ElementAt(index).merkez.X = Convert.ToInt32(textBox4.Text);
             Form1.gemiler.ElementAt(index).merkez.Y = Convert.ToInt32(textBox5.Text);
 
-            f1.Yenile();
+            Form1.xx.Yenile();
             MessageBox.Show("Degisim Onaylandi");
         }
 
@@ -64,6 +64,10 @@ namespace WindowsFormsApplication1
             if (index >= 0 && Form1.gemiler.Count() > index)
             {
                 textBox1.Text = Form1.gemiler.ElementAt(index).emniyet_alani/Form1.katSayi + "";
+                if (index >= 1)
+                    textBox1.ReadOnly = true;
+                else
+                    textBox1.ReadOnly = false;
                 textBox2.Text = Form1.gemiler.ElementAt(index).hiz + "";
                 textBox3.Text = Math.Abs(Form1.gemiler.ElementAt(index).rota) + "";
                 textBox4.Text = Form1.gemiler.ElementAt(index).merkez.X + "";
@@ -81,7 +85,7 @@ namespace WindowsFormsApplication1
                 {
                     Form1.gemiler.RemoveAt(listBox1.SelectedIndex);
                     gemileriGetir();
-                    f1.Yenile();
+                    Form1.xx.Yenile();
                 }
             }
             else
