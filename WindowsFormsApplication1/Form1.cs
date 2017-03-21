@@ -493,7 +493,7 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Öncelikle Verileri Onaylayın");
             }
         }
-      public  static Form1 xx;
+        public  static Form1 xx;
         private void button2_Click(object sender, EventArgs e)
         {
             xx = this;

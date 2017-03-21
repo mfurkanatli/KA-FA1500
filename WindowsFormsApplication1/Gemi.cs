@@ -14,7 +14,7 @@ namespace WindowsFormsApplication1
         public double tcpa, dcpa;
         public PointF merkez;
         public PointF cizimPoint;
-        public PictureBox pb;
+        public  PictureBox pb;
         
 
         public Gemi(int emniyet_alani, int hiz, int rota, PointF merkez)

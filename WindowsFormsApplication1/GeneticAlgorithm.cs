@@ -37,9 +37,9 @@ namespace WindowsFormsApplication1
         bool BireyUygunMu(Kromozom birey)
         {
             Gemi gemi1 = new Gemi(Form1.gemiler.ElementAt(0).emniyet_alani, Form1.gemiler.ElementAt(0).hiz, 
-                -Form1.gemiler.ElementAt(0).rota, Form1.gemiler.ElementAt(0).merkez,f1);
+                -Form1.gemiler.ElementAt(0).rota, Form1.gemiler.ElementAt(0).merkez);
             Gemi gemi2 = new Gemi(Form1.gemiler.ElementAt(1).emniyet_alani, Form1.gemiler.ElementAt(1).hiz,
-                -Form1.gemiler.ElementAt(1).rota, Form1.gemiler.ElementAt(1).merkez, f1);
+                -Form1.gemiler.ElementAt(1).rota, Form1.gemiler.ElementAt(1).merkez);
 
             gemi1.pb.Visible = false;
             gemi2.pb.Visible = false;
