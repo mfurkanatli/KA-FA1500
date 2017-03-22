@@ -61,14 +61,17 @@ namespace WindowsFormsApplication1
         public static void setVeriler(int emniyet_alani, int hiz, int rota, PointF merkez)
         {
             gemiler.Add(new Gemi(emniyet_alani * katSayi, hiz, rota, merkez,xx));
+            gemiler.Last().gemiPictureBoxEkle();
             if (gemiler.Count>1)
             {
                 gemiler.ElementAt(gemiler.Count - 1).pb.ImageLocation ="gemi3.png";
             }
+
+
             
         }
-      
 
+        public Form2 form21 = new Form2();
         private void Form1_Load(object sender, EventArgs e)
         {
             xx = this;
@@ -76,19 +79,28 @@ namespace WindowsFormsApplication1
             // label1.Text = "";
             label1.Visible = false;
             progressBar1.Visible = false;
-           /* PictureBox pb = new PictureBox();
-            
-            pb.Width = 50;
-            pb.Height = 50;
-            
-            //pb.Image = Image.FromFile("gemi.png");
-            pb.BackgroundImageLayout = ImageLayout.Stretch;
-            pb.ImageLocation = "gemi.png";
 
-            pb.Left = this.Width / 2;
-            pb.Top =   this.Height / 2;
-            //pb.Show();
-            this.Controls.Add(pb);*/
+
+            form21.TopLevel = false;
+            form21.BringToFront();
+            form21.WindowState = FormWindowState.Maximized;
+            form21.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            form21.Parent = panel2;
+            form21.Text = "Gemi " + gemiler.Count();
+            form21.Show();
+            /* PictureBox pb = new PictureBox();
+
+             pb.Width = 50;
+             pb.Height = 50;
+
+             //pb.Image = Image.FromFile("gemi.png");
+             pb.BackgroundImageLayout = ImageLayout.Stretch;
+             pb.ImageLocation = "gemi.png";
+
+             pb.Left = this.Width / 2;
+             pb.Top =   this.Height / 2;
+             //pb.Show();
+             this.Controls.Add(pb);*/
             //
         }
 
@@ -303,6 +315,7 @@ namespace WindowsFormsApplication1
             float x, y;
             float x_yedek =0, y_yedek=0;
             double rota;
+            double r = 100;
             for(int k=0;k < gosterilecekAlternatifYolSayisi; k++)
             {
                 
@@ -332,7 +345,9 @@ namespace WindowsFormsApplication1
                     rota -= GeneticAlgorithm.rotalar.ElementAt(i).co[j];
                     points.Add(new PointF(x + this.Width / 2, y + this.Height / 2));
                 }
-
+                x = x_yedek + Convert.ToInt32(r*Math.Cos((rota + 90) * Math.PI / 180));
+                y = y_yedek + Convert.ToInt32(r*-Math.Sin((rota + 90) * Math.PI / 180));
+                points.Add(new PointF(x + this.Width / 2, y + this.Height / 2));
                 alternatifYollar.Add(points);
                 //points.Clear();
             }
@@ -429,23 +444,24 @@ namespace WindowsFormsApplication1
 
             label1.Text = "%" + progressBar1.Value ;
         }
-
-
         private void GenetikHesapla()
         {
-            GeneticAlgorithm ga = new GeneticAlgorithm();
+            GeneticAlgorithm ga = new GeneticAlgorithm(Convert.ToInt32(textBox1.Text), Convert.ToDouble(textBox2.Text),
+                Convert.ToDouble(textBox3.Text), Convert.ToInt32(textBox4.Text));
             ga.SetForm(xx);
             ga.kromozonYarat();
-            progressBar1.Maximum = jenarasyon;
+            progressBar1.Maximum = ga.iterasyonSayisi;
             progressBar1.Value = 0;
             
-            for (int i=0;i < jenarasyon; i++)
+            for (int i=0;i < ga.iterasyonSayisi; i++)
             {
                 progressBar1.Value++;
                 ga.hesapla();
                 rota = ga.SahteGenetik(ga.optimumKromozon);
             }
+
             GeneticAlgorithm.rotalar = GeneticAlgorithm.rotalar.OrderBy(q => q.fitness).ToList();
+            //GeneticAlgorithm.rotalar.Insert(0, rota);
             if (catismaVar)
                 alternatifYollariBelirle();
             label1.Text = "Yüklendi!";
@@ -473,10 +489,12 @@ namespace WindowsFormsApplication1
                 if (timer1.Enabled == true)
                 {
                     button3.Text = "Durdur";
+                    button3.BackColor = Color.Red;
                 }
                 else
                 {
                     button3.Text = "Devam";
+                    button3.BackColor = Color.Green;
                 }
                 if (!button3.Text.Equals("Devam"))
                 {
@@ -492,7 +510,7 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Öncelikle Verileri Onaylayın");
             }
         }
-      public  static Form1 xx;
+       public  static Form1 xx;
         private void button2_Click(object sender, EventArgs e)
         {
             xx = this;
@@ -538,7 +556,9 @@ namespace WindowsFormsApplication1
             
             for (int i = 0; i < gemiler.Count; i++)
                 gemiler.ElementAt(i).pb.Dispose();
-
+            
+            TextBox f1t1 = (TextBox) form21.Controls["textbox1"];
+            f1t1.ReadOnly = false;
             gemiler.Clear();
             catismaVar = false;
             veriOnayla = false;
@@ -565,8 +585,10 @@ namespace WindowsFormsApplication1
         public void SaveFunc()
         {
             SaveFileDialog sv = new SaveFileDialog();
+            sv.Filter = "Data Files (*.txt)|*.txt";
+            sv.DefaultExt = "txt";
+            sv.AddExtension = true;
             sv.ShowDialog();
-
             String s = sv.FileName;
 
             if (!s.Equals(""))
@@ -579,6 +601,9 @@ namespace WindowsFormsApplication1
         public void RaporCikart()
         {
             SaveFileDialog sv = new SaveFileDialog();
+            sv.Filter = "Data Files (*.txt)|*.txt";
+            sv.DefaultExt = "txt";
+            sv.AddExtension = true;
             sv.ShowDialog();
 
             String s = sv.FileName;
@@ -632,6 +657,16 @@ namespace WindowsFormsApplication1
         private void button9_Click(object sender, EventArgs e)
         {
             RaporCikart();
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

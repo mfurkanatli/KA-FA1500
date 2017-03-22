@@ -31,8 +31,13 @@ namespace WindowsFormsApplication1
             p.X = float.Parse(textBox4.Text);
             p.Y = float.Parse(textBox5.Text);           
             Form1.setVeriler(guvenli_alan, hiz, yon,p);
-            
-            this.Close();
+            if (Form1.gemiler.Count > 0)
+            {
+                textBox1.ReadOnly = true;
+                textBox1.Text = "0";
+
+            }
+            // this.Close();
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -40,7 +45,8 @@ namespace WindowsFormsApplication1
             if (Form1.gemiler.Count > 0)
             {
                 textBox1.ReadOnly = true;
-            }                 
+            }    
+                         
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)

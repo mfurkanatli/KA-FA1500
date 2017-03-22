@@ -25,15 +25,18 @@ namespace WindowsFormsApplication1
             this.rota = -rota;
             this.merkez = merkez;
             pb = new PictureBox();
-            pb.Size = new Size(15, 15);
+            pb.Size = new Size(23, 23);
             pb.ImageLocation = "gemi.png";
             pb.SizeMode= PictureBoxSizeMode.StretchImage;
             pb.SendToBack();
             pictureBoxHareketettiir();      
             pb.Show();            
+            //f1.Controls.Add(pb);
+        }
+        public void gemiPictureBoxEkle()
+        {
             f1.Controls.Add(pb);
         }
-
         public void pictureBoxHareketettiir()
         {
             pb.Left = (int) merkez.X + Form1.xx.Width / 2-pb.Width/2;

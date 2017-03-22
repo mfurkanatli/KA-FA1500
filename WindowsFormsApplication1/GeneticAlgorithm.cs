@@ -15,19 +15,26 @@ namespace WindowsFormsApplication1
         List<Kromozom> eslesmeHavuzu = new List<Kromozom>();
         Rota optimumRota = new Rota();
         public Kromozom optimumKromozon = new Kromozom();
-        static int populasyonSayisi = 20;
+        public static int populasyonSayisi = 20;
         int bitSayisi = 8;
-        double crossOverRate = 0.6;
-        double mutationRate = 0.3;
-        double iterasyonSayisi = 100;
-        double[] ruletOlasilik = new double[populasyonSayisi+1];
+        public double crossOverRate = 0.6;
+        public static double mutationRate = 0;
+        public int iterasyonSayisi = 100;
+        double[] ruletOlasilik;
         int[] iterasyon = new int[100];
         long[] sure = new long[100];
         Random rand = new Random();
         Form1 f1;
         static public List<Rota> rotalar = new List<Rota>();
 
-
+        public GeneticAlgorithm(int pop, double crossR,double mut, int it)
+        {
+            populasyonSayisi = pop;
+            crossOverRate = crossR;
+            mutationRate = mut;
+            iterasyonSayisi = it;
+            ruletOlasilik = new double[populasyonSayisi + 1];
+        }
    
         public void SetForm(Form1 _f1)
         {

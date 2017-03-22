@@ -18,7 +18,7 @@ namespace WindowsFormsApplication1
         public string[] co2 = new string[6];
         public double co3, t3;
         public double t1_deger, t2_deger, co1_deger, co2_deger;
-
+        public double mutRate = 0;
         static Random rnd = new Random();
 
         private void outputHesapla()
@@ -78,10 +78,10 @@ namespace WindowsFormsApplication1
 
         static public Kromozom mutasyonIslemi(Kromozom partner)
         {
-            partner.co1 = mut(partner.co1, 0.082);
-            partner.co2 = mut(partner.co2, 0.082);
-            partner.t1 = mut(partner.t1, 0.082);
-            partner.t2 = mut(partner.t2, 0.082);
+            partner.co1 = mut(partner.co1, GeneticAlgorithm.mutationRate);
+            partner.co2 = mut(partner.co2, GeneticAlgorithm.mutationRate);
+            partner.t1 = mut(partner.t1, GeneticAlgorithm.mutationRate);
+            partner.t2 = mut(partner.t2, GeneticAlgorithm.mutationRate);
 
             return partner;
         }
