@@ -49,8 +49,8 @@ namespace WindowsFormsApplication1
             Gemi gemi2 = new Gemi(Form1.gemiler.ElementAt(1).emniyet_alani, Form1.gemiler.ElementAt(1).hiz,
                 -Form1.gemiler.ElementAt(1).rota, Form1.gemiler.ElementAt(1).merkez, f1);
 
-            gemi1.pb.Visible = false;
-            gemi2.pb.Visible = false;
+            /*gemi1.pb.Visible = false;
+            gemi2.pb.Visible = false;*/
 
             Rota rota = new Rota();
 

@@ -24,18 +24,25 @@ namespace WindowsFormsApplication1
             this.hiz = hiz;
             this.rota = -rota;
             this.merkez = merkez;
-            pb = new PictureBox();
+            /*pb = new PictureBox();
             pb.Size = new Size(23, 23);
             
             //pb.ImageLocation = @"gemi.png";
             pb.SizeMode= PictureBoxSizeMode.StretchImage;
-            pb.SendToBack();
+            pb.SendToB ack();
             pictureBoxHareketettiir();      
-            pb.Show();            
-            //f1.Controls.Add(pb);
+            pb.Show();           
+            //f1.Controls.Add(pb);*/
         }
         public void gemiPictureBoxEkle()
         {
+            pb = new PictureBox();
+            pb.Size = new Size(23, 23);
+
+            //pb.ImageLocation = @"gemi.png";
+            pb.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxHareketettiir();
+            pb.Show();
             pb.Image = WindowsFormsApplication1.Properties.Resources.gemi;
             f1.Controls.Add(pb);
         }
