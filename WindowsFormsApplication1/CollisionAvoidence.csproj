@@ -93,7 +93,7 @@
       <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -114,10 +114,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="res\gemi.png" />
-    <Content Include="res\gemi2.png" />
-    <Content Include="res\gemi3.png" />
-    <Content Include="res\Icon1.ico" />
+    <Resource Include="Properties\Resources\gemi.png" />
+    <Resource Include="Properties\Resources\gemi2.png" />
+    <Content Include="Properties\Resources\gemi3.png" />
+    <Content Include="Properties\Resources\Icon1.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

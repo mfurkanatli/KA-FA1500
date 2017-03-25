@@ -26,7 +26,8 @@ namespace WindowsFormsApplication1
             this.merkez = merkez;
             pb = new PictureBox();
             pb.Size = new Size(23, 23);
-            pb.ImageLocation = "gemi.png";
+            
+            //pb.ImageLocation = @"gemi.png";
             pb.SizeMode= PictureBoxSizeMode.StretchImage;
             pb.SendToBack();
             pictureBoxHareketettiir();      
@@ -35,6 +36,7 @@ namespace WindowsFormsApplication1
         }
         public void gemiPictureBoxEkle()
         {
+            pb.Image = WindowsFormsApplication1.Properties.Resources.gemi;
             f1.Controls.Add(pb);
         }
         public void pictureBoxHareketettiir()

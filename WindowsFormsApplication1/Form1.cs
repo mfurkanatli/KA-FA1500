@@ -63,7 +63,7 @@ namespace WindowsFormsApplication1
             gemiler.Last().gemiPictureBoxEkle();
             if (gemiler.Count>1)
             {
-                gemiler.ElementAt(gemiler.Count - 1).pb.ImageLocation ="gemi3.png";
+                gemiler.ElementAt(gemiler.Count - 1).pb.Image = Properties.Resources.gemi3;
             }
 
 

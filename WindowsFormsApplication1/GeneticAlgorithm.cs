@@ -26,7 +26,7 @@ namespace WindowsFormsApplication1
         Random rand = new Random();
         Form1 f1;
         static public List<Rota> rotalar = new List<Rota>();
-
+        
         public GeneticAlgorithm(int pop, double crossR,double mut, int it)
         {
             populasyonSayisi = pop;
@@ -34,6 +34,7 @@ namespace WindowsFormsApplication1
             mutationRate = mut;
             iterasyonSayisi = it;
             ruletOlasilik = new double[populasyonSayisi + 1];
+            
         }
    
         public void SetForm(Form1 _f1)
