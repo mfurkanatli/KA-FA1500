@@ -77,7 +77,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.PeachPuff;
-            this.button1.Font = new System.Drawing.Font("Minion Pro", 8.999999F, System.Drawing.FontStyle.Bold);
+            this.button1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button1.Location = new System.Drawing.Point(11, 14);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(101, 53);
@@ -93,7 +93,7 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.Green;
-            this.button3.Font = new System.Drawing.Font("Minion Pro", 14F, System.Drawing.FontStyle.Bold);
+            this.button3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button3.Location = new System.Drawing.Point(41, 634);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(174, 58);
@@ -114,7 +114,7 @@
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.PeachPuff;
-            this.button5.Font = new System.Drawing.Font("Minion Pro", 8.999999F, System.Drawing.FontStyle.Bold);
+            this.button5.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button5.Location = new System.Drawing.Point(119, 14);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(100, 56);
@@ -126,7 +126,7 @@
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.PeachPuff;
-            this.button6.Font = new System.Drawing.Font("Minion Pro", 8.999999F, System.Drawing.FontStyle.Bold);
+            this.button6.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button6.Location = new System.Drawing.Point(11, 73);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(101, 31);
@@ -138,7 +138,7 @@
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.PeachPuff;
-            this.button7.Font = new System.Drawing.Font("Minion Pro", 8.999999F, System.Drawing.FontStyle.Bold);
+            this.button7.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button7.Location = new System.Drawing.Point(11, 110);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(101, 31);
@@ -150,7 +150,7 @@
             // button8
             // 
             this.button8.BackColor = System.Drawing.Color.PeachPuff;
-            this.button8.Font = new System.Drawing.Font("Minion Pro", 8.999999F, System.Drawing.FontStyle.Bold);
+            this.button8.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button8.Location = new System.Drawing.Point(119, 73);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(101, 31);
@@ -170,10 +170,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label1.Location = new System.Drawing.Point(95, 585);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 17);
+            this.label1.Size = new System.Drawing.Size(65, 20);
             this.label1.TabIndex = 14;
             this.label1.Text = "Yükleniyor";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -182,7 +182,7 @@
             // button9
             // 
             this.button9.BackColor = System.Drawing.Color.PeachPuff;
-            this.button9.Font = new System.Drawing.Font("Minion Pro", 8.999999F, System.Drawing.FontStyle.Bold);
+            this.button9.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button9.Location = new System.Drawing.Point(118, 110);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(101, 31);
@@ -194,27 +194,27 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Adobe Devanagari", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label11.Location = new System.Drawing.Point(166, 96);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(18, 20);
+            this.label11.Size = new System.Drawing.Size(16, 20);
             this.label11.TabIndex = 10;
             this.label11.Text = "Y";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Adobe Devanagari", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label10.Location = new System.Drawing.Point(108, 96);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(18, 20);
+            this.label10.Size = new System.Drawing.Size(17, 20);
             this.label10.TabIndex = 9;
             this.label10.Text = "X";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Adobe Devanagari", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label9.Location = new System.Drawing.Point(166, 48);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(38, 20);
@@ -224,40 +224,40 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Adobe Devanagari", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label8.Location = new System.Drawing.Point(108, 48);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(33, 20);
+            this.label8.Size = new System.Drawing.Size(29, 20);
             this.label8.TabIndex = 7;
             this.label8.Text = "Hız:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Minion Pro", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label5.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label5.Location = new System.Drawing.Point(7, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(195, 22);
+            this.label5.Size = new System.Drawing.Size(195, 18);
             this.label5.TabIndex = 8;
             this.label5.Text = "Genetik Algoritma Girdileri";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Adobe Devanagari", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label7.Location = new System.Drawing.Point(7, 48);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(95, 20);
+            this.label7.Size = new System.Drawing.Size(86, 20);
             this.label7.TabIndex = 6;
             this.label7.Text = "Emniyet Alanı:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Adobe Devanagari", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label4.Location = new System.Drawing.Point(7, 123);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 20);
+            this.label4.Size = new System.Drawing.Size(96, 20);
             this.label4.TabIndex = 7;
             this.label4.Text = "Iterasyon Sayısı:";
             // 
@@ -271,47 +271,47 @@
             // 
             // textBox7
             // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textBox7.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.textBox7.Location = new System.Drawing.Point(170, 71);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(49, 21);
+            this.textBox7.Size = new System.Drawing.Size(49, 25);
             this.textBox7.TabIndex = 3;
             // 
             // textBox6
             // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textBox6.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.textBox6.Location = new System.Drawing.Point(112, 71);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(49, 21);
+            this.textBox6.Size = new System.Drawing.Size(49, 25);
             this.textBox6.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Adobe Devanagari", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label3.Location = new System.Drawing.Point(7, 97);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 20);
+            this.label3.Size = new System.Drawing.Size(99, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Mutasyon Oranı:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Adobe Devanagari", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label2.Location = new System.Drawing.Point(7, 71);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 20);
+            this.label2.Size = new System.Drawing.Size(113, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "Çaprazlama Oranı:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Adobe Devanagari", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label6.Location = new System.Drawing.Point(7, 45);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(113, 20);
+            this.label6.Size = new System.Drawing.Size(111, 20);
             this.label6.TabIndex = 4;
             this.label6.Text = "Populasyon Sayısı:";
             // 
@@ -361,10 +361,10 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Minion Pro", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label12.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label12.Location = new System.Drawing.Point(7, 13);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(109, 22);
+            this.label12.Size = new System.Drawing.Size(107, 18);
             this.label12.TabIndex = 0;
             this.label12.Text = "Gemi Girdileri";
             // 
@@ -381,7 +381,7 @@
             // 
             this.button11.BackColor = System.Drawing.Color.PeachPuff;
             this.button11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button11.Font = new System.Drawing.Font("Minion Pro", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button11.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button11.Location = new System.Drawing.Point(118, 148);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(101, 30);
@@ -416,7 +416,7 @@
             // 
             this.button12.BackColor = System.Drawing.Color.PeachPuff;
             this.button12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button12.Font = new System.Drawing.Font("Minion Pro", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button12.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button12.Location = new System.Drawing.Point(11, 148);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(101, 30);
@@ -427,10 +427,10 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Adobe Devanagari", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label13.Location = new System.Drawing.Point(46, 118);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(56, 20);
+            this.label13.Size = new System.Drawing.Size(52, 20);
             this.label13.TabIndex = 11;
             this.label13.Text = "Konum:";
             // 
