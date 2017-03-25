@@ -307,8 +307,8 @@ namespace WindowsFormsApplication1
                     {
                         gemiHareketHesapla(i);
                     }
-
                     alternatifYollariCiz();
+                    radarGorunumu();
                 }
                 else
                 {
@@ -320,6 +320,32 @@ namespace WindowsFormsApplication1
 
             }            
         }
+
+        void radarGorunumu()
+        {
+            float x = 0, y = 0;
+            x = Convert.ToInt32(gemiler.ElementAt(0).hiz * Math.Cos((gemiler.ElementAt(0).rota + 90) * Math.PI / 180));
+            y = Convert.ToInt32(gemiler.ElementAt(0).hiz * -Math.Sin((gemiler.ElementAt(0).rota + 90) * Math.PI / 180));
+            for (int i=0;i<gemiler.Count;i++)
+            {
+                gemiler.ElementAt(i).merkez.X -= x;
+                gemiler.ElementAt(i).merkez.Y -= y;
+            }
+            float x_yedek, y_yedek;
+            for (int i=0;i<alternatifYollar.Count;i++)
+            {
+                for (int j = 0; j < alternatifYollar.ElementAt(0).Count; j++)
+                {
+                    x_yedek = alternatifYollar.ElementAt(i).ElementAt(j).X - x;
+                    y_yedek = alternatifYollar.ElementAt(i).ElementAt(j).Y - y;
+                    alternatifYollar.ElementAt(i).RemoveAt(j);
+                    alternatifYollar.ElementAt(i).Insert(j,new PointF(x_yedek,y_yedek));
+
+                }
+            }
+            
+        }
+
         void alternatifYollariBelirle()
         {
             float x, y;
