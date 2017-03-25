@@ -176,9 +176,9 @@
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label1.Location = new System.Drawing.Point(91, 752);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 20);
+            this.label1.Size = new System.Drawing.Size(81, 20);
             this.label1.TabIndex = 14;
-            this.label1.Text = "Yükleniyor";
+            this.label1.Text = "Hesaplanıyor";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 

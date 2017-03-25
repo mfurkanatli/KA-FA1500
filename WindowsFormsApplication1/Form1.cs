@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-
-
 namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
@@ -21,7 +19,7 @@ namespace WindowsFormsApplication1
         public static int katSayi = 10;
         public static List<Gemi> gemiler = new List<Gemi>();
         bool veriOnayla = false;
-        int jenarasyon = 50;
+        //int jenarasyon = 50;
         bool catismaVar = false;
         bool catismadanKaciliyor = true;
         int gosterilecekAlternatifYolSayisi = 10;
@@ -98,8 +96,6 @@ namespace WindowsFormsApplication1
             form31.Parent = panel5;
             form31.Text = "Gemi " + gemiler.Count();
             form31.Show();
-
-
 
 
             /* PictureBox pb = new PictureBox();
@@ -478,7 +474,7 @@ namespace WindowsFormsApplication1
             //GeneticAlgorithm.rotalar.Insert(0, rota);
             if (catismaVar)
                 alternatifYollariBelirle();
-            label1.Text = "Yüklendi!";
+            label1.Text = "Hesaplandı!";
         }
         private void button3_Click(object sender, EventArgs e)
         {
