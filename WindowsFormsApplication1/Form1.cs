@@ -72,6 +72,7 @@ namespace WindowsFormsApplication1
         }
 
         public Form2 form21 = new Form2();
+        public Form3 form31 = new Form3();
         private void Form1_Load(object sender, EventArgs e)
         {
             xx = this;
@@ -88,6 +89,18 @@ namespace WindowsFormsApplication1
             form21.Parent = panel2;
             form21.Text = "Gemi " + gemiler.Count();
             form21.Show();
+
+            form31.TopLevel = false;
+            form31.BringToFront();
+            form31.WindowState = FormWindowState.Maximized;
+            form31.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            form31.Parent = panel5;
+            form31.Text = "Gemi " + gemiler.Count();
+            form31.Show();
+
+
+
+
             /* PictureBox pb = new PictureBox();
 
              pb.Width = 50;
@@ -524,7 +537,7 @@ namespace WindowsFormsApplication1
         {
             if (gemiler.Count > 0)
             {                
-                Form3 form3 = new Form3(this);
+                Form3 form3 = new Form3();
                 form3.Show();
             }
             else

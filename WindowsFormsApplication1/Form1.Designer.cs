@@ -68,6 +68,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.button15 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -94,7 +95,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.Green;
             this.button3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button3.Location = new System.Drawing.Point(41, 634);
+            this.button3.Location = new System.Drawing.Point(42, 849);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(174, 58);
             this.button3.TabIndex = 8;
@@ -161,7 +162,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(41, 605);
+            this.progressBar1.Location = new System.Drawing.Point(42, 820);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(174, 23);
             this.progressBar1.TabIndex = 13;
@@ -171,7 +172,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(95, 585);
+            this.label1.Location = new System.Drawing.Point(96, 800);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 20);
             this.label1.TabIndex = 14;
@@ -479,19 +480,29 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.progressBar1);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Location = new System.Drawing.Point(12, 12);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(255, 781);
+            this.panel4.Size = new System.Drawing.Size(255, 984);
             this.panel4.TabIndex = 21;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Location = new System.Drawing.Point(12, 589);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(228, 173);
+            this.panel5.TabIndex = 21;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1353, 789);
+            this.ClientSize = new System.Drawing.Size(1353, 1037);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
@@ -553,6 +564,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
     }
 }
 
