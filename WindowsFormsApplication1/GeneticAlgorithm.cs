@@ -274,8 +274,7 @@ namespace WindowsFormsApplication1
             {
                 
                 li.Add(minimumBul(ebeveynler));
-                ebeveynler.Remove(li.Last());
-                
+                ebeveynler.Remove(li.Last());                
             }
             
             generationReplacement(li);
