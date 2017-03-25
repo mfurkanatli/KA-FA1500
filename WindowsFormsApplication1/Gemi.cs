@@ -27,6 +27,8 @@ namespace WindowsFormsApplication1
             pb = new PictureBox();
             pb.Size = new Size(23, 23);
             pb.ImageLocation = "gemi.png";
+            
+                 
             pb.SizeMode= PictureBoxSizeMode.StretchImage;
             pb.SendToBack();
             pictureBoxHareketettiir();      
