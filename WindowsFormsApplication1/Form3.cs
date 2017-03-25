@@ -118,7 +118,6 @@ namespace WindowsFormsApplication1
         private void comboBox1_Click(object sender, EventArgs e)
         {
             gemileriGetir();
-
         }
     }
 }
