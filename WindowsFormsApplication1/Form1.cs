@@ -81,6 +81,7 @@ namespace WindowsFormsApplication1
             label1.Visible = false;
             progressBar1.Visible = false;
 
+            panel4.Height = xx.Height-(int)(xx.Height * 0.1);
 
             form21.TopLevel = false;
             form21.BringToFront();
@@ -680,6 +681,11 @@ namespace WindowsFormsApplication1
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+          //  xx = this;
         }
     }
 }

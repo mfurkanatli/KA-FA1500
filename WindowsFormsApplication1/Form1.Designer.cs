@@ -66,9 +66,10 @@
             this.label13 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button15 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -79,9 +80,9 @@
             // 
             this.button1.BackColor = System.Drawing.Color.PeachPuff;
             this.button1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button1.Location = new System.Drawing.Point(11, 14);
+            this.button1.Location = new System.Drawing.Point(6, 48);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 53);
+            this.button1.Size = new System.Drawing.Size(103, 31);
             this.button1.TabIndex = 0;
             this.button1.Text = "Verileri Onayla";
             this.button1.UseVisualStyleBackColor = false;
@@ -95,7 +96,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.Green;
             this.button3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button3.Location = new System.Drawing.Point(42, 849);
+            this.button3.Location = new System.Drawing.Point(37, 801);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(174, 58);
             this.button3.TabIndex = 8;
@@ -116,21 +117,22 @@
             // 
             this.button5.BackColor = System.Drawing.Color.PeachPuff;
             this.button5.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button5.Location = new System.Drawing.Point(119, 14);
+            this.button5.Location = new System.Drawing.Point(114, 25);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(100, 56);
+            this.button5.Size = new System.Drawing.Size(100, 10);
             this.button5.TabIndex = 9;
             this.button5.Text = "Verileri Sil / Degistir";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.PeachPuff;
             this.button6.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button6.Location = new System.Drawing.Point(11, 73);
+            this.button6.Location = new System.Drawing.Point(6, 121);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(101, 31);
+            this.button6.Size = new System.Drawing.Size(103, 31);
             this.button6.TabIndex = 10;
             this.button6.Text = "Temizle";
             this.button6.UseVisualStyleBackColor = false;
@@ -140,9 +142,9 @@
             // 
             this.button7.BackColor = System.Drawing.Color.PeachPuff;
             this.button7.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button7.Location = new System.Drawing.Point(11, 110);
+            this.button7.Location = new System.Drawing.Point(6, 84);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(101, 31);
+            this.button7.Size = new System.Drawing.Size(103, 31);
             this.button7.TabIndex = 11;
             this.button7.Text = "Kaydet";
             this.button7.UseVisualStyleBackColor = false;
@@ -152,9 +154,9 @@
             // 
             this.button8.BackColor = System.Drawing.Color.PeachPuff;
             this.button8.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button8.Location = new System.Drawing.Point(119, 73);
+            this.button8.Location = new System.Drawing.Point(112, 84);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(101, 31);
+            this.button8.Size = new System.Drawing.Size(103, 31);
             this.button8.TabIndex = 12;
             this.button8.Text = "Yükle";
             this.button8.UseVisualStyleBackColor = false;
@@ -162,7 +164,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(42, 820);
+            this.progressBar1.Location = new System.Drawing.Point(37, 772);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(174, 23);
             this.progressBar1.TabIndex = 13;
@@ -172,7 +174,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(96, 800);
+            this.label1.Location = new System.Drawing.Point(91, 752);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 20);
             this.label1.TabIndex = 14;
@@ -184,9 +186,9 @@
             // 
             this.button9.BackColor = System.Drawing.Color.PeachPuff;
             this.button9.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button9.Location = new System.Drawing.Point(118, 110);
+            this.button9.Location = new System.Drawing.Point(112, 47);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(101, 31);
+            this.button9.Size = new System.Drawing.Size(103, 31);
             this.button9.TabIndex = 15;
             this.button9.Text = "Rapor Çıkart";
             this.button9.UseVisualStyleBackColor = false;
@@ -236,7 +238,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label5.Location = new System.Drawing.Point(7, 9);
+            this.label5.Location = new System.Drawing.Point(8, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(195, 18);
             this.label5.TabIndex = 8;
@@ -408,7 +410,7 @@
             this.panel2.Controls.Add(this.textBox6);
             this.panel2.Controls.Add(this.textBox5);
             this.panel2.Controls.Add(this.label12);
-            this.panel2.Location = new System.Drawing.Point(24, 224);
+            this.panel2.Location = new System.Drawing.Point(6, 169);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(228, 181);
             this.panel2.TabIndex = 19;
@@ -448,75 +450,92 @@
             this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Location = new System.Drawing.Point(24, 58);
+            this.panel1.Location = new System.Drawing.Point(6, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(228, 160);
             this.panel1.TabIndex = 18;
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.panel3.BackColor = System.Drawing.Color.LemonChiffon;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.button5);
             this.panel3.Controls.Add(this.button6);
+            this.panel3.Controls.Add(this.button5);
             this.panel3.Controls.Add(this.button8);
             this.panel3.Controls.Add(this.button9);
             this.panel3.Controls.Add(this.button7);
-            this.panel3.Location = new System.Drawing.Point(24, 412);
+            this.panel3.Location = new System.Drawing.Point(6, 576);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(228, 173);
             this.panel3.TabIndex = 20;
             // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(140, 100);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
-            this.button15.TabIndex = 17;
-            this.button15.Text = "Deneme";
-            this.button15.UseVisualStyleBackColor = true;
-            // 
             // panel4
             // 
+            this.panel4.AutoScroll = true;
             this.panel4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel4.Controls.Add(this.panel3);
+            this.panel4.Controls.Add(this.panel2);
             this.panel4.Controls.Add(this.panel5);
+            this.panel4.Controls.Add(this.panel1);
             this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.progressBar1);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Location = new System.Drawing.Point(12, 12);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(255, 984);
+            this.panel4.Size = new System.Drawing.Size(257, 390);
             this.panel4.TabIndex = 21;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.PaleTurquoise;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel5.Location = new System.Drawing.Point(12, 589);
+            this.panel5.Location = new System.Drawing.Point(6, 356);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(228, 173);
+            this.panel5.Size = new System.Drawing.Size(228, 214);
             this.panel5.TabIndex = 21;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label14.Location = new System.Drawing.Point(3, 17);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(89, 18);
+            this.label14.TabIndex = 16;
+            this.label14.Text = "Seçenekler";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.PeachPuff;
+            this.button2.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button2.Location = new System.Drawing.Point(112, 121);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(103, 31);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "Hakkında";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1353, 1037);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.button15);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(663, 414);
             this.Controls.Add(this.panel4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.DoubleClick += new System.EventHandler(this.Form1_DoubleClick);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ResumeLayout(false);
@@ -562,9 +581,10 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button button2;
     }
 }
 
