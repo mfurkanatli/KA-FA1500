@@ -22,6 +22,7 @@ namespace WindowsFormsApplication1
         //int jenarasyon = 50;
         bool catismaVar = false;
         bool catismadanKaciliyor = true;
+        int z = 0;
         int gosterilecekAlternatifYolSayisi = 10;
         Random rnd = new Random();
         List<PointF> points = new List<PointF>(); //altarnatif yol noktaları
@@ -603,7 +604,7 @@ namespace WindowsFormsApplication1
             alternatifYollar.Clear();
             points.Clear();
             index = 0;
-            label1.Text = "Yükleniyor...";
+            label1.Text = "Hesaplanıyor...";
             label1.Visible = false;
             progressBar1.Value = 0;
             progressBar1.Visible = false;
