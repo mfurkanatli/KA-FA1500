@@ -190,6 +190,7 @@
             this.comboBox1.Size = new System.Drawing.Size(75, 22);
             this.comboBox1.TabIndex = 21;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.Click += new System.EventHandler(this.comboBox1_Click);
             // 
             // label12
             // 

@@ -35,8 +35,9 @@ namespace WindowsFormsApplication1
             {
                 textBox1.ReadOnly = true;
                 textBox1.Text = "0";
-
             }
+
+
             // this.Close();
         }
 

@@ -114,5 +114,11 @@ namespace WindowsFormsApplication1
                 textBox5.Text = Form1.gemiler.ElementAt(index).merkez.Y + "";
             }
         }
+
+        private void comboBox1_Click(object sender, EventArgs e)
+        {
+            gemileriGetir();
+
+        }
     }
 }
