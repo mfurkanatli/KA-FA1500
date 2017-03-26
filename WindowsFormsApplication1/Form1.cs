@@ -80,7 +80,20 @@ namespace WindowsFormsApplication1
             label1.Visible = false;
             progressBar1.Visible = false;
 
-            panel4.Height = xx.Height-(int)(xx.Height * 0.1);
+            //tableLayoutPanel1.Height = (int);
+            panel4.Height = (int)(xx.Height * 0.9);
+            
+           /* panel1.Height = (int)(xx.Height * 0.5);           
+             
+            panel2.Height = (int)(xx.Height * 0.5);            
+            panel3.Height = (int)(xx.Height * 0.5);
+            panel5.Height =(int)(xx.Height * 0.5);            
+            panel4.Height =(int)(xx.Height * 0.9);*/
+
+           /* panel2.Anchor = panel1.;
+            panel3.Anchor = panel2.Anchor;
+            //panel4.Anchor = AnchorStyles.Top;
+            panel5.Anchor = panel5.Anchor;*/
 
             form21.TopLevel = false;
             form21.BringToFront();
@@ -709,6 +722,11 @@ namespace WindowsFormsApplication1
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
           //  xx = this;
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
