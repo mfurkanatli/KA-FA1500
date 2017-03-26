@@ -338,8 +338,8 @@ namespace WindowsFormsApplication1
         void radarGorunumu()
         {
             float x = 0, y = 0;
-            x = Convert.ToInt32(gemiler.ElementAt(0).hiz * Math.Cos((gemiler.ElementAt(0).rota + 90) * Math.PI / 180));
-            y = Convert.ToInt32(gemiler.ElementAt(0).hiz * -Math.Sin((gemiler.ElementAt(0).rota + 90) * Math.PI / 180));
+            x = (float)(gemiler.ElementAt(0).hiz * Math.Cos((gemiler.ElementAt(0).rota + 90) * Math.PI / 180));
+            y = (float)(gemiler.ElementAt(0).hiz * -Math.Sin((gemiler.ElementAt(0).rota + 90) * Math.PI / 180));
             for (int i=0;i<gemiler.Count;i++)
             {
                 gemiler.ElementAt(i).merkez.X -= x;
@@ -378,16 +378,16 @@ namespace WindowsFormsApplication1
                 {
                     if (j == 0)
                     {
-                        x = gemiler.ElementAt(0).merkez.X + Convert.ToInt32(GeneticAlgorithm.rotalar.ElementAt(i).t[j] * gemiler.ElementAt(0).hiz
+                        x = gemiler.ElementAt(0).merkez.X + (float)(GeneticAlgorithm.rotalar.ElementAt(i).t[j] * gemiler.ElementAt(0).hiz
                             * Math.Cos((rota + 90) * Math.PI / 180));
-                        y = gemiler.ElementAt(0).merkez.Y + Convert.ToInt32(GeneticAlgorithm.rotalar.ElementAt(i).t[j] * gemiler.ElementAt(0).hiz
+                        y = gemiler.ElementAt(0).merkez.Y + (float)(GeneticAlgorithm.rotalar.ElementAt(i).t[j] * gemiler.ElementAt(0).hiz
                             * -Math.Sin((rota + 90) * Math.PI / 180));
                     }
                     else
                     {
-                        x = x_yedek + Convert.ToInt32(GeneticAlgorithm.rotalar.ElementAt(i).t[j] * gemiler.ElementAt(0).hiz
+                        x = x_yedek + (float)(GeneticAlgorithm.rotalar.ElementAt(i).t[j] * gemiler.ElementAt(0).hiz
                             * Math.Cos((rota + 90) * Math.PI / 180));
-                        y = y_yedek + Convert.ToInt32(GeneticAlgorithm.rotalar.ElementAt(i).t[j] * gemiler.ElementAt(0).hiz
+                        y = y_yedek + (float)(GeneticAlgorithm.rotalar.ElementAt(i).t[j] * gemiler.ElementAt(0).hiz
                             * -Math.Sin((rota + 90) * Math.PI / 180));
                     }
                     x_yedek = x;
@@ -395,8 +395,8 @@ namespace WindowsFormsApplication1
                     rota -= GeneticAlgorithm.rotalar.ElementAt(i).co[j];
                     points.Add(new PointF(x + this.Width / 2, y + this.Height / 2));
                 }
-                x = x_yedek + Convert.ToInt32(r*Math.Cos((rota + 90) * Math.PI / 180));
-                y = y_yedek + Convert.ToInt32(r*-Math.Sin((rota + 90) * Math.PI / 180));
+                x = x_yedek + (float)(r*Math.Cos((rota + 90) * Math.PI / 180));
+                y = y_yedek + (float)(r*-Math.Sin((rota + 90) * Math.PI / 180));
                 points.Add(new PointF(x + this.Width / 2, y + this.Height / 2));
                 alternatifYollar.Add(points);
                 //points.Clear();
