@@ -321,7 +321,7 @@ namespace WindowsFormsApplication1
                     {
                         gemiHareketHesapla(i);
                     }
-                    alternatifYollariCiz();
+                    alternatifYollariCiz(); 
                 }
                 else
                 {
