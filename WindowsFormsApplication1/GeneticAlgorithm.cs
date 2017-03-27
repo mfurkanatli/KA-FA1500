@@ -375,7 +375,7 @@ namespace WindowsFormsApplication1
             crossOver();
             mutasyonIslemi();
             ElitistReplacement();
-            yazdir();
+            //yazdir();
         }
 
         void sifirla()
