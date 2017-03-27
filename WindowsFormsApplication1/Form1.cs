@@ -322,7 +322,6 @@ namespace WindowsFormsApplication1
                         gemiHareketHesapla(i);
                     }
                     alternatifYollariCiz();
-                    radarGorunumu();
                 }
                 else
                 {
@@ -331,6 +330,7 @@ namespace WindowsFormsApplication1
                         gemiHareketHesapla(i);
                     }
                 }
+                radarGorunumu();
 
             }            
         }

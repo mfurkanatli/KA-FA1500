@@ -417,9 +417,9 @@
             this.panel2.Controls.Add(this.textBox5);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 200);
+            this.panel2.Location = new System.Drawing.Point(3, 226);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(248, 199);
+            this.panel2.Size = new System.Drawing.Size(248, 173);
             this.panel2.TabIndex = 19;
             // 
             // button12
@@ -458,9 +458,9 @@
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Location = new System.Drawing.Point(3, 53);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(248, 191);
+            this.panel1.Size = new System.Drawing.Size(248, 167);
             this.panel1.TabIndex = 18;
             // 
             // panel3
@@ -506,7 +506,6 @@
             // 
             this.panel4.AutoScroll = true;
             this.panel4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panel4.Controls.Add(this.trackBar1);
             this.panel4.Controls.Add(this.tableLayoutPanel1);
             this.panel4.Location = new System.Drawing.Point(12, 12);
             this.panel4.Name = "panel4";
@@ -517,17 +516,19 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.progressBar1, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.panel5, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.button3, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 63);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.trackBar1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.progressBar1, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.panel5, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.button3, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.0411F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.9589F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 221F));
@@ -550,9 +551,10 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(6, 12);
+            this.trackBar1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.trackBar1.Location = new System.Drawing.Point(3, 3);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(248, 45);
+            this.trackBar1.Size = new System.Drawing.Size(248, 44);
             this.trackBar1.TabIndex = 23;
             // 
             // Form1
@@ -574,7 +576,6 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
