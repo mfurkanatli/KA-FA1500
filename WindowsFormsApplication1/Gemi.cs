@@ -9,7 +9,7 @@ namespace WindowsFormsApplication1
    public class Gemi
     {       
         public  int emniyet_alani;
-        public int hiz;
+        public float hiz;
         public int rota;
         public double tcpa, dcpa;
         public PointF merkez;
@@ -17,7 +17,7 @@ namespace WindowsFormsApplication1
         public PictureBox pb;
         Form1 f1;
 
-        public Gemi(int emniyet_alani, int hiz, int rota, PointF merkez,Form1 _f1)
+        public Gemi(int emniyet_alani, float hiz, int rota, PointF merkez,Form1 _f1)
         {
             f1 = _f1;
             this.emniyet_alani = emniyet_alani;
@@ -73,7 +73,7 @@ namespace WindowsFormsApplication1
             this.emniyet_alani = emniyet_alani;
         }
 
-        public int getHiz()
+        public float getHiz()
         {
             return this.hiz;
         }
