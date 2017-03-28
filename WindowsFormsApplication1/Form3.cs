@@ -33,7 +33,7 @@ namespace WindowsFormsApplication1
             //int index = listBox1.SelectedIndex;
             int index = comboBox1.SelectedIndex;
             Form1.gemiler.ElementAt(index).emniyet_alani = (Form1.katSayi * Convert.ToInt32(textBox1.Text));
-            Form1.gemiler.ElementAt(index).hiz = Convert.ToInt32(textBox2.Text);
+            Form1.gemiler.ElementAt(index).hiz = float.Parse(textBox2.Text);
             if (Convert.ToInt32(textBox3.Text) > 0)
             {
                 Form1.gemiler.ElementAt(index).rota = (-Convert.ToInt32(textBox3.Text));

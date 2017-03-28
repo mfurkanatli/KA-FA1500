@@ -22,7 +22,6 @@ namespace WindowsFormsApplication1
         //int jenarasyon = 50;
         bool catismaVar = false;
         bool catismadanKaciliyor = true;
-        int z = 0;
         int gosterilecekAlternatifYolSayisi = 10;
         Random rnd = new Random();
         List<PointF> points = new List<PointF>(); //altarnatif yol noktaları
@@ -44,7 +43,7 @@ namespace WindowsFormsApplication1
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
            // trackBar1.
-            
+
             /*
             Point merkez = new Point(Control.MousePosition.X - this.Location.X, Control.MousePosition.Y - this.Location.Y);
             //      Console.WriteLine((Control.MousePosition.X - this.Location.X) + ";" + (Control.MousePosition.Y - this.Location.Y )+ "");
@@ -57,7 +56,7 @@ namespace WindowsFormsApplication1
 
         }
         
-        public static void setVeriler(int emniyet_alani, int hiz, int rota, PointF merkez)
+        public static void setVeriler(int emniyet_alani, float hiz, int rota, PointF merkez)
         {
             gemiler.Add(new Gemi(emniyet_alani * katSayi, hiz, rota, merkez,xx));
             gemiler.Last().gemiPictureBoxEkle();
@@ -65,7 +64,7 @@ namespace WindowsFormsApplication1
             {
                 gemiler.ElementAt(gemiler.Count - 1).pb.Image = Properties.Resources.gemi3;
             }
-            
+
         }
 
         public Form2 form21 = new Form2();
@@ -110,7 +109,10 @@ namespace WindowsFormsApplication1
             form31.Text = "Gemi " + gemiler.Count();
             form31.Show();
 
-
+            trackBar1.SetRange(20, 200);
+            trackBar1.TickFrequency = 10;
+            trackBar1.SmallChange = 10;
+            trackBar1.LargeChange = 10;
             /* PictureBox pb = new PictureBox();
 
              pb.Width = 50;
@@ -169,6 +171,11 @@ namespace WindowsFormsApplication1
             gg.DrawArc(pen, _gemi.merkez.X, _gemi.merkez.Y, 10, 10, 0, 360);
         }
 
+        public void olceklendir()
+        {
+            
+        }
+
         public String durumKontrolu(Gemi _bizimGemi, Gemi _karsiGemi)
         {
             String s = "";
@@ -177,6 +184,7 @@ namespace WindowsFormsApplication1
                 rota = -karsiGemi.rota - 180 + bizimGemi.rota;
             else
                 rota = -karsiGemi.rota + 180 + bizimGemi.rota;
+            rota %= 360;
 
             if ((rota >= 355 && rota <= 360) || (rota >= 0 && rota < 5))
             {
@@ -680,7 +688,7 @@ namespace WindowsFormsApplication1
                     p.X = veriler[i, veriler.GetLength(1) - 2];
                     p.Y = veriler[i, veriler.GetLength(1) - 1];
 
-                    setVeriler((int) veriler[i, 0] / katSayi, (int) veriler[i, 1], (int) -veriler[i, 2], p);
+                    setVeriler((int) veriler[i, 0] / katSayi, veriler[i, 1], (int) -veriler[i, 2], p);
                 }
             }
         }
@@ -724,17 +732,6 @@ namespace WindowsFormsApplication1
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-            KerterizFormu kerterizFormu = new KerterizFormu();
-            kerterizFormu.Show();
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
         }
