@@ -22,6 +22,7 @@ namespace WindowsFormsApplication1
         //int jenarasyon = 50;
         bool catismaVar = false;
         bool catismadanKaciliyor = true;
+        int z = 0;
         int gosterilecekAlternatifYolSayisi = 10;
         Random rnd = new Random();
         List<PointF> points = new List<PointF>(); //altarnatif yol noktaları
@@ -43,7 +44,7 @@ namespace WindowsFormsApplication1
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
 
-            
+
             /*
             Point merkez = new Point(Control.MousePosition.X - this.Location.X, Control.MousePosition.Y - this.Location.Y);
             //      Console.WriteLine((Control.MousePosition.X - this.Location.X) + ";" + (Control.MousePosition.Y - this.Location.Y )+ "");
@@ -110,10 +111,10 @@ namespace WindowsFormsApplication1
             form31.Text = "Gemi " + gemiler.Count();
             form31.Show();
 
-            trackBar1.SetRange(20, 200);
-            trackBar1.TickFrequency = 10;
-            trackBar1.SmallChange = 10;
-            trackBar1.LargeChange = 10;
+
+
+
+
             /* PictureBox pb = new PictureBox();
 
              pb.Width = 50;
@@ -185,7 +186,7 @@ namespace WindowsFormsApplication1
                 {
                     gemi.merkez.X = gemiler.ElementAt(0).merkez.X + (float)(gemi.bizimGemiyeUzaklik * 
                         trackBar1.Value * Math.Cos((gemi.rota + 90) * Math.PI / 180));
-
+            
                     gemi.merkez.Y = gemiler.ElementAt(0).merkez.Y + (float)(gemi.bizimGemiyeUzaklik * 
                         trackBar1.Value * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
                 }
@@ -752,15 +753,24 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void button10_Click(object sender, EventArgs e)
         {
+            KerterizFormu kerterizFormu = new KerterizFormu();
+            kerterizFormu.Show();
+        }
 
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+           
         }
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-            
-            olceklendir();
+
+        }
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+
         }
     }
 }
