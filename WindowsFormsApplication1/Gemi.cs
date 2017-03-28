@@ -8,8 +8,11 @@ namespace WindowsFormsApplication1
 {
    public class Gemi
     {       
-        public  int emniyet_alani;
+        public  float emniyet_alani;
         public float hiz;
+        public float yedek_hiz;
+        public float yedek_emniyet_alani;
+        public float bizimGemiyeUzaklik;
         public int rota;
         public double tcpa, dcpa;
         public PointF merkez;
@@ -17,11 +20,13 @@ namespace WindowsFormsApplication1
         public PictureBox pb;
         Form1 f1;
 
-        public Gemi(int emniyet_alani, float hiz, int rota, PointF merkez,Form1 _f1)
+        public Gemi(float emniyet_alani, float hiz, int rota, PointF merkez,Form1 _f1)
         {
             f1 = _f1;
             this.emniyet_alani = emniyet_alani;
+            this.yedek_emniyet_alani = emniyet_alani;
             this.hiz = hiz;
+            this.yedek_hiz = hiz;
             this.rota = -rota;
             this.merkez = merkez;
             /*pb = new PictureBox();
@@ -64,7 +69,7 @@ namespace WindowsFormsApplication1
             return newBitmap;
         }
 
-        public int getemniyet_alani()
+        public float getemniyet_alani()
         {
             return this.emniyet_alani;
         }
