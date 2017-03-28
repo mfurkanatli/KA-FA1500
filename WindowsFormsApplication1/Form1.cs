@@ -58,7 +58,7 @@ namespace WindowsFormsApplication1
         
         public static void setVeriler(int emniyet_alani, float hiz, int rota, PointF merkez)
         {
-            gemiler.Add(new Gemi(emniyet_alani * katSayi, hiz, rota, merkez,xx));
+            gemiler.Add(new Gemi(emniyet_alani * xx.trackBar1.Value, hiz, rota, merkez,xx));
             gemiler.Last().gemiPictureBoxEkle();
             if (gemiler.Count>1)
             {
@@ -174,7 +174,22 @@ namespace WindowsFormsApplication1
 
         public void olceklendir()
         {
-            
+            Gemi gemi;
+            gemiler.ElementAt(0).emniyet_alani = gemiler.ElementAt(0).yedek_emniyet_alani * trackBar1.Value;
+            for (int i = 0; i < gemiler.Count; i++)
+            {
+                gemi = gemiler.ElementAt(i);
+                gemi.hiz = gemi.yedek_hiz * (timer1.Interval / 1000) * trackBar1.Value;
+                
+                if (i > 0)
+                {
+                    gemi.merkez.X = gemiler.ElementAt(0).merkez.X + (float)(gemi.bizimGemiyeUzaklik * 
+                        trackBar1.Value * Math.Cos((gemi.rota + 90) * Math.PI / 180));
+
+                    gemi.merkez.Y = gemiler.ElementAt(0).merkez.Y + (float)(gemi.bizimGemiyeUzaklik * 
+                        trackBar1.Value * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
+                }
+            }
         }
 
         public String durumKontrolu(Gemi _bizimGemi, Gemi _karsiGemi)
@@ -237,8 +252,8 @@ namespace WindowsFormsApplication1
             cizimKonumu.Y = this.Height / 2;
                 
             int r = 500;
-            float x = gemi.merkez.X + Convert.ToInt32(r * Math.Cos((gemi.rota + 90) * Math.PI / 180));
-            float y = gemi.merkez.Y + Convert.ToInt32(r * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
+            float x = gemi.merkez.X + (float)(r * Math.Cos((gemi.rota + 90) * Math.PI / 180));
+            float y = gemi.merkez.Y + (float)(r * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
            // Console.WriteLine(Math.Sin(gemi.rota * Math.PI / 180) + "");
             PointF hedef = new PointF(x, y);
            
@@ -744,7 +759,8 @@ namespace WindowsFormsApplication1
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-           
+            
+            olceklendir();
         }
     }
 }
