@@ -22,6 +22,7 @@ namespace WindowsFormsApplication1
         //int jenarasyon = 50;
         bool catismaVar = false;
         bool catismadanKaciliyor = true;
+        int z = 0;
         int gosterilecekAlternatifYolSayisi = 10;
         Random rnd = new Random();
         List<PointF> points = new List<PointF>(); //altarnatif yol noktaları
@@ -43,7 +44,7 @@ namespace WindowsFormsApplication1
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
            // trackBar1.
-
+            
             /*
             Point merkez = new Point(Control.MousePosition.X - this.Location.X, Control.MousePosition.Y - this.Location.Y);
             //      Console.WriteLine((Control.MousePosition.X - this.Location.X) + ";" + (Control.MousePosition.Y - this.Location.Y )+ "");
@@ -56,15 +57,15 @@ namespace WindowsFormsApplication1
 
         }
         
-        public static void setVeriler(int emniyet_alani, float hiz, int rota, PointF merkez)
+        public static void setVeriler(int emniyet_alani, int hiz, int rota, PointF merkez)
         {
-            gemiler.Add(new Gemi(emniyet_alani * xx.trackBar1.Value, hiz, rota, merkez,xx));
+            gemiler.Add(new Gemi(emniyet_alani * katSayi, hiz, rota, merkez,xx));
             gemiler.Last().gemiPictureBoxEkle();
             if (gemiler.Count>1)
             {
                 gemiler.ElementAt(gemiler.Count - 1).pb.Image = Properties.Resources.gemi3;
             }
-
+            
         }
 
         public Form2 form21 = new Form2();
@@ -109,10 +110,7 @@ namespace WindowsFormsApplication1
             form31.Text = "Gemi " + gemiler.Count();
             form31.Show();
 
-            trackBar1.SetRange(20, 200);
-            trackBar1.TickFrequency = 10;
-            trackBar1.SmallChange = 10;
-            trackBar1.LargeChange = 10;
+
             /* PictureBox pb = new PictureBox();
 
              pb.Width = 50;
@@ -171,26 +169,6 @@ namespace WindowsFormsApplication1
             gg.DrawArc(pen, _gemi.merkez.X, _gemi.merkez.Y, 10, 10, 0, 360);
         }
 
-        public void olceklendir()
-        {
-            Gemi gemi;
-            gemiler.ElementAt(0).emniyet_alani = gemiler.ElementAt(0).yedek_emniyet_alani * trackBar1.Value;
-            for (int i = 0; i < gemiler.Count; i++)
-            {
-                gemi = gemiler.ElementAt(i);
-                gemi.hiz = gemi.yedek_hiz * (timer1.Interval / 1000) * trackBar1.Value;
-                
-                if (i > 0)
-                {
-                    gemi.merkez.X = gemiler.ElementAt(0).merkez.X + (float)(gemi.bizimGemiyeUzaklik * 
-                        trackBar1.Value * Math.Cos((gemi.rota + 90) * Math.PI / 180));
-            
-                    gemi.merkez.Y = gemiler.ElementAt(0).merkez.Y + (float)(gemi.bizimGemiyeUzaklik * 
-                        trackBar1.Value * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
-                }
-            }
-        }
-
         public String durumKontrolu(Gemi _bizimGemi, Gemi _karsiGemi)
         {
             String s = "";
@@ -199,7 +177,6 @@ namespace WindowsFormsApplication1
                 rota = -karsiGemi.rota - 180 + bizimGemi.rota;
             else
                 rota = -karsiGemi.rota + 180 + bizimGemi.rota;
-            rota %= 360;
 
             if ((rota >= 355 && rota <= 360) || (rota >= 0 && rota < 5))
             {
@@ -251,8 +228,8 @@ namespace WindowsFormsApplication1
             cizimKonumu.Y = this.Height / 2;
                 
             int r = 500;
-            float x = gemi.merkez.X + (float)(r * Math.Cos((gemi.rota + 90) * Math.PI / 180));
-            float y = gemi.merkez.Y + (float)(r * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
+            float x = gemi.merkez.X + Convert.ToInt32(r * Math.Cos((gemi.rota + 90) * Math.PI / 180));
+            float y = gemi.merkez.Y + Convert.ToInt32(r * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
            // Console.WriteLine(Math.Sin(gemi.rota * Math.PI / 180) + "");
             PointF hedef = new PointF(x, y);
            
@@ -703,7 +680,7 @@ namespace WindowsFormsApplication1
                     p.X = veriler[i, veriler.GetLength(1) - 2];
                     p.Y = veriler[i, veriler.GetLength(1) - 1];
 
-                    setVeriler((int) veriler[i, 0] / katSayi, veriler[i, 1], (int) -veriler[i, 2], p);
+                    setVeriler((int) veriler[i, 0] / katSayi, (int) veriler[i, 1], (int) -veriler[i, 2], p);
                 }
             }
         }
@@ -751,14 +728,15 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void button10_Click(object sender, EventArgs e)
         {
-
+            KerterizFormu kerterizFormu = new KerterizFormu();
+            kerterizFormu.Show();
         }
 
-        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        private void panel3_Paint(object sender, PaintEventArgs e)
         {
-           
+
         }
     }
 }
