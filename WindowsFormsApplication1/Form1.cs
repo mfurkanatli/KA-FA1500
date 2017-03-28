@@ -43,7 +43,7 @@ namespace WindowsFormsApplication1
         //Double click yerine manuel koordinat girilecek
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
-
+           // trackBar1.
             
             /*
             Point merkez = new Point(Control.MousePosition.X - this.Location.X, Control.MousePosition.Y - this.Location.Y);
@@ -65,8 +65,6 @@ namespace WindowsFormsApplication1
             {
                 gemiler.ElementAt(gemiler.Count - 1).pb.Image = Properties.Resources.gemi3;
             }
-
-
             
         }
 
@@ -75,6 +73,7 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             xx = this;
+            
             //xx.DoubleBuffered = true;
             // label1.Text = "";
             label1.Visible = false;
@@ -725,6 +724,17 @@ namespace WindowsFormsApplication1
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            KerterizFormu kerterizFormu = new KerterizFormu();
+            kerterizFormu.Show();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
         }

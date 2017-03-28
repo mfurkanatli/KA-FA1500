@@ -56,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KerterizFormu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KerterizFormu.Designer.cs">
+      <DependentUpon>KerterizFormu.cs</DependentUpon>
+    </Compile>
     <Compile Include="SaveLoad.cs" />
     <Compile Include="Cpa.cs" />
     <Compile Include="Form3.cs">
@@ -91,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KerterizFormu.resx">
+      <DependentUpon>KerterizFormu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
