@@ -71,6 +71,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -121,9 +122,9 @@
             // 
             this.button5.BackColor = System.Drawing.Color.PeachPuff;
             this.button5.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button5.Location = new System.Drawing.Point(11, 4);
+            this.button5.Location = new System.Drawing.Point(114, 25);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(31, 10);
+            this.button5.Size = new System.Drawing.Size(100, 10);
             this.button5.TabIndex = 9;
             this.button5.Text = "Verileri Sil / Degistir";
             this.button5.UseVisualStyleBackColor = false;
@@ -418,7 +419,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 216);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(248, 173);
+            this.panel2.Size = new System.Drawing.Size(248, 163);
             this.panel2.TabIndex = 19;
             // 
             // button12
@@ -466,7 +467,6 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.LemonChiffon;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.button10);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.button1);
@@ -480,7 +480,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(248, 171);
             this.panel3.TabIndex = 20;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // button2
             // 
@@ -532,7 +531,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.0411F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.9589F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 220F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 221F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 177F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
@@ -541,23 +540,27 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(254, 960);
             this.tableLayoutPanel1.TabIndex = 22;
             // 
+            // trackBar1
+            // 
+            this.trackBar1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.trackBar1.LargeChange = 1;
+            this.trackBar1.Location = new System.Drawing.Point(3, 3);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(248, 44);
+            this.trackBar1.SmallChange = 20;
+            this.trackBar1.TabIndex = 23;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.PaleTurquoise;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 405);
+            this.panel5.Location = new System.Drawing.Point(3, 385);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(248, 214);
+            this.panel5.Size = new System.Drawing.Size(248, 215);
             this.panel5.TabIndex = 21;
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.BackColor = System.Drawing.Color.LemonChiffon;
-            this.trackBar1.Location = new System.Drawing.Point(3, 3);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(248, 44);
-            this.trackBar1.TabIndex = 23;
             // 
             // Form1
             // 
@@ -630,7 +633,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.Button button10;
     }
 }
 

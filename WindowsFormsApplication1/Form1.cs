@@ -42,8 +42,8 @@ namespace WindowsFormsApplication1
         //Double click yerine manuel koordinat girilecek
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
-           // trackBar1.
 
+            
             /*
             Point merkez = new Point(Control.MousePosition.X - this.Location.X, Control.MousePosition.Y - this.Location.Y);
             //      Console.WriteLine((Control.MousePosition.X - this.Location.X) + ";" + (Control.MousePosition.Y - this.Location.Y )+ "");
@@ -65,6 +65,8 @@ namespace WindowsFormsApplication1
                 gemiler.ElementAt(gemiler.Count - 1).pb.Image = Properties.Resources.gemi3;
             }
 
+
+            
         }
 
         public Form2 form21 = new Form2();
@@ -72,7 +74,6 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             xx = this;
-            
             //xx.DoubleBuffered = true;
             // label1.Text = "";
             label1.Visible = false;
@@ -184,7 +185,7 @@ namespace WindowsFormsApplication1
                 {
                     gemi.merkez.X = gemiler.ElementAt(0).merkez.X + (float)(gemi.bizimGemiyeUzaklik * 
                         trackBar1.Value * Math.Cos((gemi.rota + 90) * Math.PI / 180));
-            
+
                     gemi.merkez.Y = gemiler.ElementAt(0).merkez.Y + (float)(gemi.bizimGemiyeUzaklik * 
                         trackBar1.Value * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
                 }
@@ -758,7 +759,8 @@ namespace WindowsFormsApplication1
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-           
+            
+            olceklendir();
         }
     }
 }
