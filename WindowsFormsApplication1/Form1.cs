@@ -59,7 +59,7 @@ namespace WindowsFormsApplication1
         
         public static void setVeriler(int emniyet_alani, float hiz, int rota, PointF merkez)
         {
-            gemiler.Add(new Gemi(emniyet_alani * xx.trackBar1.Value, hiz, rota, merkez,xx));
+            gemiler.Add(new Gemi(emniyet_alani , hiz, rota, merkez,xx));
             gemiler.Last().gemiPictureBoxEkle();
             if (gemiler.Count>1)
             {
@@ -180,7 +180,7 @@ namespace WindowsFormsApplication1
             for (int i = 0; i < gemiler.Count; i++)
             {
                 gemi = gemiler.ElementAt(i);
-                gemi.hiz = gemi.yedek_hiz * (timer1.Interval / 1000) * trackBar1.Value;
+                gemi.hiz = gemi.yedek_hiz * (1.0f*timer1.Interval / 1000) * trackBar1.Value;
                 
                 if (i > 0)
                 {
@@ -705,7 +705,7 @@ namespace WindowsFormsApplication1
                     p.X = veriler[i, veriler.GetLength(1) - 2];
                     p.Y = veriler[i, veriler.GetLength(1) - 1];
 
-                    setVeriler((int) veriler[i, 0] / katSayi, veriler[i, 1], (int) -veriler[i, 2], p);
+                    setVeriler((int) veriler[i, 0], veriler[i, 1], (int) -veriler[i, 2], p);
                 }
             }
         }
@@ -766,7 +766,7 @@ namespace WindowsFormsApplication1
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-
+            olceklendir();
         }
         private void trackBar1_Scroll(object sender, EventArgs e)
         {

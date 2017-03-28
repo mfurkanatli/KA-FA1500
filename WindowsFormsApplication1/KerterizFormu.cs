@@ -64,7 +64,7 @@ namespace WindowsFormsApplication1
                     p.Y = veriler[i, veriler.GetLength(1) - 1];*/
 
                     //Form1.setVeriler((int)veriler[i, 0] / Form1.katSayi, (int)veriler[i, 1], (int)-veriler[i, 2], p);
-                    Form1.setVeriler((int)veriler[i, 0] / Form1.katSayi, (int)veriler[i, 1], (int)-veriler[i, 2], p);
+                    Form1.setVeriler((int)veriler[i, 0], veriler[i, 1], (int)-veriler[i, 2], p);
                 }
             }
         }
