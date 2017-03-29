@@ -103,6 +103,12 @@ namespace WindowsFormsApplication1
             form21.Text = "Gemi " + gemiler.Count();
             form21.Show();
 
+            //tableLayoutPanel1.SetRow(tabControl1,2);
+            /*
+            tabControl1.Parent = panel2;
+            tabControl1.Size = panel2.Size;
+            tabControl1.BringToFront();
+            */
             form31.TopLevel = false;
             form31.BringToFront();
             form31.WindowState = FormWindowState.Maximized;
@@ -112,7 +118,10 @@ namespace WindowsFormsApplication1
             form31.Show();
 
 
-
+            trackBar1.SetRange(20, 200);
+            trackBar1.TickFrequency = 10;
+            trackBar1.SmallChange = 10;
+            trackBar1.LargeChange = 10;
 
 
             /* PictureBox pb = new PictureBox();
@@ -141,16 +150,7 @@ namespace WindowsFormsApplication1
                 bizimGemi = gemiler.ElementAt(0);
                 karsiGemi = gemiler.ElementAt(1);
 
-                for (int i = 0; i < gemiler.Count; i++)
-                {
-                    gemiCiz(gemiler.ElementAt(i));
-                    if (i > 0)//tcp,dcp Hesaplancak
-                    {
-                        gemiler.ElementAt(i).tcpa = Gemi.tcpaHesapla(gemiler.ElementAt(0), gemiler.ElementAt(i));
-                       // MessageBox.Show(gemiler.ElementAt(i).tcpa +"");
-                        gemiler.ElementAt(i).dcpa = Gemi.dcpaHesapla(gemiler.ElementAt(0), gemiler.ElementAt(i));
-                    }
-                }                
+                Yenile();           
             }
             else
             {
@@ -165,34 +165,47 @@ namespace WindowsFormsApplication1
 
             int w = this.Width;
             int h = this.Height;
-            Graphics gg = this.CreateGraphics();
-            Pen pen = new Pen(Color.Blue, 2);
-
             _gemi.merkez.X = w / 2;
             _gemi.merkez.Y = h / 2;
-            gg.DrawArc(pen, _gemi.merkez.X, _gemi.merkez.Y, 10, 10, 0, 360);
         }
 
         public void olceklendir()
         {
             Gemi gemi;
-            gemiler.ElementAt(0).emniyet_alani = gemiler.ElementAt(0).yedek_emniyet_alani * trackBar1.Value;
-            for (int i = 0; i < gemiler.Count; i++)
+            if (gemiler.Count > 0)
             {
-                gemi = gemiler.ElementAt(i);
-                gemi.hiz = gemi.yedek_hiz * (1.0f*timer1.Interval / 1000) * trackBar1.Value;
-                
-                if (i > 0)
+                double kerteriz = 0;
+                gemiKonumlandir(gemiler.ElementAt(0));
+                gemiler.ElementAt(0).emniyet_alani = gemiler.ElementAt(0).yedek_emniyet_alani * trackBar1.Value;
+                for (int i = 0; i < gemiler.Count; i++)
                 {
-                    gemi.merkez.X = gemiler.ElementAt(0).merkez.X + (float)(gemi.bizimGemiyeUzaklik * 
-                        trackBar1.Value * Math.Cos((gemi.rota + 90) * Math.PI / 180));
-            
-                    gemi.merkez.Y = gemiler.ElementAt(0).merkez.Y + (float)(gemi.bizimGemiyeUzaklik * 
-                        trackBar1.Value * -Math.Sin((gemi.rota + 90) * Math.PI / 180));
+                    gemi = gemiler.ElementAt(i);
+                    gemi.hiz = gemi.yedek_hiz * (1.0f * timer1.Interval / 1000) * trackBar1.Value;
+
+                    if (i > 0)
+                    {
+                        kerteriz = kerterizHesabi(gemiler.ElementAt(0), gemi);
+
+                        gemi.merkez.X = gemiler.ElementAt(0).merkez.X + (float)(gemi.bizimGemiyeUzaklik *
+                            trackBar1.Value * Math.Cos((gemiler.ElementAt(0).rota + gemi.kerterizAcisi + 90) * Math.PI / 180));
+
+                        gemi.merkez.Y = gemiler.ElementAt(0).merkez.Y + (float)(gemi.bizimGemiyeUzaklik *
+                            trackBar1.Value * -Math.Sin((gemiler.ElementAt(0).rota + gemi.kerterizAcisi + 90) * Math.PI / 180));
+
+                    }
                 }
             }
         }
-
+        public double kerterizHesabi(Gemi _bizimGemi, Gemi _karsiGemi)
+        {
+            double rota=0;
+            if (-_karsiGemi.rota > 180)
+                rota = -_karsiGemi.rota - 180 + _bizimGemi.rota;
+            else
+                rota = -_karsiGemi.rota + 180 + _bizimGemi.rota;
+            rota %= 360;
+            return rota;
+        }
         public String durumKontrolu(Gemi _bizimGemi, Gemi _karsiGemi)
         {
             String s = "";
@@ -249,8 +262,8 @@ namespace WindowsFormsApplication1
         Point cizimKonumu=new Point();
         private void gemiCiz(Gemi gemi)
         {
-            cizimKonumu.X = this.Width / 2;
-            cizimKonumu.Y = this.Height / 2;
+            cizimKonumu.X = 0;
+            cizimKonumu.Y = 0;
                 
             int r = 500;
             float x = gemi.merkez.X + (float)(r * Math.Cos((gemi.rota + 90) * Math.PI / 180));
@@ -396,7 +409,7 @@ namespace WindowsFormsApplication1
                 int i = rnd.Next(0, GeneticAlgorithm.rotalar.Count);
                 if (k == 0) i = 0;
                 points = new List<PointF>();
-                points.Add(new PointF(gemiler.ElementAt(0).merkez.X + this.Width/2, gemiler.ElementAt(0).merkez.Y + this.Height/2));
+                points.Add(new PointF(gemiler.ElementAt(0).merkez.X ,gemiler.ElementAt(0).merkez.Y));
                 rota = gemiler.ElementAt(0).rota;
                 for (int j = 0; j < 3; j++)
                 {
@@ -417,11 +430,11 @@ namespace WindowsFormsApplication1
                     x_yedek = x;
                     y_yedek = y;
                     rota -= GeneticAlgorithm.rotalar.ElementAt(i).co[j];
-                    points.Add(new PointF(x + this.Width / 2, y + this.Height / 2));
+                    points.Add(new PointF(x , y ));
                 }
                 x = x_yedek + (float)(r*Math.Cos((rota + 90) * Math.PI / 180));
                 y = y_yedek + (float)(r*-Math.Sin((rota + 90) * Math.PI / 180));
-                points.Add(new PointF(x + this.Width / 2, y + this.Height / 2));
+                points.Add(new PointF(x , y));
                 alternatifYollar.Add(points);
                 //points.Clear();
             }
@@ -531,11 +544,10 @@ namespace WindowsFormsApplication1
             {
                 progressBar1.Value++;
                 ga.hesapla();
-                rota = ga.SahteGenetik(ga.optimumKromozon);
+                //rota = ga.SahteGenetik(ga.optimumKromozon);
             }
-
             GeneticAlgorithm.rotalar = GeneticAlgorithm.rotalar.OrderBy(q => q.fitness).ToList();
-            //GeneticAlgorithm.rotalar.Insert(0, rota);
+            rota = GeneticAlgorithm.rotalar.ElementAt(0).Klonla();
             if (catismaVar)
                 alternatifYollariBelirle();
             label1.Text = "Hesaplandı!";
@@ -573,10 +585,6 @@ namespace WindowsFormsApplication1
                 if (!button3.Text.Equals("Devam"))
                 {
 
-                }
-                for (int i = 0; i < gemiler.Count; i++)
-                {
-                    gemiCiz(gemiler.ElementAt(i));
                 }
             }
             else
@@ -655,6 +663,7 @@ namespace WindowsFormsApplication1
             Form1 ff1 = new Form1();
             for (int i = 0; i < ff1.Controls.Count;)
                 xx.Controls.Add(ff1.Controls[i]);*/
+            
         }
         public void SaveFunc()
         {
@@ -758,19 +767,11 @@ namespace WindowsFormsApplication1
             KerterizFormu kerterizFormu = new KerterizFormu();
             kerterizFormu.Show();
         }
+        
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-           
-        }
-
-        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        private void trackBar1_ValueChanged_1(object sender, EventArgs e)
         {
             olceklendir();
-        }
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-
         }
     }
 }

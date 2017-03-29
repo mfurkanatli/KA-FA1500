@@ -28,16 +28,51 @@ namespace WindowsFormsApplication1
             guvenli_alan = Convert.ToInt32(textBox1.Text);
             hiz = Convert.ToInt32(textBox2.Text);
             yon = Convert.ToInt32(textBox3.Text);
-            p.X = float.Parse(textBox4.Text);
-            p.Y = float.Parse(textBox5.Text);           
-            Form1.setVeriler(guvenli_alan, hiz, yon,p);
+
+            /*  p.X = float.Parse(textBox4.Text);
+              p.Y = float.Parse(textBox5.Text);           
+              */
+
+           /* p.X = Form1.gemiler.ElementAt(0).merkez.X + float.Parse((uzaklik
+                        * Math.Cos((Form1.gemiler.ElementAt(0).rota + kerterizAcisi + 90) * Math.PI / 180)).ToString());
+
+
+            p.Y = Form1.gemiler.ElementAt(0).merkez.Y + float.Parse((uzaklik
+                * -Math.Sin((Form1.gemiler.ElementAt(0).rota + kerterizAcisi + 90) * Math.PI / 180)).ToString());
+                */
+            
+            //if
+            
             if (Form1.gemiler.Count > 0)
             {
+
+                float uzaklik = float.Parse(textBox5.Text);
+                float kerterizAcisi = -float.Parse(textBox4.Text);
+
+                p.X = Form1.gemiler.ElementAt(0).merkez.X + float.Parse((uzaklik
+                        * Math.Cos((Form1.gemiler.ElementAt(0).rota + kerterizAcisi + 90) * Math.PI / 180)).ToString());
+
+                p.Y = Form1.gemiler.ElementAt(0).merkez.Y + float.Parse((uzaklik
+                    * -Math.Sin((Form1.gemiler.ElementAt(0).rota + kerterizAcisi + 90) * Math.PI / 180)).ToString());
+
+                Form1.gemiler.Last().bizimGemiyeUzaklik = uzaklik;
+                Form1.gemiler.Last().kerterizAcisi = kerterizAcisi;
+
+                Form1.setVeriler(0, hiz, yon, p);
+            }
+            else
+            {
+                p.X = Form1.xx.Width / 2;
+                p.Y = Form1.xx.Height / 2;
+
+                Form1.setVeriler(guvenli_alan, hiz, yon, p);
+
                 textBox1.ReadOnly = true;
                 textBox1.Text = "0";
             }
 
-
+            Form1.xx.olceklendir();
+            Form1.xx.Yenile();
             // this.Close();
         }
 

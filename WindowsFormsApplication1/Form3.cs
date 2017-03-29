@@ -32,7 +32,7 @@ namespace WindowsFormsApplication1
         {
             //int index = listBox1.SelectedIndex;
             int index = comboBox1.SelectedIndex;
-            Form1.gemiler.ElementAt(index).emniyet_alani = (Form1.katSayi * Convert.ToInt32(textBox1.Text));
+            Form1.gemiler.ElementAt(index).emniyet_alani = (Convert.ToInt32(textBox1.Text));
             Form1.gemiler.ElementAt(index).hiz = float.Parse(textBox2.Text);
             if (Convert.ToInt32(textBox3.Text) > 0)
             {
@@ -65,7 +65,7 @@ namespace WindowsFormsApplication1
             int index = listBox1.SelectedIndex;
             if (index >= 0 && Form1.gemiler.Count() > index)
             {
-                textBox1.Text = Form1.gemiler.ElementAt(index).emniyet_alani/Form1.katSayi + "";
+                textBox1.Text = Form1.gemiler.ElementAt(index).emniyet_alani + "";
                 if (index >= 1)
                     textBox1.ReadOnly = true;
                 else
@@ -102,7 +102,7 @@ namespace WindowsFormsApplication1
             int index = comboBox1.SelectedIndex;
             if (index >= 0 && Form1.gemiler.Count() > index)
             {
-                textBox1.Text = Form1.gemiler.ElementAt(index).emniyet_alani / Form1.katSayi + "";
+                textBox1.Text = Form1.gemiler.ElementAt(index).emniyet_alani + "";
                 if (index >= 1)
                     textBox1.ReadOnly = true;
                 else

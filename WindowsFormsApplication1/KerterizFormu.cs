@@ -19,6 +19,7 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Form1.xx.temizle();
             OpenFileDialog op = new OpenFileDialog();
             op.ShowDialog();
             String secilenDizin = op.FileName.ToString();
@@ -28,7 +29,6 @@ namespace WindowsFormsApplication1
                 Form1.xx.temizle();
                 SaveLoad saveLoad = new SaveLoad();
                 float[,] veriler = saveLoad.Load(secilenDizin);
-
 
                 PointF p = new PointF();
                 /* p.X = veriler[0, veriler.GetLength(1) - 2];
@@ -41,7 +41,7 @@ namespace WindowsFormsApplication1
                 p.X = 0;
                 p.Y = 0;
                 //Form1.setVeriler((int)veriler[0, 0] / Form1.katSayi, (int)veriler[0, 1], (int)-veriler[0, 2], p);
-                Form1.setVeriler((int)veriler[0, 0] / Form1.katSayi, (int)veriler[0, 1], (int)-veriler[0, 2], p);
+                Form1.setVeriler((int)veriler[0, 0], veriler[0, 1], (int)-veriler[0, 2], p);
                 float kerterizAcisi = 1;
                 float uzaklik = 1;
                 for (int i = 1; i < veriler.GetLength(0); i++)
@@ -54,19 +54,24 @@ namespace WindowsFormsApplication1
                     uzaklik = veriler[i, veriler.GetLength(1) - 1];
 
                     p.X =Form1.gemiler.ElementAt(0).merkez.X+ float.Parse((uzaklik
-                        * Math.Cos((kerterizAcisi + 90) * Math.PI / 180)).ToString());
+                        * Math.Cos((Form1.gemiler.ElementAt(0).rota + kerterizAcisi + 90) * Math.PI / 180)).ToString());
 
 
-                    p.Y = Form1.gemiler.ElementAt(0).merkez.Y+ float.Parse((uzaklik
-                        *-Math.Sin((kerterizAcisi + 90) * Math.PI / 180)).ToString());
+                    p.Y = Form1.gemiler.ElementAt(0).merkez.Y + float.Parse((uzaklik
+                        * -Math.Sin((Form1.gemiler.ElementAt(0).rota + kerterizAcisi + 90) * Math.PI / 180)).ToString());
 
                  /*   p.X = veriler[i, veriler.GetLength(1) - 2];
                     p.Y = veriler[i, veriler.GetLength(1) - 1];*/
 
                     //Form1.setVeriler((int)veriler[i, 0] / Form1.katSayi, (int)veriler[i, 1], (int)-veriler[i, 2], p);
                     Form1.setVeriler((int)veriler[i, 0], veriler[i, 1], (int)-veriler[i, 2], p);
+                    Form1.gemiler.ElementAt(i).bizimGemiyeUzaklik = uzaklik;
+                    Form1.gemiler.ElementAt(i).kerterizAcisi = kerterizAcisi;
                 }
             }
+            Form1.xx.olceklendir();
+            Form1.xx.Yenile();
+            Form1.xx.Yenile();
         }
 
         public void kerterizeGoreKonumlandir()

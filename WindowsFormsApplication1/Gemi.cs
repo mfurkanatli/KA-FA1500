@@ -13,6 +13,7 @@ namespace WindowsFormsApplication1
         public float yedek_hiz;
         public float yedek_emniyet_alani;
         public float bizimGemiyeUzaklik;
+        public float kerterizAcisi;
         public int rota;
         public double tcpa, dcpa;
         public PointF merkez;
@@ -53,8 +54,11 @@ namespace WindowsFormsApplication1
         }
         public void pictureBoxHareketettiir()
         {
-            pb.Left = (int) merkez.X + Form1.xx.Width / 2-pb.Width/2;
-            pb.Top = (int ) merkez.Y + Form1.xx.Height / 2-pb.Height/2;
+            /* pb.Left = (int) merkez.X + Form1.xx.Width / 2-pb.Width/2;
+             pb.Top = (int ) merkez.Y + Form1.xx.Height / 2-pb.Height/2;*/
+
+            pb.Left = (int)merkez.X - pb.Width / 2;
+            pb.Top = (int)merkez.Y - pb.Height / 2;
         }
 
         private Bitmap RotateImageByAngle(Image oldBitmap, float angle)
@@ -116,5 +120,7 @@ namespace WindowsFormsApplication1
             double sonuc = 0;
             return sonuc;
         }
+
+        
     }
 }
