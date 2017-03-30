@@ -84,9 +84,9 @@
             this.label4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label4.Location = new System.Drawing.Point(6, 112);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 14);
+            this.label4.Size = new System.Drawing.Size(40, 14);
             this.label4.TabIndex = 20;
-            this.label4.Text = "Konum Y";
+            this.label4.Text = "Uzaklık";
             // 
             // label5
             // 
@@ -94,9 +94,9 @@
             this.label5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label5.Location = new System.Drawing.Point(6, 83);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 14);
+            this.label5.Size = new System.Drawing.Size(45, 14);
             this.label5.TabIndex = 19;
-            this.label5.Text = "Konum X";
+            this.label5.Text = "Kerteriz";
             // 
             // textBox4
             // 

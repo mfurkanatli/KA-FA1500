@@ -55,10 +55,11 @@ namespace WindowsFormsApplication1
                 p.Y = Form1.gemiler.ElementAt(0).merkez.Y + float.Parse((uzaklik
                     * -Math.Sin((Form1.gemiler.ElementAt(0).rota + kerterizAcisi + 90) * Math.PI / 180)).ToString());
 
-                Form1.gemiler.Last().bizimGemiyeUzaklik = uzaklik;
-                Form1.gemiler.Last().kerterizAcisi = kerterizAcisi;
 
                 Form1.setVeriler(0, hiz, yon, p);
+
+                Form1.gemiler.Last().bizimGemiyeUzaklik = uzaklik;
+                Form1.gemiler.Last().kerterizAcisi = kerterizAcisi;
             }
             else
             {

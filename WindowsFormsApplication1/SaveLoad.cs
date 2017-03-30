@@ -28,13 +28,29 @@ namespace WindowsFormsApplication1
             string fullPath = Path.GetFullPath(path);
             MessageBox.Show("Çıktı text dosyası " + fullPath + " konumuna kaydedilmiştir.");
         }
+        public double mileCevir(double deger)
+        {
+            double mil;
 
+            mil = deger * Form1.gemiler.ElementAt(0).hiz / Form1.xx.trackBar1.Value;
+
+
+            return mil;
+        }
+
+        public double saateCevir(double deger)
+        {
+            double saat;
+            saat = deger / Form1.gemiler.ElementAt(0).yedek_hiz*60;
+            return saat;
+        }
         public void RaporSave(string filename, List<Rota> rotalar)
         {
             string path = @"" + filename;
             string veriler = "";
             StreamWriter sW = new StreamWriter(path);
-            veriler = "T1\tCo1\tT2\tCo2\tT3\tCo3\tFitness";
+            veriler = "Kaçışa Kadar Süre\tKaçış Açısı\tKaçış Süresi\tRotaya Dönüş Açısı\tRotaya Dönüş Sür.\tOrj Rotaya Dönüş Açısı\t"+
+                "Kaçış mesafesi (mil)";
             sW.WriteLine(veriler);
             veriler = "";
             for (int i = 0; i < rotalar.Count; i++)
@@ -43,9 +59,11 @@ namespace WindowsFormsApplication1
                 //sW.WriteLine(veriler);
                 for(int j = 0; j < 3; j++)
                 {
-                    veriler += rotalar.ElementAt(i).t[j].ToString("0.##") + "\t" + rotalar.ElementAt(i).co[j].ToString("0.##") + "\t";
+                    
+                    veriler += saateCevir(mileCevir(rotalar.ElementAt(i).t[j])).ToString("0.##") + "\t" 
+                        + rotalar.ElementAt(i).co[j].ToString("0.##") + "\t";
                 }
-                veriler += rotalar.ElementAt(i).fitness.ToString("0.##");
+                veriler += mileCevir(rotalar.ElementAt(i).fitness).ToString("0.##");
                 sW.WriteLine(veriler);
                 veriler = "";
             }

@@ -27,6 +27,7 @@ namespace WindowsFormsApplication1
         Random rnd = new Random();
         List<PointF> points = new List<PointF>(); //altarnatif yol noktaları
         List<List<PointF>> alternatifYollar = new List<List<PointF>>();
+        int hizOran = 10000;
         public Form1()
         {
             InitializeComponent();
@@ -180,7 +181,7 @@ namespace WindowsFormsApplication1
                 for (int i = 0; i < gemiler.Count; i++)
                 {
                     gemi = gemiler.ElementAt(i);
-                    gemi.hiz = gemi.yedek_hiz * (1.0f * timer1.Interval / 1000) * trackBar1.Value;
+                    gemi.hiz = gemi.yedek_hiz * (1.0f * timer1.Interval / hizOran) * trackBar1.Value;
 
                     if (i > 0)
                     {
@@ -301,13 +302,24 @@ namespace WindowsFormsApplication1
         public void Yenile()
         {                       
             g.Clear(SystemColors.Control);
+            olceklendir();
             for (int i = 0; i < gemiler.Count; i++)
             {
                 gemiCiz(gemiler.ElementAt(i));
                 gemiler.ElementAt(i).pictureBoxHareketettiir();
             }
+            
         }
+        public void Yenile1()
+        {
+            g.Clear(SystemColors.Control);
+            for (int i = 0; i < gemiler.Count; i++)
+            {
+                gemiCiz(gemiler.ElementAt(i));
+                gemiler.ElementAt(i).pictureBoxHareketettiir();
+            }
 
+        }
         public void gemiHareketHesapla(int _i)
         {
             gemiHareketEttir(gemiler.ElementAt(_i));
@@ -343,6 +355,14 @@ namespace WindowsFormsApplication1
                     {
                         gemiHareketHesapla(0);
                         rota.t[index]--;
+                        if(rota.t[index] < 0)
+                        {
+                            gemiler.ElementAt(0).merkez.X = gemiler.ElementAt(0).merkez.X+float.Parse((rota.t[index]* gemiler.ElementAt(0).hiz
+                        * Math.Cos((gemiler.ElementAt(0).rota  + 90) * Math.PI / 180)).ToString());
+                            gemiler.ElementAt(0).merkez.Y = gemiler.ElementAt(0).merkez.Y+float.Parse((rota.t[index]* gemiler.ElementAt(0).hiz
+                        * -Math.Sin((gemiler.ElementAt(0).rota  + 90) * Math.PI / 180)).ToString());
+                            Yenile1();
+                        }
                         if (rota.t[index] <= 0)
                         {
                             gemiler.ElementAt(0).rota -= (int)(rota.co[index]);
@@ -563,7 +583,7 @@ namespace WindowsFormsApplication1
                 {
                     label1.Visible = true;
                     progressBar1.Visible = true;
-                    MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!\n"+ durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "");                    
+                    MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!\n"+ durumKontrolu(gemiler.ElementAt(0), gemiler.ElementAt(1)) + "\n"+cpa.dcpa/trackBar1.Value);                    
                     catismaVar = true;
                     GenetikHesapla();
                     catismadanKaciliyor = false;
@@ -684,7 +704,7 @@ namespace WindowsFormsApplication1
         public void RaporCikart()
         {
             SaveFileDialog sv = new SaveFileDialog();
-            sv.Filter = "Data Files (*.txt)|*.txt";
+            sv.Filter = "Data Files (*.xls)|*.xls";
             sv.DefaultExt = "txt";
             sv.AddExtension = true;
             sv.ShowDialog();
@@ -699,6 +719,7 @@ namespace WindowsFormsApplication1
         }
         public void LoadFunc()
         {
+            
             OpenFileDialog op = new OpenFileDialog();
             op.ShowDialog();
             String secilenDizin = op.FileName.ToString();
@@ -718,7 +739,62 @@ namespace WindowsFormsApplication1
                 }
             }
         }
+        public void LoadFuncKerteriz()
+        {
+            Form1.xx.temizle();
+            OpenFileDialog op = new OpenFileDialog();
+            op.ShowDialog();
+            String secilenDizin = op.FileName.ToString();
 
+            if (!secilenDizin.Equals(""))
+            {
+                Form1.xx.temizle();
+                SaveLoad saveLoad = new SaveLoad();
+                float[,] veriler = saveLoad.Load(secilenDizin);
+
+                PointF p = new PointF();
+                /* p.X = veriler[0, veriler.GetLength(1) - 2];
+                 p.Y = veriler[0, veriler.GetLength(1) - 1];
+                 */
+
+                /* p.X = Form1.xx.Width / 2;
+                 p.Y = Form1.xx.Height / 2;
+                 */
+                p.X = 0;
+                p.Y = 0;
+                //Form1.setVeriler((int)veriler[0, 0] / Form1.katSayi, (int)veriler[0, 1], (int)-veriler[0, 2], p);
+                Form1.setVeriler((int)veriler[0, 0], veriler[0, 1], (int)-veriler[0, 2], p);
+                float kerterizAcisi = 1;
+                float uzaklik = 1;
+                for (int i = 1; i < veriler.GetLength(0); i++)
+                {
+                    //PointF p = new PointF();
+                    /* p.X = veriler[i, veriler.GetLength(1) - 2];
+                     p.Y = veriler[i, veriler.GetLength(1) - 1];*/
+
+                    kerterizAcisi = -veriler[i, veriler.GetLength(1) - 2];
+                    uzaklik = veriler[i, veriler.GetLength(1) - 1];
+
+                    p.X = Form1.gemiler.ElementAt(0).merkez.X + float.Parse((uzaklik
+                        * Math.Cos((Form1.gemiler.ElementAt(0).rota + kerterizAcisi + 90) * Math.PI / 180)).ToString());
+
+
+                    p.Y = Form1.gemiler.ElementAt(0).merkez.Y + float.Parse((uzaklik
+                        * -Math.Sin((Form1.gemiler.ElementAt(0).rota + kerterizAcisi + 90) * Math.PI / 180)).ToString());
+
+                    /*   p.X = veriler[i, veriler.GetLength(1) - 2];
+                       p.Y = veriler[i, veriler.GetLength(1) - 1];*/
+
+                    //Form1.setVeriler((int)veriler[i, 0] / Form1.katSayi, (int)veriler[i, 1], (int)-veriler[i, 2], p);
+                    Form1.setVeriler((int)veriler[i, 0], veriler[i, 1], (int)-veriler[i, 2], p);
+                    Form1.gemiler.ElementAt(i).bizimGemiyeUzaklik = uzaklik;
+                    Form1.gemiler.ElementAt(i).kerterizAcisi = kerterizAcisi;
+                }
+            }
+            Form1.xx.olceklendir();
+            Form1.xx.Yenile();
+            Form1.xx.Yenile();
+        }
         private void button8_Click(object sender, EventArgs e)
         {
             if (button3.Text == "Durdur")
@@ -727,7 +803,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                LoadFunc();
+                LoadFuncKerteriz();
             }
             
         }

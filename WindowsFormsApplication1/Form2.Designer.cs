@@ -86,7 +86,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(29, 20);
             this.textBox4.TabIndex = 3;
-            this.textBox4.Text = "50";
+            this.textBox4.Text = "30";
             // 
             // textBox5
             // 
@@ -95,7 +95,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(34, 25);
             this.textBox5.TabIndex = 4;
-            this.textBox5.Text = "50";
+            this.textBox5.Text = "5";
             // 
             // label11
             // 

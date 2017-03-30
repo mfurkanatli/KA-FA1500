@@ -102,7 +102,7 @@
             this.button3.BackColor = System.Drawing.Color.Green;
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button3.Location = new System.Drawing.Point(3, 783);
+            this.button3.Location = new System.Drawing.Point(3, 820);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(248, 46);
             this.button3.TabIndex = 8;
@@ -171,7 +171,7 @@
             // progressBar1
             // 
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.progressBar1.Location = new System.Drawing.Point(3, 873);
+            this.progressBar1.Location = new System.Drawing.Point(3, 892);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(248, 35);
             this.progressBar1.TabIndex = 13;
@@ -181,7 +181,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(3, 832);
+            this.label1.Location = new System.Drawing.Point(3, 869);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 20);
             this.label1.TabIndex = 14;
@@ -418,7 +418,7 @@
             this.panel2.Controls.Add(this.textBox5);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 216);
+            this.panel2.Location = new System.Drawing.Point(3, 217);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(248, 200);
             this.panel2.TabIndex = 19;
@@ -459,7 +459,7 @@
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 53);
+            this.panel1.Location = new System.Drawing.Point(3, 54);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(248, 157);
             this.panel1.TabIndex = 18;
@@ -478,7 +478,7 @@
             this.panel3.Controls.Add(this.button9);
             this.panel3.Controls.Add(this.button7);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 606);
+            this.panel3.Location = new System.Drawing.Point(3, 643);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(248, 171);
             this.panel3.TabIndex = 20;
@@ -492,6 +492,7 @@
             this.button10.TabIndex = 22;
             this.button10.Text = "Kerterize Göre";
             this.button10.UseVisualStyleBackColor = false;
+            this.button10.Visible = false;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // button2
@@ -557,7 +558,7 @@
             this.trackBar1.BackColor = System.Drawing.Color.LemonChiffon;
             this.trackBar1.Location = new System.Drawing.Point(3, 3);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(248, 44);
+            this.trackBar1.Size = new System.Drawing.Size(248, 45);
             this.trackBar1.TabIndex = 23;
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged_1);
             // 
@@ -566,7 +567,7 @@
             this.panel5.BackColor = System.Drawing.Color.PaleTurquoise;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 386);
+            this.panel5.Location = new System.Drawing.Point(3, 423);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(248, 214);
             this.panel5.TabIndex = 21;
@@ -642,7 +643,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TrackBar trackBar1;
+        public System.Windows.Forms.TrackBar trackBar1;
     }
 }
 

@@ -32,8 +32,8 @@ namespace WindowsFormsApplication1
         {
             //int index = listBox1.SelectedIndex;
             int index = comboBox1.SelectedIndex;
-            Form1.gemiler.ElementAt(index).emniyet_alani = (Convert.ToInt32(textBox1.Text));
-            Form1.gemiler.ElementAt(index).hiz = float.Parse(textBox2.Text);
+            Form1.gemiler.ElementAt(index).yedek_emniyet_alani = (Convert.ToInt32(textBox1.Text));
+            Form1.gemiler.ElementAt(index).yedek_hiz = float.Parse(textBox2.Text);
             if (Convert.ToInt32(textBox3.Text) > 0)
             {
                 Form1.gemiler.ElementAt(index).rota = (-Convert.ToInt32(textBox3.Text));
@@ -42,8 +42,8 @@ namespace WindowsFormsApplication1
             {
                 Form1.gemiler.ElementAt(index).rota = Convert.ToInt32(textBox3.Text);
             }
-            Form1.gemiler.ElementAt(index).merkez.X = Convert.ToInt32(textBox4.Text);
-            Form1.gemiler.ElementAt(index).merkez.Y = Convert.ToInt32(textBox5.Text);
+            Form1.gemiler.ElementAt(index).kerterizAcisi = Convert.ToInt32(textBox4.Text);
+            Form1.gemiler.ElementAt(index).bizimGemiyeUzaklik = float.Parse(textBox5.Text);
 
             Form1.xx.Yenile();
             MessageBox.Show("Degisim Onaylandi");
@@ -70,7 +70,7 @@ namespace WindowsFormsApplication1
                     textBox1.ReadOnly = true;
                 else
                     textBox1.ReadOnly = false;
-                textBox2.Text = Form1.gemiler.ElementAt(index).hiz + "";
+                textBox2.Text = Form1.gemiler.ElementAt(index).yedek_hiz + "";
                 textBox3.Text = Math.Abs(Form1.gemiler.ElementAt(index).rota) + "";
                 textBox4.Text = Form1.gemiler.ElementAt(index).merkez.X + "";
                 textBox5.Text = Form1.gemiler.ElementAt(index).merkez.Y + "";
@@ -102,15 +102,15 @@ namespace WindowsFormsApplication1
             int index = comboBox1.SelectedIndex;
             if (index >= 0 && Form1.gemiler.Count() > index)
             {
-                textBox1.Text = Form1.gemiler.ElementAt(index).emniyet_alani + "";
+                textBox1.Text = Form1.gemiler.ElementAt(index).yedek_emniyet_alani + "";
                 if (index >= 1)
                     textBox1.ReadOnly = true;
                 else
                     textBox1.ReadOnly = false;
-                textBox2.Text = Form1.gemiler.ElementAt(index).hiz + "";
+                textBox2.Text = Form1.gemiler.ElementAt(index).yedek_hiz + "";
                 textBox3.Text = Math.Abs(Form1.gemiler.ElementAt(index).rota) + "";
-                textBox4.Text = Form1.gemiler.ElementAt(index).merkez.X + "";
-                textBox5.Text = Form1.gemiler.ElementAt(index).merkez.Y + "";
+                textBox4.Text = Form1.gemiler.ElementAt(index).kerterizAcisi + "";
+                textBox5.Text = Form1.gemiler.ElementAt(index).bizimGemiyeUzaklik + "";
             }
         }
 
