@@ -83,7 +83,6 @@ namespace WindowsFormsApplication1
 
             //tableLayoutPanel1.Height = (int);
             panel4.Height = (int)(xx.Height * 0.9);
-            
            /* panel1.Height = (int)(xx.Height * 0.5);           
              
             panel2.Height = (int)(xx.Height * 0.5);            
@@ -124,6 +123,7 @@ namespace WindowsFormsApplication1
             trackBar1.SmallChange = 10;
             trackBar1.LargeChange = 10;
 
+            label15.Text = "Ölçek : 1 mil = " + trackBar1.Value + " px";
 
             /* PictureBox pb = new PictureBox();
 
@@ -705,7 +705,7 @@ namespace WindowsFormsApplication1
         {
             SaveFileDialog sv = new SaveFileDialog();
             sv.Filter = "Data Files (*.xls)|*.xls";
-            sv.DefaultExt = "txt";
+            sv.DefaultExt = "xls";
             sv.AddExtension = true;
             sv.ShowDialog();
 
@@ -848,6 +848,7 @@ namespace WindowsFormsApplication1
         private void trackBar1_ValueChanged_1(object sender, EventArgs e)
         {
             olceklendir();
+            label15.Text = "Ölçek : 1 mil = " + trackBar1.Value + " px";
         }
     }
 }

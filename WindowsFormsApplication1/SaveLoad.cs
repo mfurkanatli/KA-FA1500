@@ -48,7 +48,7 @@ namespace WindowsFormsApplication1
         {
             string path = @"" + filename;
             string veriler = "";
-            StreamWriter sW = new StreamWriter(path);
+            StreamWriter sW = new StreamWriter(path, true,Encoding.GetEncoding("iso-8859-9"));
             veriler = "Kaçışa Kadar Süre\tKaçış Açısı\tKaçış Süresi\tRotaya Dönüş Açısı\tRotaya Dönüş Sür.\tOrj Rotaya Dönüş Açısı\t"+
                 "Kaçış mesafesi (mil)";
             sW.WriteLine(veriler);
