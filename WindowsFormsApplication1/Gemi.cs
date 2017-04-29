@@ -15,10 +15,13 @@ namespace WindowsFormsApplication1
         public float bizimGemiyeUzaklik;
         public float kerterizAcisi;
         public int rota;
+        public int yedek_rota;
         public double tcpa, dcpa;
         public PointF merkez;
         public PointF cizimPoint;
         public PictureBox pb;
+        public int[,] gemiHizAraliklari = new int[4,2]; 
+
         Form1 f1;
 
         public Gemi(float emniyet_alani, float hiz, int rota, PointF merkez,Form1 _f1)
@@ -30,6 +33,9 @@ namespace WindowsFormsApplication1
             this.yedek_hiz = hiz;
             this.rota = -rota;
             this.merkez = merkez;
+            this.cizimPoint.X = merkez.X;
+            this.cizimPoint.Y = merkez.Y;
+            this.yedek_rota = rota;
             /*pb = new PictureBox();
             pb.Size = new Size(23, 23);
             
@@ -40,6 +46,12 @@ namespace WindowsFormsApplication1
             pb.Show();           
             //f1.Controls.Add(pb);*/
         }
+
+        public Gemi Clone()
+        {
+            return new Gemi(emniyet_alani,  hiz,  rota,  merkez, f1);
+        }
+
         public void gemiPictureBoxEkle()
         {
             pb = new PictureBox();
