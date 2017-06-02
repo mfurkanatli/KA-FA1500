@@ -76,8 +76,6 @@ namespace WindowsFormsApplication1
         public HizAraliklari hizForm = new HizAraliklari();
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-
             xx = this;
             //xx.DoubleBuffered = true;
             // label1.Text = "";
