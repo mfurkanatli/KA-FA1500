@@ -32,7 +32,7 @@ namespace WindowsFormsApplication1
         {
             double mil;
 
-            mil = deger * Form1.gemiler.ElementAt(0).hiz / Form1.xx.trackBar1.Value;
+            mil = deger * AnaEkran.gemiler.ElementAt(0).hiz / AnaEkran.xx.trackBar1.Value;
 
 
             return mil;
@@ -41,7 +41,7 @@ namespace WindowsFormsApplication1
         public double saateCevir(double deger)
         {
             double saat;
-            saat = deger / Form1.gemiler.ElementAt(0).yedek_hiz*60;
+            saat = deger / AnaEkran.gemiler.ElementAt(0).yedek_hiz*60;
             return saat;
         }
         public void RaporSave(string filename, List<Rota> rotalar)
@@ -50,7 +50,7 @@ namespace WindowsFormsApplication1
             string veriler = "";
             StreamWriter sW = new StreamWriter(path, true,Encoding.GetEncoding("iso-8859-9"));
             veriler = "Kaçışa Kadar Süre\tKaçış Açısı\tKaçış Süresi\tRotaya Dönüş Açısı\tRotaya Dönüş Sür.\tOrj Rotaya Dönüş Açısı\t"+
-                "Kaçış mesafesi (mil)";
+                "Kaçış Mesafesi (mil)";
             sW.WriteLine(veriler);
             veriler = "";
             for (int i = 0; i < rotalar.Count; i++)

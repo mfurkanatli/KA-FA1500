@@ -22,9 +22,9 @@ namespace WindowsFormsApplication1
         public PictureBox pb;
         public int[,] gemiHizAraliklari = new int[4,2]; 
 
-        Form1 f1;
+        AnaEkran f1;
 
-        public Gemi(float emniyet_alani, float hiz, int rota, PointF merkez,Form1 _f1)
+        public Gemi(float emniyet_alani, float hiz, int rota, PointF merkez,AnaEkran _f1)
         {
             f1 = _f1;
             this.emniyet_alani = emniyet_alani;

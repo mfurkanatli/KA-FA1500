@@ -9,7 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 namespace WindowsFormsApplication1
 {
-    public partial class Form1 : Form
+    public partial class AnaEkran : Form
     {
         Graphics cizim;
         Gemi karsiGemi;
@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
         List<Rota> alternatifRotalar = new List<Rota>();
         int hizOran = 10000;
         int trackBarEskiDeger;
-        public Form1()
+        public AnaEkran()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
@@ -71,8 +71,8 @@ namespace WindowsFormsApplication1
             
         }
 
-        public Form2 form21 = new Form2();
-        public Form3 form31 = new Form3();
+        public GemiGirdileriEkrani gemiGirdileriEkrani = new GemiGirdileriEkrani();
+        public GuncellemeEkrani guncellemeEkrani = new GuncellemeEkrani();
         public HizAraliklari hizForm = new HizAraliklari();
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -100,13 +100,13 @@ namespace WindowsFormsApplication1
             tabControl1.TabPages[0].Text = "Gemi Girdileri";
             tabControl1.TabPages[1].Text = "Hız Aralıkları";
 
-            form21.TopLevel = false;
-            form21.BringToFront();
-            form21.WindowState = FormWindowState.Maximized;
-            form21.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            form21.Parent = tabControl1.TabPages[0];
-            form21.Text = "Gemi " + gemiler.Count();
-            form21.Show();
+            gemiGirdileriEkrani.TopLevel = false;
+            gemiGirdileriEkrani.BringToFront();
+            gemiGirdileriEkrani.WindowState = FormWindowState.Maximized;
+            gemiGirdileriEkrani.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            gemiGirdileriEkrani.Parent = tabControl1.TabPages[0];
+            gemiGirdileriEkrani.Text = "Gemi " + gemiler.Count();
+            gemiGirdileriEkrani.Show();
 
             hizForm.TopLevel = false;
             hizForm.BringToFront();
@@ -122,13 +122,13 @@ namespace WindowsFormsApplication1
             tabControl1.Size = panel2.Size;
             tabControl1.BringToFront();
             */
-            form31.TopLevel = false;
-            form31.BringToFront();
-            form31.WindowState = FormWindowState.Maximized;
-            form31.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            form31.Parent = panel5;
-            form31.Text = "Gemi " + gemiler.Count();
-            form31.Show();
+            guncellemeEkrani.TopLevel = false;
+            guncellemeEkrani.BringToFront();
+            guncellemeEkrani.WindowState = FormWindowState.Maximized;
+            guncellemeEkrani.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            guncellemeEkrani.Parent = panel5;
+            guncellemeEkrani.Text = "Gemi " + gemiler.Count();
+            guncellemeEkrani.Show();
             
 
             trackBar1.SetRange(20, 200);
@@ -159,10 +159,11 @@ namespace WindowsFormsApplication1
             if(gemiler.Count>1)
             {
 
+                MessageBox.Show("Veriler Onaylandı");
                 veriOnayla = true;
                 trackBar1.Enabled = false;
                 if(hizForm.isChecked())
-                    Form1.gemiler.ElementAt(0).gemiHizAraliklari = hizForm.getter();
+                    AnaEkran.gemiler.ElementAt(0).gemiHizAraliklari = hizForm.getter();
 
                 bizimGemi = gemiler.ElementAt(0);
                 karsiGemi = gemiler.ElementAt(1);
@@ -806,14 +807,8 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Öncelikle Verileri Onaylayın");
             }
         }
-       public  static Form1 xx;
-        private void button2_Click(object sender, EventArgs e)
-        {
-            xx = this;
-            Form2 form2 = new Form2();
-            form2.Text = "Gemi "+gemiler.Count();
-            form2.Show();
-        }
+       public  static AnaEkran xx;
+     
         private void button6_Click(object sender, EventArgs e)
         {
             if (!button3.Text.Equals("Durdur"))
@@ -838,8 +833,9 @@ namespace WindowsFormsApplication1
             for (int i = 0; i < gemiler.Count; i++)
                 gemiler.ElementAt(i).pb.Dispose();
             
-            TextBox f1t1 = (TextBox) form21.Controls["textbox1"];
-            f1t1.ReadOnly = false;
+            
+            gemiGirdileriEkraniItemsDuzenle();
+          
             gemiler.Clear();
             catismaVar = false;
             veriOnayla = false;
@@ -861,12 +857,21 @@ namespace WindowsFormsApplication1
             //Form1.ActiveForm.BackColor = SystemColors.Control;
             this.BackColor = SystemColors.ControlDark;
             this.BackColor = SystemColors.Control;
+
+            guncellemeEkrani.temizle();
             /*
             xx.Controls.Clear();
             Form1 ff1 = new Form1();
             for (int i = 0; i < ff1.Controls.Count;)
                 xx.Controls.Add(ff1.Controls[i]);*/
             
+        }
+        private void gemiGirdileriEkraniItemsDuzenle()
+        {
+            gemiGirdileriEkrani.Controls["button1"].Text = "Kendi Gemimizi Oluştur";
+            gemiGirdileriEkrani.hideItems();
+            TextBox f1t1 = (TextBox)gemiGirdileriEkrani.Controls["textbox1"];
+            f1t1.ReadOnly = false;
         }
         public void SaveFunc()
         {
@@ -924,14 +929,14 @@ namespace WindowsFormsApplication1
         }
         public void LoadFuncKerteriz()
         {
-            Form1.xx.temizle();
+            AnaEkran.xx.temizle();
             OpenFileDialog op = new OpenFileDialog();
             op.ShowDialog();
             String secilenDizin = op.FileName.ToString();
 
             if (!secilenDizin.Equals(""))
             {
-                Form1.xx.temizle();
+                AnaEkran.xx.temizle();
                 SaveLoad saveLoad = new SaveLoad();
                 float[,] veriler = saveLoad.Load(secilenDizin);
 
@@ -940,11 +945,11 @@ namespace WindowsFormsApplication1
                  p.Y = veriler[0, veriler.GetLength(1) - 1];
                  */
 
-                 p.X = Form1.xx.Width / 2;
-                 p.Y = Form1.xx.Height / 2;
+                 p.X = AnaEkran.xx.Width / 2;
+                 p.Y = AnaEkran.xx.Height / 2;
                  
                 //Form1.setVeriler((int)veriler[0, 0] / Form1.katSayi, (int)veriler[0, 1], (int)-veriler[0, 2], p);
-                Form1.setVeriler((int)veriler[0, 0], veriler[0, 1], (int)-veriler[0, 2], p);
+                AnaEkran.setVeriler((int)veriler[0, 0], veriler[0, 1], (int)-veriler[0, 2], p);
                 float kerterizAcisi = 1;
                 float uzaklik = 1;
                 for (int i = 1; i < veriler.GetLength(0); i++)
@@ -957,24 +962,24 @@ namespace WindowsFormsApplication1
                     uzaklik = veriler[i, veriler.GetLength(1) - 1];
                     
 
-                    p.X = Form1.gemiler.ElementAt(0).merkez.X + float.Parse(((uzaklik *
-                            trackBar1.Value)* Math.Cos((Form1.gemiler.ElementAt(0).rota + kerterizAcisi + 90) * Math.PI / 180)).ToString());
+                    p.X = AnaEkran.gemiler.ElementAt(0).merkez.X + float.Parse(((uzaklik *
+                            trackBar1.Value)* Math.Cos((AnaEkran.gemiler.ElementAt(0).rota + kerterizAcisi + 90) * Math.PI / 180)).ToString());
 
 
-                    p.Y = Form1.gemiler.ElementAt(0).merkez.Y + float.Parse(((uzaklik *
-                            trackBar1.Value)* -Math.Sin((Form1.gemiler.ElementAt(0).rota + kerterizAcisi + 90) * Math.PI / 180)).ToString());
+                    p.Y = AnaEkran.gemiler.ElementAt(0).merkez.Y + float.Parse(((uzaklik *
+                            trackBar1.Value)* -Math.Sin((AnaEkran.gemiler.ElementAt(0).rota + kerterizAcisi + 90) * Math.PI / 180)).ToString());
 
                     /*   p.X = veriler[i, veriler.GetLength(1) - 2];
                        p.Y = veriler[i, veriler.GetLength(1) - 1];*/
 
                     //Form1.setVeriler((int)veriler[i, 0] / Form1.katSayi, (int)veriler[i, 1], (int)-veriler[i, 2], p);
-                    Form1.setVeriler((int)veriler[i, 0], veriler[i, 1], (int)-veriler[i, 2], p);
-                    Form1.gemiler.ElementAt(i).bizimGemiyeUzaklik = uzaklik;
-                    Form1.gemiler.ElementAt(i).kerterizAcisi = kerterizAcisi;
+                    AnaEkran.setVeriler((int)veriler[i, 0], veriler[i, 1], (int)-veriler[i, 2], p);
+                    AnaEkran.gemiler.ElementAt(i).bizimGemiyeUzaklik = uzaklik;
+                    AnaEkran.gemiler.ElementAt(i).kerterizAcisi = kerterizAcisi;
                     //Console.WriteLine("Zero : "+(ikiNoktaArasiUzaklikHesabi(gemiler.ElementAt(0), Form1.gemiler.ElementAt(i)) / trackBar1.Value));
                 }
             }
-            Form1.xx.Yenile();
+            AnaEkran.xx.Yenile();
         }
         private void button8_Click(object sender, EventArgs e)
         {
@@ -1043,6 +1048,10 @@ namespace WindowsFormsApplication1
 
         private void button2_Click_1(object sender, EventArgs e)
         {
+
+            MessageBox.Show("Bu Yazılım Barış Elçiseven ve Mehmet Furkan Atlı Tarafından COLREG Kurallarına Uygun Olarak Hazırlanmıştır.");
+
+
            /* PointF[] pf = { new PointF(500, 500),
                 new PointF(500, 400),new PointF(600, 300),
                 new PointF(500, 250),new PointF(500, 200)

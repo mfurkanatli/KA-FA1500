@@ -10,8 +10,7 @@ namespace WindowsFormsApplication1
     {
         public int deger;
         public int fitness;
-        public double olasilik = 0;
-        public string[] binaryCode = new string[6];
+        public double olasilik = 0; 
         public string[] t1 = new string[9];
         public string[] co1 = new string[6];
         public string[] t2 = new string[6];
@@ -37,15 +36,7 @@ namespace WindowsFormsApplication1
         {
             return Math.PI * aci / 180.0;
         }
-        public void degerHesapla()
-        {
-            deger = 0;
-            deger -= Convert.ToInt32(binaryCode[0]) * Convert.ToInt32(Math.Pow(2, 7));//2 'ye tümleyende 128 den çıkartmak için
-            for (int i = 1; i < binaryCode.Length; i++)
-            {
-                deger += Convert.ToInt32(binaryCode[i]) * Convert.ToInt32(Math.Pow(2, 7 - i));
-            }
-        }
+       
         public void outputDegerHesapla()
         {
             t1_deger = degerHesapla2(t1);

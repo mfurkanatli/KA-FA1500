@@ -24,7 +24,7 @@ namespace WindowsFormsApplication1
         int[] iterasyon = new int[100];
         long[] sure = new long[100];
         Random rand = new Random();
-        Form1 f1;
+        AnaEkran f1;
         static public List<Rota> rotalar = new List<Rota>();
         
         public GeneticAlgorithm(int pop, double crossR,double mut, int it)
@@ -37,17 +37,17 @@ namespace WindowsFormsApplication1
             
         }
    
-        public void SetForm(Form1 _f1)
+        public void SetForm(AnaEkran _f1)
         {
             f1 = _f1;
         }
 
         bool BireyUygunMu(Kromozom birey)
         {
-            Gemi gemi1 = new Gemi(Form1.gemiler.ElementAt(0).emniyet_alani, Form1.gemiler.ElementAt(0).hiz, 
-                -Form1.gemiler.ElementAt(0).rota, Form1.gemiler.ElementAt(0).merkez,f1);
-            Gemi gemi2 = new Gemi(Form1.gemiler.ElementAt(1).emniyet_alani, Form1.gemiler.ElementAt(1).hiz,
-                -Form1.gemiler.ElementAt(1).rota, Form1.gemiler.ElementAt(1).merkez, f1);
+            Gemi gemi1 = new Gemi(AnaEkran.gemiler.ElementAt(0).emniyet_alani, AnaEkran.gemiler.ElementAt(0).hiz, 
+                -AnaEkran.gemiler.ElementAt(0).rota, AnaEkran.gemiler.ElementAt(0).merkez,f1);
+            Gemi gemi2 = new Gemi(AnaEkran.gemiler.ElementAt(1).emniyet_alani, AnaEkran.gemiler.ElementAt(1).hiz,
+                -AnaEkran.gemiler.ElementAt(1).rota, AnaEkran.gemiler.ElementAt(1).merkez, f1);
 
             /*gemi1.pb.Visible = false;
             gemi2.pb.Visible = false;*/

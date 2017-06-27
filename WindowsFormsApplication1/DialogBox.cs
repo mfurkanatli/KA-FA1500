@@ -29,19 +29,19 @@ namespace WindowsFormsApplication1
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1.gemiler.ElementAt(0).yedek_hiz = min;
+            AnaEkran.gemiler.ElementAt(0).yedek_hiz = min;
             this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form1.gemiler.ElementAt(0).yedek_hiz = sabit;
+            AnaEkran.gemiler.ElementAt(0).yedek_hiz = sabit;
             this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form1.gemiler.ElementAt(0).yedek_hiz = max;
+            AnaEkran.gemiler.ElementAt(0).yedek_hiz = max;
             this.Close();
         }
     }
