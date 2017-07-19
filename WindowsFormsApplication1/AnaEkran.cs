@@ -6,11 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace WindowsFormsApplication1
 {
     public partial class AnaEkran : Form
     {
+       
         Graphics cizim;
         Gemi karsiGemi;
         Gemi bizimGemi;
@@ -31,6 +33,7 @@ namespace WindowsFormsApplication1
         public AnaEkran()
         {
             InitializeComponent();
+            Control.CheckForIllegalCrossThreadCalls = false;
             this.WindowState = FormWindowState.Maximized;
             g = this.CreateGraphics();
             cizim = CreateGraphics();
@@ -679,13 +682,33 @@ namespace WindowsFormsApplication1
             ga.kromozonYarat();
             progressBar1.Maximum = ga.iterasyonSayisi;
             progressBar1.Value = 0;
-            
-            for (int i=0;i < ga.iterasyonSayisi; i++)
+            var t = Task.Run(() =>
             {
-                progressBar1.Value++;
-                ga.hesapla();
-                //rota = ga.SahteGenetik(ga.optimumKromozon);
+
+                for (int i = 0; i < ga.iterasyonSayisi; i++)
+                {
+                    progressBar1.Value++;
+                    Console.WriteLine("Task thread ID: {0}",
+                                   Thread.CurrentThread.ManagedThreadId);
+                    ga.hesapla();
+                   
+                    //rota = ga.SahteGenetik(ga.optimumKromozon);
+                }
+            });
+
+            t.Wait();
+           
+
+            if (progressBar1.Value == ga.iterasyonSayisi)
+            {
+                bilemedim();
             }
+
+
+        }
+
+        private void bilemedim()
+        {
             GeneticAlgorithm.rotalar = GeneticAlgorithm.rotalar.OrderBy(q => q.fitness).ToList();
             rota = GeneticAlgorithm.rotalar.ElementAt(0).Klonla();
             if (catismaVar)
@@ -923,15 +946,20 @@ namespace WindowsFormsApplication1
                     p.X = veriler[i, veriler.GetLength(1) - 2];
                     p.Y = veriler[i, veriler.GetLength(1) - 1];
 
-                    setVeriler((int) veriler[i, 0], veriler[i, 1], (int) -veriler[i, 2], p);
+                    setVeriler((int) veriler[i, 0], veriler[i, 1], (int) veriler[i, 2], p);
                 }
             }
         }
         public void LoadFuncKerteriz()
         {
-            AnaEkran.xx.temizle();
+            
             OpenFileDialog op = new OpenFileDialog();
             op.ShowDialog();
+            if (op.FileName.Equals(null))
+            {
+                AnaEkran.xx.temizle();
+            }
+            
             String secilenDizin = op.FileName.ToString();
 
             if (!secilenDizin.Equals(""))
@@ -975,6 +1003,7 @@ namespace WindowsFormsApplication1
                     //Form1.setVeriler((int)veriler[i, 0] / Form1.katSayi, (int)veriler[i, 1], (int)-veriler[i, 2], p);
                     AnaEkran.setVeriler((int)veriler[i, 0], veriler[i, 1], (int)-veriler[i, 2], p);
                     AnaEkran.gemiler.ElementAt(i).bizimGemiyeUzaklik = uzaklik;
+                    AnaEkran.gemiler.ElementAt(i).yedek_bizimGemiyeUzaklik = uzaklik;
                     AnaEkran.gemiler.ElementAt(i).kerterizAcisi = kerterizAcisi;
                     //Console.WriteLine("Zero : "+(ikiNoktaArasiUzaklikHesabi(gemiler.ElementAt(0), Form1.gemiler.ElementAt(i)) / trackBar1.Value));
                 }

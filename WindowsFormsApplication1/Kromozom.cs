@@ -13,8 +13,8 @@ namespace WindowsFormsApplication1
         public double olasilik = 0; 
         public string[] t1 = new string[9];
         public string[] co1 = new string[6];
-        public string[] t2 = new string[6];
-        public string[] co2 = new string[5];
+        public string[] t2 = new string[7];
+        public string[] co2 = new string[6];
         public double co3, t3;
         public double t1_deger, t2_deger, co1_deger, co2_deger;
         public double mutRate = 0;

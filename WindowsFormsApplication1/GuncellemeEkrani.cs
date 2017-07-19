@@ -77,7 +77,7 @@ namespace WindowsFormsApplication1
                 {
                     AnaEkran.gemiler.ElementAt(index).rota = Convert.ToInt32(textBox3.Text);
                 }
-                AnaEkran.gemiler.ElementAt(index).kerterizAcisi = Convert.ToInt32(textBox4.Text);
+                AnaEkran.gemiler.ElementAt(index).kerterizAcisi = -Convert.ToInt32(textBox4.Text);
                 AnaEkran.gemiler.ElementAt(index).bizimGemiyeUzaklik = float.Parse(textBox5.Text);
 
                 AnaEkran.xx.Yenile();
@@ -164,7 +164,7 @@ namespace WindowsFormsApplication1
                    
                 textBox2.Text = AnaEkran.gemiler.ElementAt(index).yedek_hiz + "";
                 textBox3.Text = Math.Abs(AnaEkran.gemiler.ElementAt(index).rota) + "";
-                textBox4.Text = AnaEkran.gemiler.ElementAt(index).kerterizAcisi + "";
+                textBox4.Text = -AnaEkran.gemiler.ElementAt(index).kerterizAcisi + "";
                 textBox5.Text = AnaEkran.gemiler.ElementAt(index).bizimGemiyeUzaklik + "";
             }
         }

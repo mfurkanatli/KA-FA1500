@@ -68,6 +68,7 @@ namespace WindowsFormsApplication1
             {
 
                 float uzaklik = float.Parse(textBox5.Text);
+
                 float kerterizAcisi = -float.Parse(textBox4.Text);
 
                 p.X = AnaEkran.gemiler.ElementAt(0).merkez.X + float.Parse((uzaklik

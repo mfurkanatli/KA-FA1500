@@ -13,6 +13,7 @@ namespace WindowsFormsApplication1
         public float yedek_hiz;
         public float yedek_emniyet_alani;
         public float bizimGemiyeUzaklik;
+        public float yedek_bizimGemiyeUzaklik;
         public float kerterizAcisi;
         public int rota;
         public int yedek_rota;
