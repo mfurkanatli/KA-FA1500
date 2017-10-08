@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -69,9 +70,7 @@ namespace WindowsFormsApplication1
             {
                 gemiler.ElementAt(gemiler.Count - 1).pb.Image = Properties.Resources.gemi3;
             }
-
-
-            
+             
         }
 
         public GemiGirdileriEkrani gemiGirdileriEkrani = new GemiGirdileriEkrani();
@@ -162,7 +161,10 @@ namespace WindowsFormsApplication1
             if(gemiler.Count>1)
             {
 
-                MessageBox.Show("Veriler Onaylandı");
+                //MessageBox.Show("Veriler Onaylandı");
+                VeriOnaylamaDialogBox veriOnayBox = new VeriOnaylamaDialogBox();
+                veriOnayBox.ShowDialog();
+                 
                 veriOnayla = true;
                 trackBar1.Enabled = false;
                 if(hizForm.isChecked())
@@ -676,35 +678,61 @@ namespace WindowsFormsApplication1
         }
         private void GenetikHesapla()
         {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+
             GeneticAlgorithm ga = new GeneticAlgorithm(Convert.ToInt32(textBox1.Text), Convert.ToDouble(textBox2.Text),
                 Convert.ToDouble(textBox3.Text), Convert.ToInt32(textBox4.Text));
             ga.SetForm(xx);
             ga.kromozonYarat();
             progressBar1.Maximum = ga.iterasyonSayisi;
             progressBar1.Value = 0;
-            var t = Task.Run(() =>
+
+
+             List<Task> tasks = new List<Task>();
+             for (int i = 0; i < ga.iterasyonSayisi; i++)
+                 {
+                     var t = Task.Run(() =>
+                     {
+                         progressBar1.Value++;
+                         LoadingForm.progressUpdate(i);
+                        // Console.WriteLine("Task thread ID: {0}",
+                                     //   Thread.CurrentThread.ManagedThreadId);
+                         ga.hesapla();
+                     });
+                 tasks.Add(t);
+                t.Wait();
+            }
+         /*   Action[] action = new Action[ga.iterasyonSayisi];
+            for (int i = 0; i < ga.iterasyonSayisi; i++)
             {
-
-                for (int i = 0; i < ga.iterasyonSayisi; i++)
-                {
+                action[i] = () => {
                     progressBar1.Value++;
-                    Console.WriteLine("Task thread ID: {0}",
-                                   Thread.CurrentThread.ManagedThreadId);
                     ga.hesapla();
-                   
-                    //rota = ga.SahteGenetik(ga.optimumKromozon);
-                }
-            });
+                };
+            }
+            
 
-            t.Wait();
-           
+            Parallel.Invoke(
+            action);
+
+
+            */
+
+           //  Task.WaitAll(tasks.ToArray());
+
+            // foreach (Task tt in tasks)
+            //Console.WriteLine("Task {0} Status: {1}", tt.Id, tt.Status);
+            // t.RunSynchronously();
+            // t.Wait();
+            rota = ga.SahteGenetik(ga.optimumKromozon);
 
             if (progressBar1.Value == ga.iterasyonSayisi)
             {
                 bilemedim();
-            }
-
-
+                stopWatch.Stop();
+                Console.WriteLine(stopWatch.ElapsedMilliseconds);
+            } 
         }
 
         private void bilemedim()
@@ -716,7 +744,11 @@ namespace WindowsFormsApplication1
             label1.Text = "Hesaplandı!";
         }
 
+        static void BasicAction()
+        {
 
+            Console.WriteLine("Method=alpha, Thread={0}", Thread.CurrentThread.ManagedThreadId);
+        }
         private int mevcutHizAraligiDurumu()
         {
             for(int i=0;i<gemiler.ElementAt(0).gemiHizAraliklari.GetLength(0);i++)
@@ -760,27 +792,25 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            for (int i = (int)gemiler.ElementAt(0).yedek_hiz-1; i > gemiler.ElementAt(0).gemiHizAraliklari[ustHizLimitiGetir(mevcutHizDurumu), 0]; i--)
+            for (int i = (int)gemiler.ElementAt(0).yedek_hiz-1; i > gemiler.ElementAt(0).gemiHizAraliklari[ustHizLimitiGetir(mevcutHizDurumu), 1]; i--)
             {
-                Gemi gemi1 = gemiler.ElementAt(0).Clone();
-                gemi1.yedek_hiz = i;
-                gemi1.hiz = gemi1.yedek_hiz * (1.0f * timer1.Interval / hizOran) * trackBar1.Value;
-                Cpa cpa = SimuleEt(gemi1, gemiler.ElementAt(1));
-                if (!catismaRiskiVarMi(cpa, gemi1))
-                {
-                    minHiz = i;
+                 
+                    Gemi gemi1 = gemiler.ElementAt(0).Clone();
+                    gemi1.yedek_hiz = i;
+                    gemi1.hiz = gemi1.yedek_hiz * (1.0f * timer1.Interval / hizOran) * trackBar1.Value;
+                    Cpa cpa = SimuleEt(gemi1, gemiler.ElementAt(1));
+                    if (!catismaRiskiVarMi(cpa, gemi1))
+                    {
+                        minHiz = i;
                     break;
-                }
+                    }
+
             }
 
             DialogBox db = new DialogBox(minHiz, (int)gemiler.ElementAt(0).yedek_hiz, maxHiz);
             db.ShowDialog();
 
-        }
-
-
-
-
+        } 
         private void button3_Click(object sender, EventArgs e)
         {
             
@@ -800,6 +830,8 @@ namespace WindowsFormsApplication1
                 {
                     label1.Visible = true;
                     progressBar1.Visible = true;
+                    LoadingForm loadingForm = new LoadingForm(Convert.ToInt32(textBox4.Text));
+                    loadingForm.Show();
                     MessageBox.Show("ÇATIŞMA RİSKİ SÖZ KONUSUDUR..!\n"+ durumKontrolu(gemiler.ElementAt(0), 
                         gemiler.ElementAt(1)) + "\n"+cpa.dcpa/trackBar1.Value);                    
                     catismaVar = true;

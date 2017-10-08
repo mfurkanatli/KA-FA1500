@@ -19,7 +19,8 @@ namespace WindowsFormsApplication1
 
         private void HizAraliklari_Load(object sender, EventArgs e)
         {
-            groupBox5.Enabled = false;
+
+            groupBox5.Enabled = false; 
         }
 
         private void button1_Click(object sender, EventArgs e)

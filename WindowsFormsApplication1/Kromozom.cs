@@ -94,10 +94,7 @@ namespace WindowsFormsApplication1
             }
 
             return s;
-        }
-
-        
-
+        }  
         static public string[] inputAtamaYap(string[] bin, string[] bin2, int breakPoint)//crossover
         {
             breakPoint = rastgeleIndisSec(0, bin.Count(), 0.3);

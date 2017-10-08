@@ -20,6 +20,18 @@ namespace WindowsFormsApplication1
         public DialogBox(int min, int sabit, int max)
         {
             InitializeComponent();
+            if (min<=0)
+            {
+                button1.Visible = false;
+                label4.Visible = true;
+            }
+            else
+            {
+                label1.Text = "Düşürülecek Hız :";
+                button1.Visible = true;
+                label4.Visible = false;
+            }
+            if(min>0)
             label1.Text += min;
             label2.Text += sabit;
             label3.Text += max;
@@ -31,6 +43,11 @@ namespace WindowsFormsApplication1
         {
             AnaEkran.gemiler.ElementAt(0).yedek_hiz = min;
             this.Close();
+        }
+
+        private void DialogBox_Load(object sender, EventArgs e)
+        {
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

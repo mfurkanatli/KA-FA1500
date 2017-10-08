@@ -21,12 +21,10 @@ namespace WindowsFormsApplication1
             {
                 if (i == 0)
                 {
-
                     veriler += gemiler.ElementAt(i).yedek_emniyet_alani + ";" + gemiler.ElementAt(i).yedek_hiz + ";" + gemiler.ElementAt(i).rota + ";" + gemiler.ElementAt(i).merkez.X + ";" + gemiler.ElementAt(i).merkez.Y;
                 }
                 else
                 {
-
                     veriler += gemiler.ElementAt(i).yedek_emniyet_alani + ";" + gemiler.ElementAt(i).yedek_hiz + ";" + gemiler.ElementAt(i).rota + ";" + (-gemiler.ElementAt(i).kerterizAcisi) + ";" + gemiler.ElementAt(i).bizimGemiyeUzaklik;
                 }
                 sW.WriteLine(veriler);
@@ -42,7 +40,6 @@ namespace WindowsFormsApplication1
             double mil;
 
             mil = deger * AnaEkran.gemiler.ElementAt(0).hiz / AnaEkran.xx.trackBar1.Value;
-
 
             return mil;
         }

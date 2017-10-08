@@ -24,7 +24,7 @@ namespace WindowsFormsApplication1
         int[] iterasyon = new int[100];
         long[] sure = new long[100];
         Random rand = new Random();
-        AnaEkran f1;
+        AnaEkran anaEkran;
         static public List<Rota> rotalar = new List<Rota>();
         
         public GeneticAlgorithm(int pop, double crossR,double mut, int it)
@@ -37,17 +37,17 @@ namespace WindowsFormsApplication1
             
         }
    
-        public void SetForm(AnaEkran _f1)
+        public void SetForm(AnaEkran _anaEkran)
         {
-            f1 = _f1;
+            anaEkran = _anaEkran;
         }
 
         bool BireyUygunMu(Kromozom birey)
         {
             Gemi gemi1 = new Gemi(AnaEkran.gemiler.ElementAt(0).emniyet_alani, AnaEkran.gemiler.ElementAt(0).hiz, 
-                -AnaEkran.gemiler.ElementAt(0).rota, AnaEkran.gemiler.ElementAt(0).merkez,f1);
+                -AnaEkran.gemiler.ElementAt(0).rota, AnaEkran.gemiler.ElementAt(0).merkez,anaEkran);
             Gemi gemi2 = new Gemi(AnaEkran.gemiler.ElementAt(1).emniyet_alani, AnaEkran.gemiler.ElementAt(1).hiz,
-                -AnaEkran.gemiler.ElementAt(1).rota, AnaEkran.gemiler.ElementAt(1).merkez, f1);
+                -AnaEkran.gemiler.ElementAt(1).rota, AnaEkran.gemiler.ElementAt(1).merkez, anaEkran);
 
             /*gemi1.pb.Visible = false;
             gemi2.pb.Visible = false;*/
@@ -69,14 +69,14 @@ namespace WindowsFormsApplication1
             {
                 for(int j=0;j<rota.t[index];j++)
                 {
-                    if (f1.DcpaHesapla(gemi1, gemi2) < gemi1.emniyet_alani / 2)
+                    if (anaEkran.DcpaHesapla(gemi1, gemi2) < gemi1.emniyet_alani / 2)
                         return false;
 
                 }
                 gemi1.rota -= (int) (rota.co[index]);
             }
 
-            if (f1.SimuleEt(gemi1, gemi2).dcpa < gemi1.emniyet_alani / 2)
+            if (anaEkran.SimuleEt(gemi1, gemi2).dcpa < gemi1.emniyet_alani / 2)
                 return false;
 
 
